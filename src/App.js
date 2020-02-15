@@ -3,18 +3,27 @@ import React, {Component} from 'react';
 
 import logo from './logo.svg';
 import './App.scss';
-import {Row, Container, Nav, Jumbotron, Card, ListGroup,ListGroupItem} from "react-bootstrap";
+import {Row, Container, Nav, Jumbotron, Card, ListGroup,ListGroupItem, Col} from "react-bootstrap";
 
 // weather update for one day
 class WeatherCard extends Component {
+
+  constructor(props) {
+    super(props);
+  }
+
+  getWeatherIcon(weathertype) {
+    return "assets/icons/" + weathertype + ".svg";
+  }
+
   render() {
     return <Card style={{width: '18rem'}}>
-        <Card.Img variant="top" src=""/>
+        <Card.Img variant="top" src={this.getWeatherIcon(this.props.weatherType)}/>
         <Card.Body>
-         <Card.Title>Wed</Card.Title>
+         <Card.Title>{this.props.day}</Card.Title>
          <ListGroup className="list-group-flush">
-           <ListGroupItem>34 </ListGroupItem>
-           <ListGroupItem>23 </ListGroupItem>
+           <ListGroupItem>{this.props.highestTemp}</ListGroupItem>
+           <ListGroupItem>{this.props.lowestTemp}</ListGroupItem>
          </ListGroup>
         </Card.Body>
     </Card>
@@ -47,9 +56,10 @@ class App extends Component {
              <h1> Weather man forecast!</h1>
 
          </Jumbotron>
-         <Container>
-          <WeatherCard> </WeatherCard>
-         </Container>
+         <Row className="justify-content-md-space-between">
+          <Col><WeatherCard day="Wednesday" highestTemp={35} lowestTemp={34} weatherType="cloudy"> </WeatherCard></Col>
+          <Col><WeatherCard day="Monday" highestTemp={25} lowestTemp={24} weatherType="sunny"> </WeatherCard></Col>
+         </Row>
 
 
      </Row>
