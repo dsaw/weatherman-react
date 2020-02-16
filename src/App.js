@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-
+import SearchInput from './Search';
 
 import logo from './logo.svg';
 import './App.scss';
@@ -18,7 +18,7 @@ class WeatherCard extends Component {
 
   render() {
     return <Card style={{width: '18rem'}}>
-        <Card.Img variant="top" src={this.getWeatherIcon(this.props.weatherType)}/>
+        <Card.Img style={{width: '30%'}} className="weather-icon" variant="top" src={this.getWeatherIcon(this.props.weatherType)}/>
         <Card.Body>
          <Card.Title>{this.props.day}</Card.Title>
          <ListGroup className="list-group-flush">
@@ -49,6 +49,9 @@ class App extends Component {
                  <Nav.Link href="/about"> About </Nav.Link>
              </Nav.Item>
          </Nav>
+         <Col>
+           <SearchInput />
+         </Col>
 
      </Row>
      <Row id="content">
