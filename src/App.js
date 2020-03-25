@@ -18,10 +18,11 @@ class WeatherCard extends Component {
 
   render() {
     return <Card style={{width: '18rem'}}>
-        <Card.Img style={{width: '30%'}} className="weather-icon" variant="top" src={this.getWeatherIcon(this.props.weatherType)}/>
         <Card.Body>
          <Card.Title>{this.props.day}</Card.Title>
-         <ListGroup className="list-group-flush">
+         <Card.Img style={{width: '30%'}} className="weather-icon" variant="top" src={this.getWeatherIcon(this.props.weatherType)}/>
+
+         <ListGroup horizontal>
            <ListGroupItem>{this.props.highestTemp}</ListGroupItem>
            <ListGroupItem>{this.props.lowestTemp}</ListGroupItem>
          </ListGroup>
@@ -30,7 +31,18 @@ class WeatherCard extends Component {
   }
 }
 
+class WeeklyForecast extends Component {
+  constructor(props) {
+    super(props);
+  }
 
+  render() {
+    return <Row className="justify-content-md-space-between">
+     <Col><WeatherCard day="Wednesday" highestTemp={35} lowestTemp={34} weatherType="cloudy"> </WeatherCard></Col>
+     <Col><WeatherCard day="Monday" highestTemp={25} lowestTemp={24} weatherType="sunny"> </WeatherCard></Col>
+    </Row>
+  }
+}
 
 
 
@@ -42,7 +54,7 @@ class App extends Component {
   return (
    <Container className="App">
      <Row className="header">
-         <Nav activekey="/home"
+         <Nav variant="pills" activekey="/home"
               onSelect={selectedKey => alert(`selected ${selectedKey}`)}
               >
              <Nav.Item>
