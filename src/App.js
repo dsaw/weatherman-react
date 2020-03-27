@@ -25,6 +25,10 @@ class WeatherCard extends Component {
          <ListGroup horizontal>
            <ListGroupItem>{this.props.highestTemp}</ListGroupItem>
            <ListGroupItem>{this.props.lowestTemp}</ListGroupItem>
+           <ListGroup>
+            <ListGroupItem>{this.props.humidity}</ListGroupItem>
+            <ListGroupItem>{this.props.speed}</ListGroupItem>
+           </ListGroup>
          </ListGroup>
         </Card.Body>
     </Card>
@@ -38,8 +42,8 @@ class WeeklyForecast extends Component {
 
   render() {
     return <Row className="justify-content-md-space-between">
-     <Col><WeatherCard day="Wednesday" highestTemp={35} lowestTemp={34} weatherType="cloudy"> </WeatherCard></Col>
-     <Col><WeatherCard day="Monday" highestTemp={25} lowestTemp={24} weatherType="sunny"> </WeatherCard></Col>
+     <Col><WeatherCard day="Wednesday" highestTemp={35} lowestTemp={34} weatherType="cloudy" humidity={21} speed={2}> </WeatherCard></Col>
+     <Col><WeatherCard day="Monday" highestTemp={25} lowestTemp={24} weatherType="sunny" humidity={1} speed={3}> </WeatherCard></Col>
     </Row>
   }
 }
@@ -72,8 +76,8 @@ class App extends Component {
 
          </Jumbotron>
          <Row className="justify-content-md-space-between">
-          <Col><WeatherCard day="Wednesday" highestTemp={35} lowestTemp={34} weatherType="cloudy"> </WeatherCard></Col>
-          <Col><WeatherCard day="Monday" highestTemp={25} lowestTemp={24} weatherType="sunny"> </WeatherCard></Col>
+          <Col><WeatherCard day="Wednesday" highestTemp={35} lowestTemp={34} weatherType="cloudy" humidity={21} speed={2}> </WeatherCard></Col>
+          <Col><WeatherCard day="Monday" highestTemp={25} lowestTemp={24} weatherType="sunny" humidity={21} speed={2}> </WeatherCard></Col>
          </Row>
 
 
