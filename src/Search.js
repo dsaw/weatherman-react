@@ -16,13 +16,22 @@ class SearchInput extends Component {
 
   constructor (props) {
     super(props);
-    this.state = { repos: []}
+    this.cityIdList = cityListConfig.default.map(obj => renameKeys(obj, {'name':'value'}));
+    this.state = { repos: []};
     // process city id map list
-    this.cityIdMap = cityListConfig.default.map(obj => renameKeys(obj, {'name':'value'}));
+
   }
 
   getItemsAsync(searchValue, cb) {
     // search for city with searchValue
+    if (searchValue.trim()) {
+     let items = this.cityIdList;//.filter(obj => obj.value.startsWith(searchValue.toUpperCase()));
+     this.setState({repos: items, searchValue: searchValue});
+     cb();
+    // this.SearchItemInArrayObjects(items, searchValue.trim(), 'value');
+
+     console.log(searchValue);
+    }
 
   }
 
@@ -41,7 +50,7 @@ class SearchInput extends Component {
 
 
    return (
-     <Search items={this.cityIdMap}
+     <Search items={this.state.repos}
       placeholder='Pick a city'
       maxSelected={1}
       getItemsAsync={this.getItemsAsync.bind(this)}
