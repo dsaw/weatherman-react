@@ -27,6 +27,7 @@ class SearchInput extends Component {
   constructor (props) {
     super(props);
     this.cityIdList = cityListConfig.default.map(obj => renameKeys(obj, {'name':'value'}));
+    this.items = [];
     this.state = { value: '',
     suggestions: []};
     // process city id map list
@@ -34,30 +35,29 @@ class SearchInput extends Component {
   }
 
   // Teach Autosuggest how to calculate suggestions for any given input value.
-    getSuggestions (value) {
+  async getSuggestions (value) {
   const searchValue = value ? value.trim().toLowerCase() : '';
   const inputLength = searchValue.length;
-  var items = [];
 
    if (inputLength === 0)
       return [];
     else {
-      (async () => {
-      const response = await  fetch(`https://api.teleport.org/api/cities/?search=${searchValue}`)
+
+      const response = await  fetch(`https://api.teleport.org/api/cities/?search=${searchValue}`);
 
         const data = await response.json();
         console.log(data);
         if(data.count > 0)
         {
-           items = data['_embedded']['city:search-results'].map(res => ( {'value': res.matching_full_name,
+           this.items = data['_embedded']['city:search-results'].map(res => ( {'value': res.matching_full_name,
         'id': parseInt(res._links['city:item'].href.split('/')[5].replace(/\D/g, ''))} ));
         }
-      })();
+      }
      // this.SearchItemInArrayObjects(items, searchValue.trim(), 'value');
       console.log(searchValue);
-      return items;
-   }
-};
+      return this.items;
+
+}
 
   onChange = (event, { newValue}) => {
     this.setState({
@@ -66,10 +66,11 @@ class SearchInput extends Component {
   };
 
    onSuggestionsFetchRequested = ({ value }) => {
+     this.getSuggestions(value);
      this.setState({
-       suggestions: this.getSuggestions(value)
+       suggestions: this.items
      });
-   }
+   };
 
    onSuggestionsClearRequested = () => {
      this.setState({
@@ -98,9 +99,9 @@ class SearchInput extends Component {
          renderSuggestion={renderSuggestion}
          inputProps={inputProps}
        />
-   )
+   );
 
- }
+ };
 }
 
 export default SearchInput;
