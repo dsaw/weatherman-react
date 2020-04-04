@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Search from 'react-search';
+import Autosuggest from 'react-autosuggest';
 import * as cityListConfig from './data/city.list.json';
 
 
@@ -12,49 +13,91 @@ function renameKeys(obj, newKeys) {
   return Object.assign({}, ...keyValues);
 }
 
+const getSuggestionValue = suggestion => suggestion.value;
+
+// Use your imagination to render suggestions.
+const renderSuggestion = suggestion => (
+  <div>
+    {suggestion.value}
+  </div>
+);
+
 class SearchInput extends Component {
 
   constructor (props) {
     super(props);
     this.cityIdList = cityListConfig.default.map(obj => renameKeys(obj, {'name':'value'}));
-    this.state = { repos: []};
+    this.state = { value: '',
+    suggestions: []};
     // process city id map list
 
   }
 
-  getItemsAsync(searchValue, cb) {
-    // search for city with searchValue
-    if (searchValue.trim()) {
-     let items = this.cityIdList;//.filter(obj => obj.value.startsWith(searchValue.toUpperCase()));
-     this.setState({repos: items, searchValue: searchValue});
-     cb();
-    // this.SearchItemInArrayObjects(items, searchValue.trim(), 'value');
+  // Teach Autosuggest how to calculate suggestions for any given input value.
+    getSuggestions (value) {
+  const searchValue = value ? value.trim().toLowerCase() : '';
+  const inputLength = searchValue.length;
+  var items = [];
 
-     console.log(searchValue);
-    }
+   if (inputLength === 0)
+      return [];
+    else {
+      (async () => {
+      const response = await  fetch(`https://api.teleport.org/api/cities/?search=${searchValue}`)
 
-  }
+        const data = await response.json();
+        console.log(data);
+        if(data.count > 0)
+        {
+           items = data['_embedded']['city:search-results'].map(res => ( {'value': res.matching_full_name,
+        'id': parseInt(res._links['city:item'].href.split('/')[5].replace(/\D/g, ''))} ));
+        }
+      })();
+     // this.SearchItemInArrayObjects(items, searchValue.trim(), 'value');
+      console.log(searchValue);
+      return items;
+   }
+};
 
+  onChange = (event, { newValue}) => {
+    this.setState({
+      value: newValue
+    });
+  };
 
-   logLocations(locations) {
-     console.log(locations);
+   onSuggestionsFetchRequested = ({ value }) => {
+     this.setState({
+       suggestions: this.getSuggestions(value)
+     });
    }
 
+   onSuggestionsClearRequested = () => {
+     this.setState({
+       suggestions: []
+     });
+   };
+
+
    render() {
-     let items = [
-       {id: 0, value: 'pune'},
-       {id: 1, value: 'delhi'},
-       {id: 2, value: 'vadodara'},
-       {id: 3, value: 'mumbai'}
-     ];
+     const {value, suggestions } = this.state;
+
+     const inputProps = {
+       placeholder: 'Type a city/location',
+       value,
+       onChange: this.onChange
+     };
+
 
 
    return (
-     <Search items={this.state.repos}
-      placeholder='Pick a city'
-      maxSelected={1}
-      getItemsAsync={this.getItemsAsync.bind(this)}
-      onItemsChanged={this.logLocations.bind(this)} />
+     <Autosuggest
+         suggestions={suggestions}
+         onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+         onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+         getSuggestionValue={getSuggestionValue}
+         renderSuggestion={renderSuggestion}
+         inputProps={inputProps}
+       />
    )
 
  }

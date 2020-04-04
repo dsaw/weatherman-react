@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import SearchInput from './Search';
 
+
 import logo from './logo.svg';
 import './App.scss';
 import {Row, Container, Nav, Jumbotron, Card, ListGroup,ListGroupItem, Col} from "react-bootstrap";
@@ -49,10 +50,11 @@ class WeeklyForecast extends Component {
 }
 
 
-
-
-
 class App extends Component {
+
+  constructor(props) {
+    super(props);
+  }
 
   render() {
   return (
@@ -67,6 +69,9 @@ class App extends Component {
          </Nav>
          <Col>
            <SearchInput />
+         </Col>
+         <Col>
+           <input id="autocomplete-example" />
          </Col>
 
      </Row>
