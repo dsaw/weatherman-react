@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Search from 'react-search';
 import Autosuggest from 'react-autosuggest';
-import * as cityListConfig from './data/city.list.json';
+import * as cityListConfig from '../../data/city.list.json';
 
 
 // for renaming name to id of city list
@@ -15,11 +15,14 @@ function renameKeys(obj, newKeys) {
 
 const getSuggestionValue = suggestion => suggestion.value;
 
-// Use your imagination to render suggestions.
+const onSuggestionSelected  = (event, { suggestion, suggestionValue, suggestionIndex, sectionIndex, method }) => ({
+
+});
+
 const renderSuggestion = suggestion => (
-  <div>
+  <p>
     {suggestion.value}
-  </div>
+  </p>
 );
 
 class SearchInput extends Component {
