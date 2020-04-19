@@ -1,0 +1,39 @@
+$clr-primary: steelblue;
+
+// Todo style this Autosuggest  
+
+.container {
+   width: 12em;
+   height: auto;
+   position: relative;
+ }
+.input {
+    display: block;
+    width: 100%;
+    height: 4em;
+    padding: 1em 1.5em;
+    border: 1px solid #aaa;
+	border-radius: 2em;
+  box-sizing: border-box;
+  outline: none;
+
+  &:focus {
+    outline: none;
+    border: 1px solid $clr-primary;
+  }
+
+  }
+.suggestionsContainer {
+  width: 100%;
+visibility: hidden
+  }
+
+.suggestionsContainerOpen {
+display: block;
+visibility: visible;
+}
+
+.suggestion {
+
+ }
+.suggestionHighlighted {  }
