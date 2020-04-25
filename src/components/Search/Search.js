@@ -16,14 +16,14 @@ function renameKeys(obj, newKeys) {
 
 const getSuggestionValue = suggestion => suggestion.value;
 
-const onSuggestionSelected  = (event, { suggestion, suggestionValue, suggestionIndex, sectionIndex, method }) => ({
-
-});
+const onSuggestionSelected  = (event, { suggestion, suggestionValue, suggestionIndex, sectionIndex, method }) => {
+      console.log(suggestion);
+};
 
 const renderSuggestion = suggestion => (
-  <p>
+  <span>
     {suggestion.value}
-  </p>
+  </span>
 );
 
 class SearchInput extends Component {
@@ -33,7 +33,9 @@ class SearchInput extends Component {
     this.cityIdList = cityListConfig.default.map(obj => renameKeys(obj, {'name':'value'}));
     this.items = [];
     this.state = { value: '',
-    suggestions: []};
+    suggestions: [],
+    showLoader: false
+  };
     // process city id map list
 
   }
@@ -47,14 +49,31 @@ class SearchInput extends Component {
       return [];
     else {
 
-      const response = await  fetch(`https://api.teleport.org/api/cities/?search=${searchValue}`);
+      const response = await fetch(`https://places-dsn.algolia.net/1/places/query`,
+      {  method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        redirect: 'follow',
+        body: JSON.stringify({query: searchValue, type: 'city',aroundLatLngViaIP: false})
+      });
 
         const data = await response.json();
         console.log(data);
-        if(data.count > 0)
+        if(data.nbHits > 0)
         {
-           this.items = data['_embedded']['city:search-results'].map(res => ( {'value': res.matching_full_name,
-        'id': parseInt(res._links['city:item'].href.split('/')[5].replace(/\D/g, ''))} ));
+          // fetch lat, long and location
+
+           this.items = data['hits'].map(res => {
+            var cityname = Array.isArray(res.locale_names.default) && res.locale_names.default.length ? res.locale_names.default[0] : '';
+            var county = res.county ? res.county.default[0] : '';
+          var country = Array.isArray(res.country.default) ? res.country.default[0] : '';
+               var resultantname = county ? cityname + ', ' + county + ', ' + country : cityname + ', ' + country;
+
+             return {'value': resultantname,
+                      'id': parseInt(res.objectID.split('_')[0]),
+                      'latLng': res._geoloc  };
+          });
         }
       }
      // this.SearchItemInArrayObjects(items, searchValue.trim(), 'value');
@@ -82,6 +101,10 @@ class SearchInput extends Component {
      });
    };
 
+   clearState() {
+     // clear the state of the component
+   }
+
 
    render() {
      const {value, suggestions } = this.state;
@@ -92,14 +115,16 @@ class SearchInput extends Component {
        onChange: this.onChange
      };
 
-     
+
    return (
      <section>
      <Autosuggest
          suggestions={suggestions}
          onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
          onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+         onSuggestionSelected={onSuggestionSelected}
          getSuggestionValue={getSuggestionValue}
+         highlightFirstSuggestion={true}
          renderSuggestion={renderSuggestion}
          inputProps={inputProps}
          theme={theme}

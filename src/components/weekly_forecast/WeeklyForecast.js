@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Row, Col} from "react-bootstrap";
-import WeatherCard from './components/WeatherCard/WeatherCard';
+import WeatherCard from './components/weather_card/WeatherCard';
 
 
 

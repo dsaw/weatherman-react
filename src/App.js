@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 
 
-import SearchInput from './components/Search/Search';
-import WeatherCard from './components/WeatherCard/WeatherCard';
+import SearchInput from './components/search/Search';
+import WeatherCard from './components/weather_card/WeatherCard';
 
 import logo from './logo.svg';
 import './App.scss';
