@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 
 import SearchInput from './components/search/Search';
 import WeatherCard from './components/weather_card/WeatherCard';
+import AddressContextProvider from './context/address/Address';
 
 import logo from './logo.svg';
 import './App.scss';
@@ -21,7 +22,9 @@ class App extends Component {
    <Container className="App">
      <Row className="header">
          <Col sm={true} md={8} lg={6}>
-           <SearchInput />
+         <AddressContextProvider>
+          <SearchInput />
+         </AddressContextProvider>
          </Col>
 
 

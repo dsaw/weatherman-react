@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import Search from 'react-search';
 import Autosuggest from 'react-autosuggest';
+import AddressContext from '../../context/address/Address';
+import WeeklyForecast from '../weekly_forecast/WeeklyForecast';
 import * as cityListConfig from '../../data/city.list.json';
 
 import theme from './Search.module.scss';
@@ -16,10 +18,6 @@ function renameKeys(obj, newKeys) {
 
 const getSuggestionValue = suggestion => suggestion.value;
 
-const onSuggestionSelected  = (event, { suggestion, suggestionValue, suggestionIndex, sectionIndex, method }) => {
-      console.log(suggestion);
-};
-
 const renderSuggestion = suggestion => (
   <span>
     {suggestion.value}
@@ -28,6 +26,7 @@ const renderSuggestion = suggestion => (
 
 class SearchInput extends Component {
 
+  static contextType = AddressContext;
   constructor (props) {
     super(props);
     this.cityIdList = cityListConfig.default.map(obj => renameKeys(obj, {'name':'value'}));
@@ -35,7 +34,7 @@ class SearchInput extends Component {
     this.state = { value: '',
     suggestions: [],
     showLoader: false
-  };
+    };
     // process city id map list
 
   }
@@ -82,6 +81,36 @@ class SearchInput extends Component {
 
 }
 
+  onSuggestionSelected  = (event, { suggestion, suggestionValue, suggestionIndex, sectionIndex, method }) => {
+      console.log(suggestion);
+
+      const response = fetch(`https://www.metaweather.com/api/location/search/?lattlong=${suggestion.latLng.lat},${suggestion.latLng.lng}`,
+      {
+        mode: "cors"
+      }
+      ).then((response)=> {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      }).then((res) => {
+        // set Address
+         if (res.length) {
+           console.log(this.context);
+           this.context.updateState({
+             address: res[0],
+             latLng: res[0]
+           });
+
+         }
+          console.log(res);
+      })
+      .catch((error) => {
+        console.error('There is a problem with your fetch:', error);
+      });
+  };
+
+
   onChange = (event, { newValue}) => {
     this.setState({
       value: newValue
@@ -122,7 +151,7 @@ class SearchInput extends Component {
          suggestions={suggestions}
          onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
          onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-         onSuggestionSelected={onSuggestionSelected}
+         onSuggestionSelected={this.onSuggestionSelected}
          getSuggestionValue={getSuggestionValue}
          highlightFirstSuggestion={true}
          renderSuggestion={renderSuggestion}

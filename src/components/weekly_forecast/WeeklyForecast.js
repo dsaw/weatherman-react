@@ -1,12 +1,18 @@
+
 import React, {Component} from 'react';
 import {Row, Col} from "react-bootstrap";
-import WeatherCard from './components/weather_card/WeatherCard';
+import WeatherCard from '../weather_card/WeatherCard';
 
 
 
 class WeeklyForecast extends Component {
+   // eslint-disable-next-line
   constructor(props) {
     super(props);
+  }
+
+  setAddress(address) {
+
   }
 
   render() {
