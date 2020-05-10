@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 
 import SearchInput from './components/search/Search';
 import WeatherCard from './components/weather_card/WeatherCard';
-import AddressContextProvider from './context/address/Address';
+import {AddressContextProvider} from './context/address/Address';
 
 import logo from './logo.svg';
 import './App.scss';
@@ -20,15 +20,17 @@ class App extends Component {
   render() {
   return (
    <Container className="App">
+
      <Row className="header">
          <Col sm={true} md={8} lg={6}>
-         <AddressContextProvider>
+          <AddressContextProvider>
           <SearchInput />
-         </AddressContextProvider>
+          </AddressContextProvider>
          </Col>
 
 
      </Row>
+
      <Row id="content">
          <Row className="justify-content-md-space-between">
           <Col><WeatherCard day="Wednesday" highestTemp={35} lowestTemp={34} weatherType="cloudy" humidity={21} speed={2}> </WeatherCard></Col>

@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import Search from 'react-search';
 import Autosuggest from 'react-autosuggest';
-import AddressContext from '../../context/address/Address';
+import {AddressContext} from '../../context/address/Address';
 import WeeklyForecast from '../weekly_forecast/WeeklyForecast';
+import parseCoordinates from '../../utils/CoordinateHelper';
 import * as cityListConfig from '../../data/city.list.json';
 
 import theme from './Search.module.scss';
@@ -26,7 +27,6 @@ const renderSuggestion = suggestion => (
 
 class SearchInput extends Component {
 
-  static contextType = AddressContext;
   constructor (props) {
     super(props);
     this.cityIdList = cityListConfig.default.map(obj => renameKeys(obj, {'name':'value'}));
@@ -99,7 +99,7 @@ class SearchInput extends Component {
            console.log(this.context);
            this.context.updateState({
              address: res[0],
-             latLng: res[0]
+             latLng: parseCoordinates(res[0].latt_long)
            });
 
          }
@@ -163,5 +163,7 @@ class SearchInput extends Component {
 
  };
 }
+
+SearchInput.contextType = AddressContext;
 
 export default SearchInput;
