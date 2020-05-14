@@ -32,8 +32,8 @@ class SearchInput extends Component {
     this.cityIdList = cityListConfig.default.map(obj => renameKeys(obj, {'name':'value'}));
     this.items = [];
     this.state = { value: '',
-    suggestions: [],
-    showLoader: false
+      suggestions: [],
+      showLoader: false
     };
     // process city id map list
 
