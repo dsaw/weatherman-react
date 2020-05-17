@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import {Card, ListGroup,ListGroupItem} from "react-bootstrap";
 
-
+const roundNumbers = (num) => {
+  return Math.round(num);
+}
 
 
 // weather update for one day
@@ -21,13 +23,14 @@ class WeatherCard extends Component {
          <Card.Title>{this.props.day}</Card.Title>
          <Card.Img style={{width: '30%'}} className="weather-icon" variant="top" src={this.getWeatherIcon(this.props.weatherType)}/>
 
-         <ListGroup horizontal>
-           <ListGroupItem>{this.props.highestTemp}</ListGroupItem>
-           <ListGroupItem>{this.props.lowestTemp}</ListGroupItem>
-           <ListGroup>
-            <ListGroupItem>{this.props.humidity}</ListGroupItem>
-            <ListGroupItem>{this.props.speed}</ListGroupItem>
-           </ListGroup>
+         <ListGroup variant="flush" horizontal>
+           <ListGroupItem>{roundNumbers(this.props.highestTemp)}</ListGroupItem>
+           <ListGroupItem>{roundNumbers(this.props.lowestTemp)}</ListGroupItem>
+
+         </ListGroup>
+         <ListGroup variant="flush">
+          <ListGroupItem>{roundNumbers(this.props.humidity)}</ListGroupItem>
+          <ListGroupItem>{roundNumbers(this.props.speed)}</ListGroupItem>
          </ListGroup>
         </Card.Body>
     </Card>
