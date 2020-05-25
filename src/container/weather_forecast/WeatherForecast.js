@@ -1,6 +1,7 @@
 import React, {Component, Fragment} from 'react';
 import {Row, Col, Container, CardGroup} from "react-bootstrap";
 import WeatherCard from '../../components/weather_card/WeatherCard';
+import WeatherWeek from '../weather_week/WeatherWeek';
 import {AddressContext} from  '../../context/address/Address';
 import {getDayFromDate} from '../../utils/DateHelper';
 import * as forecastData from '../../data/metaweather.fiveday.forecast.json';
@@ -36,15 +37,12 @@ class WeatherForecast extends Component {
       </Row>
       <Row className="justify-content-md-space-between">
       </Row>
-      <Row className="justify-content-md-space-between">
-     <CardGroup>
-    {this.state.forecast.map((day, index) => (
 
-        <WeatherCard day={getDayFromDate(day.applicable_date)} highestTemp={day.max_temp} lowestTemp={day.min_temp} weatherType="cloudy" humidity={day.humidity} speed={day.wind_speed}>
-        </WeatherCard>
-    ))}
-    </CardGroup>
-      </Row>
+     <div class="d-flex flex-xs-column flex-sm-row">
+        <WeatherWeek forecast={this.state.forecast}>
+        </WeatherWeek>
+     </div>
+
      </Container>
     );
 

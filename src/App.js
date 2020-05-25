@@ -6,7 +6,7 @@ import WeatherCard from './components/weather_card/WeatherCard';
 import WeatherForecast from './container/weather_forecast/WeatherForecast';
 import {AddressContextProvider} from './context/address/Address';
 
-import logo from './logo.svg';
+import "../node_modules/bootstrap/scss/bootstrap.scss";
 import './App.scss';
 import {Row, Container, Nav, Jumbotron, Card, ListGroup,ListGroupItem, Col} from "react-bootstrap";
 

@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {Card, ListGroup,ListGroupItem} from "react-bootstrap";
 
 const roundNumbers = (num) => {
   return Math.round(num);
@@ -18,22 +17,24 @@ class WeatherCard extends Component {
   }
 
   render() {
-    return <Card style={{width: '18rem'}}>
-        <Card.Body>
-         <Card.Title>{this.props.day}</Card.Title>
-         <Card.Img style={{width: '30%'}} className="weather-icon" variant="top" src={this.getWeatherIcon(this.props.weatherType)}/>
+    return(
+          <div class="d-flex flex-xs-row flex-sm-column bd-highlight" style={{width: '10rem'}}>
+         <div class="p-2">{this.props.day}</div>
+         <div style={{width: '5rem'}} class="p-2">
+          <img src={this.getWeatherIcon(this.props.weatherType)}/>
+         </div>
 
-         <ListGroup variant="flush" horizontal>
-           <ListGroupItem>{roundNumbers(this.props.highestTemp)}</ListGroupItem>
-           <ListGroupItem>{roundNumbers(this.props.lowestTemp)}</ListGroupItem>
+         <div class="p-2">
+           <div>{roundNumbers(this.props.highestTemp)}</div>
+           <div>{roundNumbers(this.props.lowestTemp)}</div>
+         </div>
+         <div class="p-2">
+          <div>{roundNumbers(this.props.humidity)}</div>
+          <div>{roundNumbers(this.props.speed)}</div>
+         </div>
+         </div>
+       );
 
-         </ListGroup>
-         <ListGroup variant="flush">
-          <ListGroupItem>{roundNumbers(this.props.humidity)}</ListGroupItem>
-          <ListGroupItem>{roundNumbers(this.props.speed)}</ListGroupItem>
-         </ListGroup>
-        </Card.Body>
-    </Card>
   }
 }
 
