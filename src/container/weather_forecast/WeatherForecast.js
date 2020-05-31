@@ -1,7 +1,7 @@
 import React, {Component, Fragment, useEffect} from 'react';
 import {Row, Col, Container, CardGroup} from "react-bootstrap";
 import WeatherCard from '../../components/weather_card/WeatherCard';
-import CurrentInfo from '../../components/current_info/CurrentInfo';
+import CurrentInfo from '../../components/weather/CurrentInfo';
 import WeatherWeek from '../weather_week/WeatherWeek';
 import {AddressContext} from  '../../context/address/Address';
 import {getDayFromDate} from '../../utils/DateHelper';
@@ -34,13 +34,14 @@ class WeatherForecast extends Component {
   }
 
   render() {
+    let address = this.context.address;
 
     return(
       <Container>
       <Row className="justify-content-md-space-between">
          <div>
            <p className="">{this.state.address.title}</p>
-           <CurrentInfo forecast={this.state.forecast}></CurrentInfo>
+           <CurrentInfo forecast={this.state.forecast} address={address}></CurrentInfo>
          </div>
 
       </Row>

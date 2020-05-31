@@ -32,6 +32,9 @@ class App extends Component {
          <WeatherForecast></WeatherForecast>
      </Row>
      </AddressContextProvider>
+     <Row id="footer">
+         
+     </Row>
    </Container>
   );
 }

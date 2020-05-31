@@ -1,9 +1,10 @@
 import React, {Component, Fragment, useEffect, useState, useRef} from 'react';
 import moment from 'moment-timezone';
 
-function CurrentInfo({forecast}) {
+function CurrentInfo({forecast, address}) {
   const [date, setDate] = useState('');
   const [time, setTime] = useState('');
+  const [location, setLocation] = useState('');
   const dateTimeRef = useRef();
 
   const setDateTime = (dateObj) => {
@@ -12,13 +13,21 @@ function CurrentInfo({forecast}) {
     dateTimeRef.current = dateObj;
   }
 
+  // set address
+  useEffect(() => {
+    if(address.title) {
+      setLocation(address.title);
+    }
+  }, [address]);
+
 
   // setting date/time
   useEffect(() => {
       // reset time when weather changes
-      console.log(forecast.timezone);
-      console.log(moment().tz(forecast.timezone));
+      //console.log(forecast.timezone);
+      //console.log(moment().tz(forecast.timezone));
       setDateTime(moment().tz(forecast.timezone));
+
 
       const dateTimer = setInterval(
         () => {
@@ -41,12 +50,18 @@ function CurrentInfo({forecast}) {
 
   return (
     <div>
+    { location ?
+      (<p>{location}
+        </p>)
+        : ''
+    }
     { date && time ?
      (<Fragment>
        <p>
         {date}
+        <span> | </span>
+        {time}
        </p>
-       <p> {time} </p>
      </Fragment>) : null
     }
     </div>

@@ -54,7 +54,7 @@ class SearchInput extends Component {
             'Content-Type': 'application/json'
         },
         redirect: 'follow',
-        body: JSON.stringify({query: searchValue, type: 'city',aroundLatLngViaIP: false})
+        body: JSON.stringify({query: searchValue, type: 'city', aroundLatLngViaIP: false, language: 'en'})
       });
 
         const data = await response.json();
@@ -64,10 +64,10 @@ class SearchInput extends Component {
           // fetch lat, long and location
 
            this.items = data['hits'].map(res => {
-            var cityname = Array.isArray(res.locale_names.default) && res.locale_names.default.length ? res.locale_names.default[0] : '';
-            var county = res.county ? res.county.default[0] : '';
-          var country = Array.isArray(res.country.default) ? res.country.default[0] : '';
-               var resultantname = county ? cityname + ', ' + county + ', ' + country : cityname + ', ' + country;
+            var cityname = Array.isArray(res.locale_names) && res.locale_names.length ? res.locale_names[0] : '';
+            var area = res.administrative ? res.administrative[0] : '';
+            var country = res.country || '';
+            var resultantname = area ? cityname + ', ' + area + ', ' + country : cityname + ', ' + country;
 
              return {'value': resultantname,
                       'id': parseInt(res.objectID.split('_')[0]),
@@ -97,6 +97,7 @@ class SearchInput extends Component {
         // set Address
          if (res.length) {
            console.log(this.context);
+           res[0].title = suggestion.value;
            this.context.updateState({
              address: res[0],
              latLng: parseCoordinates(res[0].latt_long)
