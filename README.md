@@ -1,4 +1,33 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Table of Contents
+
+- **[Getting Started](https://github.com/dsaw/weatherman-reactt#-getting-started)**
+
+- **[Motivation](https://github.com/dsaw/weatherman-react#-motivation)**
+
+- **[Challenges](https://github.com/dsaw/weatherman-react#-challenges)**
+
+- **[Contribution](https://github.com/dsaw/weatherman-react#-contribution)**
+
+- **[License](https://github.com/dsaw/weatherman-react#-license)**
+
+- **[Contact](https://github.com/dsaw/weatherman-react#-contact)**
+
+- **[Acknowledgements](https://github.com/dsaw/weatherman-react#-acknowledgements)**
+
+
+# Getting Started
+
+## Basic Setup
+
+- Clone the repository & use the `master` branch
+
+```bash
+
+git clone https://github.com/iamsainikhil/weather-react.git
+
+```
+
+- Install the packages using the command `npm install`
 
 ## Available Scripts
 
@@ -42,27 +71,3 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
