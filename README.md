@@ -23,7 +23,7 @@
 
 ```bash
 
-git clone https://github.com/iamsainikhil/weather-react.git
+git clone https://github.com/dsaw/weatherman-react.git
 
 ```
 
