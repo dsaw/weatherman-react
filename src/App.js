@@ -7,7 +7,7 @@ import WeatherForecast from './container/weather_forecast/WeatherForecast';
 import {AddressContextProvider} from './context/address/Address';
 
 import "../node_modules/bootstrap/scss/bootstrap.scss";
-import './App.scss';
+import './app.scss';
 import {Row, Container, Nav, Jumbotron, Card, ListGroup,ListGroupItem, Col} from "react-bootstrap";
 
 
