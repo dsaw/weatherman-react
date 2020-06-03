@@ -2,6 +2,7 @@ import React, {Component, Fragment, useEffect} from 'react';
 import {Row, Col, Container, CardGroup} from "react-bootstrap";
 import WeatherCard from '../../components/weather_card/WeatherCard';
 import CurrentInfo from '../../components/weather/CurrentInfo';
+import CurrentInfoDetail from '../../components/weather/CurrentInfoDetail';
 import WeatherWeek from '../weather_week/WeatherWeek';
 import {AddressContext} from  '../../context/address/Address';
 import {getDayFromDate} from '../../utils/DateHelper';
@@ -17,7 +18,7 @@ class WeatherForecast extends Component {
       id: '',
       address: {},
       forecast: forecastData.default,
-      weather_array: forecastData.consolidated_weather
+      weatherArray: forecastData.consolidated_weather
     };
 
     // can use forecast.timezone_name
@@ -46,10 +47,11 @@ class WeatherForecast extends Component {
 
       </Row>
       <Row className="justify-content-md-space-between">
+         <CurrentInfoDetail currentWeather={this.state.weatherArray[0]}></CurrentInfoDetail>
       </Row>
 
      <div className="d-flex flex-xs-column flex-sm-row">
-        <WeatherWeek forecast={this.state.weather_array}>
+        <WeatherWeek forecast={this.state.weatherArray}>
         </WeatherWeek>
      </div>
 
