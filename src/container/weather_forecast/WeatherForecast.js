@@ -46,7 +46,7 @@ class WeatherForecast extends Component {
          </div>
 
       </Row>
-      <Row className="justify-content-md-space-between">
+      <Row className="d-flex flex-row justify-content-between">
          <CurrentInfoDetail currentWeather={this.state.weatherArray[0]}></CurrentInfoDetail>
       </Row>
 
