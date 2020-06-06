@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import getWeatherIcon from '../../utils/getWeatherIcon';
+import assetsSrc from '../../utils/assetsSrc';
 
 const roundNumbers = (num) => {
   return Math.round(num);
@@ -21,7 +23,7 @@ class WeatherCard extends Component {
           <div className="d-flex flex-xs-row flex-sm-column bd-highlight" style={{width: '10rem'}}>
          <div className="p-2">{this.props.day}</div>
          <div style={{width: '5rem'}} className="p-2">
-          <img src={this.getWeatherIcon(this.props.weatherType)}/>
+          <img src={`${assetsSrc}/${getWeatherIcon(this.props.weatherType.abbr)}`} alt={this.props.weatherType.name} className="w-25 h-50"/>
          </div>
 
          <div className="p-2">
