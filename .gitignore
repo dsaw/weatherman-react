@@ -31,6 +31,7 @@ my-app*
 template/src/__tests__/__snapshots__/
 lerna-debug.log
 
+.tern-project
 /.changelog
 .npm/
 yarn.lock
