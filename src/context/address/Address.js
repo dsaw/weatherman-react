@@ -1,6 +1,7 @@
-
- // eslint-disable-next-line
-import React, {Component} from 'react';
+// eslint-disable-next-line
+import React, {
+  Component
+} from 'react';
 import parseCoordinates from '../../utils/CoordinateHelper';
 
 const AddressContext = React.createContext(null);
@@ -8,47 +9,45 @@ const AddressContext = React.createContext(null);
 //context to set address when selected
 class AddressContextProvider extends Component {
 
-  constructor (props) {
+  constructor(props) {
     super(props);
     this.state = {
-        address: {},
-        latLng: {},
-        updateState: this.updateState
+      address: {},
+      latLng: {},
+      updateState: this.updateState
     };
 
   }
 
- updateAddress = (latLng) => {
-   //  geocoding api to get address closest to latLong
-   const response = fetch(`https://www.metaweather.com/api/location/search/?lattlong=${latLng.lat},${latLng.lng}`,
-   {
-     mode: "cors"
-   }
-   ).then((response)=> {
-     if (!response.ok) {
-       throw new Error('Network response was not ok');
-     }
-     return response.json();
-   }).then((res) => {
-     // set Address
-      if (res.length) {
-        console.log(res[0]);
-        this.updateState({
-          address: res[0],
-          latLng: parseCoordinates(res[0].latt_long)
-        });
+  updateAddress = (latLng) => {
+    //  geocoding api to get address closest to latLong
+    const response = fetch(`https://www.metaweather.com/api/location/search/?lattlong=${latLng.lat},${latLng.lng}`, {
+        mode: "cors"
+      }).then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      }).then((res) => {
+        // set Address
+        if (res.length) {
+          console.log(res[0]);
+          this.updateState({
+            address: res[0],
+            latLng: parseCoordinates(res[0].latt_long)
+          });
 
-      }
-       console.log(res);
-   })
-   .catch((error) => {
-     console.error('There is a problem with your fetch:', error);
-   });
+        }
+        console.log(res);
+      })
+      .catch((error) => {
+        console.error('There is a problem with your fetch:', error);
+      });
 
 
- }
+  }
 
- getCurrentCoordinates = () => {
+  getCurrentCoordinates = () => {
     // use HTML5 geolocation
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
@@ -66,10 +65,12 @@ class AddressContextProvider extends Component {
     }
 
 
- }
+  }
 
   updateState = (state) => {
-    this.setState({...state});
+    this.setState({
+      ...state
+    });
   }
 
   componentDidMount() {
@@ -89,4 +90,7 @@ class AddressContextProvider extends Component {
 }
 
 
-export {AddressContextProvider, AddressContext};
+export {
+  AddressContextProvider,
+  AddressContext
+};

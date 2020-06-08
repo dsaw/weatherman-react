@@ -84,6 +84,8 @@ class SearchInput extends Component {
   onSuggestionSelected  = (event, { suggestion, suggestionValue, suggestionIndex, sectionIndex, method }) => {
       console.log(suggestion);
 
+      // Metaweather needs a separate location search with given lat long to get
+      // the address with location name & id which than will be needed
       const response = fetch(`https://www.metaweather.com/api/location/search/?lattlong=${suggestion.latLng.lat},${suggestion.latLng.lng}`,
       {
         mode: "cors"
