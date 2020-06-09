@@ -35,6 +35,7 @@ class WeatherForecast extends Component {
       );
       // set data in state here
       this.setState({
+        address: address,
         forecast: weatherForecast,
         weatherArray: weatherForecast.consolidated_weather
       });
@@ -67,7 +68,7 @@ class WeatherForecast extends Component {
       <Row className = "justify-content-md-space-between" >
       <div>
       <p className = "" > {this.state.address.title} </p>
-      <CurrentInfo forecast = {this.state.forecast} address = {address}>
+      <CurrentInfo forecast = {this.state.forecast} address = {this.state.address}>
        </CurrentInfo> </div>
 
       </Row> <Row className = "d-flex flex-row justify-content-between" >
