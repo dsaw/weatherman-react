@@ -1,11 +1,12 @@
 $clr-primary: steelblue;
 
-// Todo style this Autosuggest  
+// Todo style this Autosuggest
 
 .container {
-   width: 12em;
+   width: 100%;
    height: auto;
    position: relative;
+   margin: 10px auto;
  }
 .input {
     display: block;
@@ -19,7 +20,7 @@ $clr-primary: steelblue;
 
   &:focus {
     outline: none;
-    border: 1px solid $clr-primary;
+    //border: 1px solid $clr-primary;
   }
 
   }
@@ -34,6 +35,7 @@ visibility: visible;
 }
 
 .suggestion {
-
+    list-style: none;
+    padding: 0px;
  }
-.suggestionHighlighted {  }
+.suggestionHighlighted {display: block;  }

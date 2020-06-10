@@ -19,11 +19,16 @@ function renameKeys(obj, newKeys) {
 
 const getSuggestionValue = suggestion => suggestion.value;
 
-const renderSuggestion = suggestion => (
+const renderSuggestion = (suggestion, {query, isHighlighted}) => {
+  return (isHighlighted ?
+  <span style={{backgroundColor: 'black', color: 'white'}}>
+    {suggestion.value}
+  </span> :
   <span>
     {suggestion.value}
   </span>
 );
+};
 
 class SearchInput extends Component {
 
@@ -151,7 +156,7 @@ class SearchInput extends Component {
    return (
      <section>
      <Autosuggest
-         suggestions={suggestions}
+         suggestions={this.state.suggestions}
          onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
          onSuggestionsClearRequested={this.onSuggestionsClearRequested}
          onSuggestionSelected={this.onSuggestionSelected}

@@ -51,10 +51,12 @@ class WeatherForecast extends Component {
 
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps, prevState, prevContext) {
     let address = this.context.address;
-    console.log(this.context);
-    if (this.context && address) {
+
+    if (this.state.address.woeid !== prevState.address.woeid) {
+      console.log(this.context.address.woeid, prevState.address.woeid);
+      console.table(this.context);
       this.fetchWeatherData(address);
     }
 
@@ -67,7 +69,6 @@ class WeatherForecast extends Component {
     return ( <Container>
       <Row className = "justify-content-md-space-between" >
       <div>
-      <p className = "" > {this.state.address.title} </p>
       <CurrentInfo forecast = {this.state.forecast} address = {this.state.address}>
        </CurrentInfo> </div>
 
