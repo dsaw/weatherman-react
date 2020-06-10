@@ -1,4 +1,4 @@
-import React, {Component, Fragment, useEffect} from 'react';
+import React, {Component, Fragment, useEffect, useContext, useState} from 'react';
 import {Row, Col, Container, CardGroup} from "react-bootstrap";
 import WeatherCard from '../../components/weather_card/WeatherCard';
 import CurrentInfo from '../../components/weather/CurrentInfo';
@@ -12,77 +12,55 @@ import API_URL from '../../utils/API';
 import * as forecastData from '../../data/metaweather.fiveday.forecast.json';
 // for example
 
-class WeatherForecast extends Component {
+const WeatherForecast = () =>  {
 
-  static contextType = AddressContext;
-  constructor(props) {
-    super(props);
-    this.state = {
-      id: '',
-      address: {},
-      forecast: forecastData.default,
-      weatherArray: forecastData.consolidated_weather
-    };
+  const addressContext = useContext(AddressContext);
+  const [forecast, setForecast] = useState(forecastData.default);
+  const [weatherArray, setWeatherArray] = useState(forecastData.consolidated_weather);
 
-    // can use forecast.timezone_name
-  }
-
-  fetchWeatherData = async (address) => {
+  const fetchWeatherData = async () => {
     try {
-      console.log(address);
       let weatherForecast = await FetchWeatherData(
-        this.context.latLng, address
+        addressContext
       );
       // set data in state here
-      this.setState({
-        address: address,
-        forecast: weatherForecast,
-        weatherArray: weatherForecast.consolidated_weather
-      });
+      if (weatherForecast) {
+        setForecast(weatherForecast);
+        setWeatherArray(weatherForecast.consolidated_weather);
+      }
 
     } catch (error) {
       console.log(error);
     }
   }
 
+  useEffect(
+    () => {
+      // add some checks here later
+      if (addressContext.latLng) {
+        fetchWeatherData();
+      }
 
-  componentDidMount() {
-    let woeid = this.context.woeid;
-
-  }
-
-  componentDidUpdate(prevProps, prevState, prevContext) {
-    let address = this.context.address;
-
-    if (this.context.address.woeid !== prevState.address.woeid) {
-      console.log(this.context.address.woeid, prevState.address.woeid);
-      console.table(this.context);
-      this.fetchWeatherData(address);
     }
+    , [addressContext.latLng]);
 
-  }
-
-  render() {
-    // refactor this later to not have side effects in render
-    let address = this.context.address;
-
-    return ( <Container>
+    return (<Container>
       <Row className = "justify-content-md-space-between" >
       <div>
-      <CurrentInfo forecast = {this.state.forecast} address = {this.state.address}>
+      <CurrentInfo forecast = {forecast} address = {addressContext.address}>
        </CurrentInfo> </div>
 
       </Row> <Row className = "d-flex flex-row justify-content-between" >
-      <CurrentInfoDetail currentWeather = {this.state.weatherArray[0]}> </CurrentInfoDetail> </Row>
+      <CurrentInfoDetail currentWeather = {weatherArray[0]}> </CurrentInfoDetail> </Row>
 
       <div className = "d-flex flex-xs-column flex-sm-row" >
-      <WeatherWeek forecast = {this.state.weatherArray}>
+      <WeatherWeek forecast = {weatherArray}>
       </WeatherWeek> </div>
 
       </Container>
     );
 
-  }
+
 }
 
 export default WeatherForecast;

@@ -1,13 +1,12 @@
 import API_URL from './API'
 
-const FetchWeatherData = async (latlong,
-  address) => {
+const FetchWeatherData = async (address) => {
 
   let weatherForecast = [],response;
   // metaweather needs woeid instead of latLong
   try {
-    if (address.woeid) {
-      const url = `${API_URL}location/${address.woeid}/`;
+    if (address.address.woeid) {
+      const url = `${API_URL}location/${address.address.woeid}/`;
       const options = {};
       response = await fetch(url).then((response) => {
         if (!response.ok) {
