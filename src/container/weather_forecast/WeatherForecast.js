@@ -54,7 +54,7 @@ class WeatherForecast extends Component {
   componentDidUpdate(prevProps, prevState, prevContext) {
     let address = this.context.address;
 
-    if (this.state.address.woeid !== prevState.address.woeid) {
+    if (this.context.address.woeid !== prevState.address.woeid) {
       console.log(this.context.address.woeid, prevState.address.woeid);
       console.table(this.context);
       this.fetchWeatherData(address);
