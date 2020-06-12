@@ -29,6 +29,13 @@ git clone https://github.com/dsaw/weatherman-react.git
 
 - Install the packages using the command `npm install`
 
+
+# Challenges
+- All free API services don't have hourly forecasts & Dark Sky API has closed down.
+
+- react-autosuggest has got issues
+
+
 ## Available Scripts
 
 In the project directory, you can run:
