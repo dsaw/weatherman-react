@@ -25,7 +25,9 @@ $clr-primary: steelblue;
 
   }
 .suggestionsContainer {
-  width: 100%;
+  width: 90%;
+  max-height: 300px;
+  overflow-y: scroll;
 visibility: hidden
   }
 
@@ -37,5 +39,6 @@ visibility: visible;
 .suggestion {
     list-style: none;
     padding: 0px;
+    margin: 0;
  }
 .suggestionHighlighted {display: block;  }

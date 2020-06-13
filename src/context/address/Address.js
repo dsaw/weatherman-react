@@ -14,6 +14,7 @@ class AddressContextProvider extends Component {
     this.state = {
       address: {},
       latLng: {},
+      cityName: '',
       updateState: this.updateState
     };
 
@@ -34,6 +35,7 @@ class AddressContextProvider extends Component {
           console.log(res[0]);
           this.updateState({
             address: res[0],
+            cityName: res[0].title,
             latLng: parseCoordinates(res[0].latt_long)
           });
 

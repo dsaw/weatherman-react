@@ -1,9 +1,12 @@
 import React, {Component, Fragment} from 'react';
 import Search from 'react-search';
 import Autosuggest from 'react-autosuggest';
+import IsolatedScroll from 'react-isolated-scroll';
+
 import {AddressContext} from '../../context/address/Address';
 import WeeklyForecast from '../weekly_forecast/WeeklyForecast';
 import parseCoordinates from '../../utils/CoordinateHelper';
+
 import * as cityListConfig from '../../data/city.list.json';
 
 import theme from './Search.module.scss';
@@ -43,7 +46,6 @@ class SearchInput extends Component {
       showLoader: false
     };
     // process city id map list
-
   }
 
   // Teach Autosuggest how to calculate suggestions for any given input value.
@@ -116,6 +118,7 @@ class SearchInput extends Component {
            res[0].title = suggestion.value;
            this.context.updateState({
              address: res[0],
+             cityName: res[0].tite,
              latLng: parseCoordinates(res[0].latt_long)
            });
 
@@ -144,6 +147,8 @@ class SearchInput extends Component {
 
    onSuggestionsFetchRequested = ({ value, reason }) => {
      console.log("fetch requested:", reason);
+     if (reason === 'input-focused')
+        return;
      // if (value !== this.state.value) {
       this.getSuggestions(value);
 
@@ -156,15 +161,25 @@ class SearchInput extends Component {
 
   onSuggestionsClearRequested = () => {
      console.log("clear requested:");
-     this.setState({
+  /*   this.setState({
        suggestions: []
-     });
+     });*/
    };
 
-   clearState() {
-     // clear the state of the component
-   }
+   renderSuggestionContainer= ({containerProps, children}) => {
+     const {ref, ...restContainerProps} = containerProps;
+     const callRef = isolatedScroll => {
+       if (isolatedScroll !== null) {
+         ref(isolatedScroll.component);
+       }
+     }
 
+     //for fixing the issue of scrolling beyond the suggestions container scrolls the page itself
+
+     return (<IsolatedScroll ref={callRef} {...containerProps}>
+              {children}
+            </IsolatedScroll>);
+   };
 
    render() {
      const {value, suggestions, showLoader} = this.state;
@@ -188,6 +203,7 @@ class SearchInput extends Component {
          getSuggestionValue={getSuggestionValue}
          highlightFirstSuggestion={true}
          renderSuggestion={renderSuggestion}
+         renderSuggestionContainer={this.renderSuggestionContainer}
          inputProps={inputProps}
          theme={theme}
        />

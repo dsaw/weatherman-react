@@ -6,6 +6,7 @@ import CurrentInfoDetail from '../../components/weather/CurrentInfoDetail';
 import WeatherWeek from '../weather_week/WeatherWeek';
 import {AddressContext} from  '../../context/address/Address';
 import {getDayFromDate} from '../../utils/DateHelper';
+import {isCityValid} from '../../utils/validityHelper';
 import FetchWeatherData from '../../utils/FetchWeatherHelper';
 import API_URL from '../../utils/API';
 
@@ -17,9 +18,11 @@ const WeatherForecast = () =>  {
   const addressContext = useContext(AddressContext);
   const [forecast, setForecast] = useState(forecastData.default);
   const [weatherArray, setWeatherArray] = useState(forecastData.consolidated_weather);
+  const [isLoading, setIsLoading] = useState(false);
 
   const fetchWeatherData = async () => {
     try {
+      setIsLoading(true);
       let weatherForecast = await FetchWeatherData(
         addressContext
       );
@@ -27,6 +30,7 @@ const WeatherForecast = () =>  {
       if (weatherForecast) {
         setForecast(weatherForecast);
         setWeatherArray(weatherForecast.consolidated_weather);
+        setIsLoading(false);
       }
 
     } catch (error) {
@@ -43,8 +47,8 @@ const WeatherForecast = () =>  {
 
     }
     , [addressContext.latLng]);
-
-    return (<Container>
+    // add loader component
+    return (isLoading ? <Fragment> {isCityValid(addressContext.cityName) ? `Loading weather forecast for ${addressContext.cityName}...` : `Loading weather forecast...` }</Fragment> : <Container>
       <Row className = "justify-content-md-space-between" >
       <div>
       <CurrentInfo forecast = {forecast} address = {addressContext.address}>

@@ -16,6 +16,7 @@
     "react-bootstrap": "^1.0.0-beta.16",
     "react-dom": "^16.12.0",
     "react-icons": "^3.10.0",
+    "react-isolated-scroll": "^0.1.1",
     "react-scripts": "3.3.0",
     "react-search": "^2.1.1"
   },
