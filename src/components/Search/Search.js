@@ -2,6 +2,7 @@ import React, {Component, Fragment} from 'react';
 import Search from 'react-search';
 import Autosuggest from 'react-autosuggest';
 import IsolatedScroll from 'react-isolated-scroll';
+import debounce from 'lodash/debounce';
 
 import {AddressContext} from '../../context/address/Address';
 import WeeklyForecast from '../weekly_forecast/WeeklyForecast';
@@ -43,7 +44,8 @@ class SearchInput extends Component {
     this.state = {
       value: '',
       suggestions: [],
-      showLoader: false
+      showLoader: false,
+      errorMessage: ''
     };
     // process city id map list
   }
@@ -54,7 +56,7 @@ class SearchInput extends Component {
   const inputLength = searchValue.length;
   let items;
 
-
+  try {
    if (inputLength === 0)
       items = [];
     else {
@@ -87,16 +89,30 @@ class SearchInput extends Component {
           });
         }
       }
+
       this.setState({
         suggestions: items,
-        showLoader: false
+        showLoader: false,
+        errorMessage: ((items.length > 0 && searchValue.length > 0) ? '' :
+        (searchValue.length > 0 ? 'There seems to be no results for the query entered, please try again' : ''))
       });
+
      // this.SearchItemInArrayObjects(items, searchValue.trim(), 'value');
       console.log(searchValue);
+    }
+    catch(error) {
+      this.setState({
+        suggestions: [],
+        showLoader: false,
+        errorMessage: 'Something is wrong with the connection'});
+
+    }
+
       return items;
 
 }
 
+  debounceQuery = debounce(this.getSuggestions,1200);
   onSuggestionSelected  = (event, { suggestion, suggestionValue, suggestionIndex, sectionIndex, method }) => {
       console.log(suggestion);
 
@@ -149,10 +165,7 @@ class SearchInput extends Component {
      console.log("fetch requested:", reason);
      if (reason === 'input-focused')
         return;
-     // if (value !== this.state.value) {
-      this.getSuggestions(value);
-
-    // }
+      this.debounceQuery(value);
    };
 
    componentDidUpdate = (props, state) => {
@@ -182,7 +195,7 @@ class SearchInput extends Component {
    };
 
    render() {
-     const {value, suggestions, showLoader} = this.state;
+     const {value, suggestions, showLoader, errorMessage} = this.state;
 
      const inputProps = {
        placeholder: 'Type a city/location' ,
@@ -208,6 +221,7 @@ class SearchInput extends Component {
          theme={theme}
        />
          {isLoading ? <Fragment><p>Loading...</p></Fragment> : null}
+         {errorMessage ? <Fragment>{errorMessage}</Fragment> : null}
        </section>
    );
 
