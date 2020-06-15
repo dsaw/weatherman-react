@@ -54,7 +54,7 @@ class SearchInput extends Component {
   async getSuggestions (value) {
   const searchValue = value ? value.trim().toLowerCase() : '';
   const inputLength = searchValue.length;
-  let items;
+  let items = [];
 
   try {
    if (inputLength === 0)
@@ -104,7 +104,7 @@ class SearchInput extends Component {
       this.setState({
         suggestions: [],
         showLoader: false,
-        errorMessage: 'Something is wrong with the connection'});
+        errorMessage: 'Some error came up:' + error});
 
     }
 
