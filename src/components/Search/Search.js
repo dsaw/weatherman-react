@@ -4,6 +4,7 @@ import Autosuggest from 'react-autosuggest';
 import IsolatedScroll from 'react-isolated-scroll';
 import debounce from 'lodash/debounce';
 
+import Error from '../error/Error';
 import {AddressContext} from '../../context/address/Address';
 import WeeklyForecast from '../weekly_forecast/WeeklyForecast';
 import parseCoordinates from '../../utils/CoordinateHelper';
@@ -112,7 +113,7 @@ class SearchInput extends Component {
 
 }
 
-  debounceQuery = debounce(this.getSuggestions,1200);
+  debounceQuery = debounce(this.getSuggestions, 1200);
   onSuggestionSelected  = (event, { suggestion, suggestionValue, suggestionIndex, sectionIndex, method }) => {
       console.log(suggestion);
 
@@ -220,8 +221,8 @@ class SearchInput extends Component {
          inputProps={inputProps}
          theme={theme}
        />
-         {isLoading ? <Fragment><p>Loading...</p></Fragment> : null}
-         {errorMessage ? <Fragment>{errorMessage}</Fragment> : null}
+         {isLoading ? <Fragment><p>Loading...</p></Fragment> :
+         (errorMessage ? <Error errorMessage={errorMessage}></Error> : null)}
        </section>
    );
 

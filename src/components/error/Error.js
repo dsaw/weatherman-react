@@ -1,8 +1,13 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
+import {Alert} from 'react-bootstrap';
 import './Error.scss';
 
-const Error = (props) => {
+const Error = ({errorMessage}) => {
+    const [show, setShow] = useState(true);
 
+   return (show ? <Alert variant="danger" onClose={() => setShow(false)} dismissible>
+          <p>{errorMessage || "Unfortunately, some error has occurred."}</p>
+      </Alert> : null);
 };
 
 export default Error;
