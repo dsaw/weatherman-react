@@ -61,7 +61,9 @@ class SearchInput extends Component {
    if (inputLength === 0)
       items = [];
     else {
-      this.setState({showLoader: true});
+      this.setState({
+        suggestions:[],
+        showLoader: true});
 
       const response = await fetch(`https://places-dsn.algolia.net/1/places/query`,
       {  method: 'POST',
@@ -189,7 +191,6 @@ class SearchInput extends Component {
      }
 
      //for fixing the issue of scrolling beyond the suggestions container scrolls the page itself
-
      return (<IsolatedScroll ref={callRef} {...containerProps}>
               {children}
             </IsolatedScroll>);
