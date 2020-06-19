@@ -145,7 +145,12 @@ class SearchInput extends Component {
           console.log(res);
       })
       .catch((error) => {
-        console.error('There is a problem with your fetch:', error);
+        console.error('There is a problem with your fetch: ', error);
+        this.setState({
+          showLoader: false,
+          errorMessage: "Something went wrong, weather address list can't be fetched right now"
+        });
+
       });
   };
 

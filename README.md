@@ -33,7 +33,7 @@ git clone https://github.com/dsaw/weatherman-react.git
 # Challenges
 - All free API services don't have hourly forecasts & Dark Sky API has closed down.
 
-- react-autosuggest has got issues
+- For search, Algolia API has been used which fetches list of latitudes & longitude. The actual data comes from MetaWeather currently, which returns locations based on woeids so another API call has to be made to search the possible list of locations closest to the location parameters. This can be inaccurate with results fetched from neigbouring countries too.
 
 
 ## Available Scripts
@@ -78,3 +78,5 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+# Contact

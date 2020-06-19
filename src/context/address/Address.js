@@ -65,6 +65,7 @@ class AddressContextProvider extends Component {
         console.error('The geolocation service failed');
       });
     }
+    // TODO: do ip lookup alternatively if geolocation not given
 
 
   }
