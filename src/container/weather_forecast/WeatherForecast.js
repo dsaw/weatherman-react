@@ -22,6 +22,8 @@ const WeatherForecast = () =>  {
   const [weatherArray, setWeatherArray] = useState(forecastData.consolidated_weather);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setisError] = useState(false);
+  const [selectedDay, setSelectedDay] = useState(0);
+
 
   const fetchWeatherData = async () => {
     try {
@@ -63,10 +65,10 @@ const WeatherForecast = () =>  {
        </CurrentInfo> </div>
 
       </Row> <Row className = "d-flex flex-row justify-content-between" >
-      <CurrentInfoDetail currentWeather = {weatherArray[0]}> </CurrentInfoDetail> </Row>
+      <CurrentInfoDetail currentWeather = {weatherArray[selectedDay]}> </CurrentInfoDetail> </Row>
 
       <div className = "d-flex flex-xs-column flex-sm-row" >
-      <WeatherWeek forecast = {weatherArray}>
+      <WeatherWeek forecast = {weatherArray} clickCallback={(index) => {setSelectedDay(index)}}>
       </WeatherWeek> </div>
 
       </Container>)
