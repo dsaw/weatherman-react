@@ -5,6 +5,7 @@ import IsolatedScroll from 'react-isolated-scroll';
 import debounce from 'lodash/debounce';
 
 import Error from '../error/Error';
+import Loader from '../loader/Loader';
 import {AddressContext} from '../../context/address/Address';
 import WeeklyForecast from '../weekly_forecast/WeeklyForecast';
 import parseCoordinates from '../../utils/CoordinateHelper';
@@ -177,7 +178,7 @@ class SearchInput extends Component {
    };
 
    componentDidUpdate = (props, state) => {
-     console.log("compoonent updated", this.items);
+     console.log("component updated", this.items);
    };
 
   onSuggestionsClearRequested = () => {
@@ -227,7 +228,7 @@ class SearchInput extends Component {
          inputProps={inputProps}
          theme={theme}
        />
-         {isLoading ? <Fragment><p>Loading...</p></Fragment> :
+         {isLoading ? <Fragment><Loader message={`Loading suggestions for ${value}...`}/></Fragment> :
          (errorMessage ? <Error errorMessage={errorMessage}></Error> : null)}
        </section>
    );

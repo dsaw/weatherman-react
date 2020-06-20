@@ -4,6 +4,7 @@ import Error from '../../components/error/Error';
 import WeatherCard from '../../components/weather_card/WeatherCard';
 import CurrentInfo from '../../components/weather/CurrentInfo';
 import CurrentInfoDetail from '../../components/weather/CurrentInfoDetail';
+import Loader from '../../components/loader/Loader';
 import WeatherWeek from '../weather_week/WeatherWeek';
 import {AddressContext} from  '../../context/address/Address';
 import {getDayFromDate} from '../../utils/DateHelper';
@@ -53,7 +54,7 @@ const WeatherForecast = () =>  {
     }
     , [addressContext.latLng]);
     // add loader component
-    return (isLoading ? <Fragment> {isCityValid(addressContext.cityName) ? `Loading weather forecast for ${addressContext.cityName}...` : `Loading weather forecast...` }</Fragment> :
+    return (isLoading ? <Fragment> <Loader message={isCityValid(addressContext.cityName) ? `Loading weather forecast for ${addressContext.cityName}...` : `Loading weather forecast...` } /></Fragment> :
     (isError ? <Error errorMessage={"Something went wrong, weather can't be fetched right now"}/> :
       <Container>
       <Row className = "justify-content-md-space-between" >

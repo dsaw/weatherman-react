@@ -1,0 +1,69 @@
+.spinner {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  margin: 20px auto 10px auto;
+}
+
+
+.puff-one {
+  width: 100%;
+  height: 100%;
+  border: thick solid #32a1ce;
+  border-radius: 50%;
+  opacity: 1;
+  -webkit-animation: puff, puffop;
+  animation: puff, puffop;
+  animation-duration: 1.8s;
+  animation-fill-mode: both;
+  animation-iteration-count: infinite;
+  animation-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1), cubic-bezier(0.3, 0.61, 0.355, 1);
+  position: absolute;
+  top: 0; left: 0;
+
+}
+
+.puff-two {
+  width: 100%;
+  height: 100%;
+  border: thick solid #32a1ce;
+  border-radius: 50%;
+  opacity: 1;
+  -webkit-animation: puff, puffop;
+  animation: puff, puffop;
+  animation-duration: 1.8s;
+  animation-fill-mode: both;
+  animation-iteration-count: infinite;
+  animation-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1), cubic-bezier(0.3, 0.61, 0.355, 1);
+  animation-delay: -0.9s;
+
+}
+
+@keyframes puff {
+  0% {
+    -webkit-transform:
+      scale(0);
+
+  }
+
+  100% {
+    -webkit-transform:
+      scale(1);
+  }
+}
+
+
+@keyframes puffop {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+.message {
+  width: 40%;
+  margin: 0 auto;
+}
