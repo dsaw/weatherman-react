@@ -18,8 +18,8 @@ import * as forecastData from '../../data/metaweather.fiveday.forecast.json';
 const WeatherForecast = () =>  {
 
   const addressContext = useContext(AddressContext);
-  const [forecast, setForecast] = useState(forecastData.default);
-  const [weatherArray, setWeatherArray] = useState(forecastData.consolidated_weather);
+  const [forecast, setForecast] = useState({});
+  const [weatherArray, setWeatherArray] = useState([{}]);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setisError] = useState(false);
   const [selectedDay, setSelectedDay] = useState(0);
@@ -35,6 +35,7 @@ const WeatherForecast = () =>  {
       if (isForecastValid(weatherForecast)) {
         setForecast(weatherForecast);
         setWeatherArray(weatherForecast.consolidated_weather);
+        setSelectedDay(0);
         setisError(false);
       }
 

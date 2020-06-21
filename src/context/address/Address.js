@@ -3,6 +3,9 @@ import React, {
   Component
 } from 'react';
 import parseCoordinates from '../../utils/CoordinateHelper';
+import fetchIPLocation from '../../utils/fetchIPLocation';
+import {isValid} from '../../utils/validityHelper';
+
 
 const AddressContext = React.createContext(null);
 
@@ -49,6 +52,17 @@ class AddressContextProvider extends Component {
 
   }
 
+  updateIPAddress = async () => {
+    var response = await fetchIPLocation();
+    if (isValid(response)) {
+      var latLng = {
+        lat: response.lat,
+        lng: response.lon
+      };
+      this.updateAddress(latLng);
+    }
+  }
+
   getCurrentCoordinates = () => {
     // use HTML5 geolocation
     if (navigator.geolocation) {
@@ -60,12 +74,17 @@ class AddressContextProvider extends Component {
         this.updateAddress(latLng);
         console.log(latLng);
 
-      }, () => {
+      }, (error) => {
         //handle error here
-        console.error('The geolocation service failed');
+        console.error(error);
+        this.updateIPAddress();
       });
     }
     // TODO: do ip lookup alternatively if geolocation not given
+    else {
+      this.updateIPAddress();
+
+    }
 
 
   }

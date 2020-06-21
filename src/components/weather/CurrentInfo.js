@@ -1,5 +1,6 @@
 import React, {Component, Fragment, useEffect, useState, useRef} from 'react';
 import moment from 'moment-timezone';
+import {isValid} from '../../utils/validityHelper';
 
 function CurrentInfo({forecast, address}) {
   const [date, setDate] = useState('');
@@ -26,6 +27,10 @@ function CurrentInfo({forecast, address}) {
       // reset time when weather changes
       //console.log(forecast.timezone);
       //console.log(moment().tz(forecast.timezone));
+      if (!isValid(forecast)) {
+        return;
+      }
+
       setDateTime(moment().tz(forecast.timezone));
 
 
@@ -48,7 +53,7 @@ function CurrentInfo({forecast, address}) {
   }, [forecast]);
 
 
-  return (
+  return (isValid(forecast) ?
     <div>
     { location ?
       (<p>{location}
@@ -64,8 +69,7 @@ function CurrentInfo({forecast, address}) {
        </p>
      </Fragment>) : null
     }
-    </div>
-
+    </div> : null
   );
 }
 
