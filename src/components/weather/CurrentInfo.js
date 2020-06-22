@@ -52,7 +52,6 @@ function CurrentInfo({forecast, address}) {
 
   }, [forecast]);
 
-
   return (isValid(forecast) ?
     <div>
     { location ?

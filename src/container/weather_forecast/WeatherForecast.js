@@ -22,6 +22,7 @@ const WeatherForecast = () =>  {
   const [weatherArray, setWeatherArray] = useState([{}]);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setisError] = useState(false);
+  const [showContainer, setShowContainer] = useState(false);
   const [selectedDay, setSelectedDay] = useState(0);
 
 
@@ -33,6 +34,7 @@ const WeatherForecast = () =>  {
       );
       // set data in state here
       if (isForecastValid(weatherForecast)) {
+        setShowContainer(true);
         setForecast(weatherForecast);
         setWeatherArray(weatherForecast.consolidated_weather);
         setSelectedDay(0);
@@ -59,7 +61,7 @@ const WeatherForecast = () =>  {
     // add loader component
     return (isLoading ? <Fragment> <Loader message={isCityValid(addressContext.cityName) ? `Loading weather forecast for ${addressContext.cityName}...` : `Loading weather forecast...` } /></Fragment> :
     (isError ? <Error errorMessage={"Something went wrong, weather can't be fetched right now"}/> :
-      <Container>
+      (showContainer ? <Container>
       <Row className = "justify-content-md-space-between" >
       <div>
       <CurrentInfo forecast = {forecast} address = {addressContext.address}>
@@ -72,7 +74,7 @@ const WeatherForecast = () =>  {
       <WeatherWeek forecast = {weatherArray} clickCallback={(index) => {setSelectedDay(index)}}>
       </WeatherWeek> </div>
 
-      </Container>)
+      </Container> : null))
     );
 
 
