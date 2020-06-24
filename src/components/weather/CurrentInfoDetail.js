@@ -1,17 +1,25 @@
-import React, {Component, Fragment, useEffect, useState, useRef} from 'react';
+import React, {Component, Fragment, useEffect, useState, useRef, useContext} from 'react';
 import moment from 'moment-timezone';
 import {isEmpty} from 'lodash';
 import {isValid} from '../../utils/validityHelper';
+import {convertToFahrenheit} from '../../utils/temperatureHelper';
 import getWeatherIcon from '../../utils/getWeatherIcon';
+import {UnitContext} from '../../context/unit/Unit';
 import {WeatherIcon, WeatherDirectionIcon} from './WeatherIcon';
 import assetsSrc from '../../utils/assetsSrc';
 
 function CurrentInfoDetail({currentWeather, address}) {
+  const {weatherUnit, setWeatherUnit} = useContext(UnitContext);
 
   const unitClick = (unit) => {
-
-
+       setWeatherUnit(unit);
   }
+
+  const convertToMetric = (mph) => {
+      //  meters per second
+      return 0.45 * mph;
+  }
+
 
 // currentWeather will be just the weather forecast item for one day
   return (
@@ -24,10 +32,10 @@ function CurrentInfoDetail({currentWeather, address}) {
           </div>
           <div>
           <p>
-          <span className="h3">{Math.round(currentWeather.the_temp) || ''}</span> <WeatherIcon iconName="degrees"/>
+          <span className="h3">{Math.round(weatherUnit === "C" ? currentWeather.the_temp : convertToFahrenheit(currentWeather.the_temp))}</span> <WeatherIcon iconName="degrees"/>
           <span className="font-weight-light" style={{'font-size': '1.5rem'}}>
-          <span className="cursor-pointer " onClick={unitClick("C")}>C</span>  |
-          <span className="cursor-pointer" onClick={unitClick("F")}> F</span>
+          <span className="cursor-pointer " onClick={() => unitClick("C")}>C</span>  |
+          <span className="cursor-pointer" onClick={() => unitClick("F")}> F</span>
           </span>
           </p>
           <p>
@@ -37,9 +45,11 @@ function CurrentInfoDetail({currentWeather, address}) {
           </div>
         </div>
         <div className="d-flex flex-column p-2">
-          {currentWeather.precipitation ? (<p>Precipitation: {} </p>) : null}
-          {currentWeather.humidity ? (<p>Humidity: {currentWeather.humidity || ''}</p>) : null}
-          {currentWeather.wind_speed ? (<p>Wind speed: {Math.round(currentWeather.wind_speed || '')} <WeatherDirectionIcon iconName={currentWeather.wind_direction_compass}/> </p>) : null }
+          {currentWeather.precipitation ? (<p>Precipitation: {currentWeather.precipitation || ''} </p>) : null}
+          {currentWeather.humidity ? (<p>Humidity: {currentWeather.humidity || ''} %</p>) : null}
+          {currentWeather.wind_speed ? (<p>Wind speed: {(weatherUnit === "C" ? convertToMetric(currentWeather.wind_speed).toFixed(2) + ' mps'
+                    : currentWeather.wind_speed.toFixed(2) + ' mph')}
+                  <WeatherDirectionIcon iconName={currentWeather.wind_direction_compass}/> </p>) : null }
         </div>
       </Fragment> : null
   );

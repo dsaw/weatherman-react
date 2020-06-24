@@ -5,6 +5,7 @@ import SearchInput from './components/search/Search';
 import WeatherCard from './components/weather_card/WeatherCard';
 import WeatherForecast from './container/weather_forecast/WeatherForecast';
 import {AddressContextProvider} from './context/address/Address';
+import {UnitContextProvider} from './context/unit/Unit';
 
 import "../node_modules/bootstrap/scss/bootstrap.scss";
 import './app.scss';
@@ -29,11 +30,13 @@ class App extends Component {
      </Row>
 
      <Row id="content">
+         <UnitContextProvider>
          <WeatherForecast></WeatherForecast>
+         </UnitContextProvider>
      </Row>
      </AddressContextProvider>
      <Row id="footer">
-         
+
      </Row>
    </Container>
   );
