@@ -24,9 +24,13 @@ class App extends Component {
    <Container className="App">
      <AddressContextProvider>
      <Row className="header">
-         <Col sm={true} md={8} lg={6}>
+
+     <Col>
+        <section className="d-flex justify-content-center">
           <SearchInput />
-         </Col>
+          </section>
+        </Col>
+
      </Row>
 
      <Row id="content">

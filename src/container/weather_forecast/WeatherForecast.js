@@ -70,9 +70,10 @@ const WeatherForecast = () =>  {
       </Row> <Row className = "d-flex flex-row justify-content-between" >
       <CurrentInfoDetail currentWeather = {weatherArray[selectedDay]}> </CurrentInfoDetail> </Row>
 
-      <div className = "d-flex flex-xs-column flex-sm-row" >
+      <div className="d-flex flex-sm-column flex-md-row">
       <WeatherWeek forecast = {weatherArray} clickCallback={(index) => {setSelectedDay(index)}}>
-      </WeatherWeek> </div>
+      </WeatherWeek>
+      </div>
 
       </Container> : null))
     );

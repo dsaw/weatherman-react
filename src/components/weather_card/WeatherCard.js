@@ -24,7 +24,7 @@ class WeatherCard extends Component {
 
   render() {
     return(
-          <div className="d-flex flex-xs-row flex-sm-column bd-highlight" style={{width: '10rem'}} onClick={this.props.clickCallback}>
+          <div className="d-flex flex-sm-row flex-md-column bd-highlight" style={{width: '10rem'}} onClick={this.props.clickCallback}>
          <div className="p-2">{this.props.day}</div>
          <div style={{width: '5rem'}} className="p-2">
           <img src={`${assetsSrc}/${getWeatherIcon(this.props.weatherType.abbr)}`} alt={this.props.weatherType.name} className="w-25 h-50"/>

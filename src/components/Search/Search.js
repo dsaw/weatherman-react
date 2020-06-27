@@ -213,10 +213,7 @@ class SearchInput extends Component {
 
      const isLoading = this.state.showLoader;
 
-
-   return (
-     <section>
-     <Autosuggest
+   return (<Fragment><Autosuggest
          suggestions={suggestions}
          onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
          onSuggestionsClearRequested={this.onSuggestionsClearRequested}
@@ -230,7 +227,7 @@ class SearchInput extends Component {
        />
          {isLoading ? <Fragment><Loader message={`Loading suggestions for ${value}...`}/></Fragment> :
          (errorMessage ? <Error errorMessage={errorMessage}></Error> : null)}
-       </section>
+         </Fragment>
    );
 
  };
