@@ -29,12 +29,12 @@ const shouldRenderSuggestions = () => (true);
 
 const renderSuggestion = (suggestion, {query, isHighlighted}) => {
   return (isHighlighted ?
-  <span style={{backgroundColor: 'black', color: 'white'}}>
+  <div style={{backgroundColor: 'black', color: 'white', padding: '5px 0 5px 3px'}}>
     {suggestion.value}
-  </span> :
-  <span>
+  </div> :
+  <div style={{padding: '5px 0 5px 5px'}}>
     {suggestion.value}
-  </span>
+  </div>
 );
 };
 
@@ -213,7 +213,8 @@ class SearchInput extends Component {
 
      const isLoading = this.state.showLoader;
 
-   return (<Fragment><Autosuggest
+   return (<Fragment>
+        <Autosuggest
          suggestions={suggestions}
          onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
          onSuggestionsClearRequested={this.onSuggestionsClearRequested}

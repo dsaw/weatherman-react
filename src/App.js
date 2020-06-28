@@ -7,7 +7,6 @@ import WeatherForecast from './container/weather_forecast/WeatherForecast';
 import {AddressContextProvider} from './context/address/Address';
 import {UnitContextProvider} from './context/unit/Unit';
 
-import "../node_modules/bootstrap/scss/bootstrap.scss";
 import './app.scss';
 import {Row, Container, Nav, Jumbotron, Card, ListGroup,ListGroupItem, Col} from "react-bootstrap";
 
@@ -26,7 +25,7 @@ class App extends Component {
      <Row className="header">
 
      <Col>
-        <section className="d-flex justify-content-center">
+        <section className="d-flex flex-column justify-content-center">
           <SearchInput />
           </section>
         </Col>
