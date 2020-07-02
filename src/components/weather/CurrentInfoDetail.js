@@ -1,6 +1,5 @@
 import React, {Component, Fragment, useEffect, useState, useRef, useContext} from 'react';
 import moment from 'moment-timezone';
-import {isEmpty} from 'lodash';
 import {isValid} from '../../utils/validityHelper';
 import {convertToFahrenheit} from '../../utils/temperatureHelper';
 import getWeatherIcon from '../../utils/getWeatherIcon';
