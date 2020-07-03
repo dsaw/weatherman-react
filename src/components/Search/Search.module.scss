@@ -13,9 +13,10 @@ $clr-primary: steelblue;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
 
     display: block;
-    width: 100%;
+    width: 90%;
     height: 3rem;
     margin: 0.5em auto;
+    margin-left: 0;
     padding: 0.75em 1.25em;
     border: 1px solid #aaa;
 	border-radius: 2em;
@@ -29,13 +30,25 @@ $clr-primary: steelblue;
 
   }
 .suggestionsContainer {
-  width: 90%;
+
+  ul {
+    padding-left: 0;
+    margin-left: 5%;
+    background-color: white;
+    border: 1px solid #C0C0C0;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+
+
+
+  width: 80%;
   max-height: 300px;
   overflow-y: scroll;
-visibility: hidden;
-border: 1px solid #C0C0C0;
-border-bottom-left-radius: 10px;
-border-bottom-right-radius: 10px;
+  visibility: hidden;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+
   }
 
 .suggestionsContainerOpen {

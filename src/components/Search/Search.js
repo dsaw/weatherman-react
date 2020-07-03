@@ -1,5 +1,4 @@
 import React, {Component, Fragment} from 'react';
-import Search from 'react-search';
 import Autosuggest from 'react-autosuggest';
 import IsolatedScroll from 'react-isolated-scroll';
 import debounce from 'lodash/debounce';
@@ -7,7 +6,6 @@ import debounce from 'lodash/debounce';
 import Error from '../error/Error';
 import Loader from '../loader/Loader';
 import {AddressContext} from '../../context/address/Address';
-import WeeklyForecast from '../weekly_forecast/WeeklyForecast';
 import parseCoordinates from '../../utils/CoordinateHelper';
 
 import * as cityListConfig from '../../data/city.list.json';
@@ -42,14 +40,13 @@ class SearchInput extends Component {
 
   constructor (props) {
     super(props);
-    this.cityIdList = cityListConfig.default.map(obj => renameKeys(obj, {'name':'value'}));
+    //this.cityIdList = cityListConfig.default.map(obj => renameKeys(obj, {'name':'value'}));
     this.state = {
       value: '',
       suggestions: [],
       showLoader: false,
       errorMessage: ''
     };
-    // process city id map list
   }
 
   // Teach Autosuggest how to calculate suggestions for any given input value.

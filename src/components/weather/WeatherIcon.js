@@ -1,22 +1,6 @@
 import React from 'react';
 
 import {
-  WiDirectionUp,
-  WiDirectionUpRight,
-  WiDirectionRight,
-  WiDirectionDownRight,
-  WiDirectionDown,
-  WiDirectionDownLeft,
-  WiDirectionLeft,
-  WiDirectionUpLeft,
-  WiDayFog,
-  WiNightFog,
-  WiDayCloudyWindy,
-  WiNightAltCloudyWindy,
-  WiTornado,
-  WiNa,
-  WiSunrise,
-  WiSunset,
   WiDegrees
 } from 'react-icons/wi';
 

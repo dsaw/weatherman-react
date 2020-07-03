@@ -6,9 +6,10 @@ import WeatherCard from './components/weather_card/WeatherCard';
 import WeatherForecast from './container/weather_forecast/WeatherForecast';
 import {AddressContextProvider} from './context/address/Address';
 import {UnitContextProvider} from './context/unit/Unit';
+import ErrorBoundary from './container/error_boundary/ErrorBoundary';
 
 import './app.scss';
-import {Row, Container, Nav, Jumbotron, Card, ListGroup,ListGroupItem, Col} from "react-bootstrap";
+import {Row, Container, Col} from "react-bootstrap";
 
 
 
@@ -24,17 +25,21 @@ class App extends Component {
      <AddressContextProvider>
      <Row className="header">
 
-     <Col>
+      <Col>
+       <ErrorBoundary>
         <section className="d-flex flex-column justify-content-center">
           <SearchInput />
-          </section>
-        </Col>
+        </section>
+      </ErrorBoundary>
+      </Col>
 
      </Row>
 
      <Row id="content">
          <UnitContextProvider>
+         <ErrorBoundary>
          <WeatherForecast></WeatherForecast>
+         </ErrorBoundary>
          </UnitContextProvider>
      </Row>
      </AddressContextProvider>
