@@ -61,21 +61,24 @@ const WeatherForecast = () =>  {
     // add loader component
     return (isLoading ? <Fragment> <Loader message={isCityValid(addressContext.cityName) ? `Loading weather forecast for ${addressContext.cityName}...` : `Loading weather forecast...` } /></Fragment> :
     (isError ? <Error errorMessage={"Something went wrong, weather can't be fetched right now"}/> :
-      (showContainer ? <Container>
-      <Row className = "justify-content-md-space-between" >
+      (showContainer ? <div className="">
+      <div className="w-75 mr-auto">
+      <div className = "d-flex flex-row justify-content-md-space-between" >
       <div>
       <CurrentInfo forecast = {forecast} address = {addressContext.address}>
-       </CurrentInfo> </div>
+       </CurrentInfo>
+        </div>
 
-      </Row> <Row className = "d-flex flex-row justify-content-between" >
-      <CurrentInfoDetail currentWeather = {weatherArray[selectedDay]}> </CurrentInfoDetail> </Row>
+      </div>
+      <div className = "d-flex flex-row justify-content-between" >
+      <CurrentInfoDetail currentWeather = {weatherArray[selectedDay]}> </CurrentInfoDetail> </div>
 
       <div className="d-flex flex-sm-column flex-md-row">
       <WeatherWeek forecast = {weatherArray} clickCallback={(index) => {setSelectedDay(index)}}>
       </WeatherWeek>
       </div>
-
-      </Container> : null))
+      </div>
+      </div> : null))
     );
 
 

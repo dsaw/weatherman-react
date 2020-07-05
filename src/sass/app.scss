@@ -1,7 +1,8 @@
 
-@import '../node_modules/bootstrap/scss/bootstrap.scss';
-@import 'sass/weather-icons.scss';
-@import 'sass/weather-icons-wind.scss';
+@import './custom.scss';
+@import './weather-icons.scss';
+@import './weather-icons-wind.scss';
+
 
 @include media-breakpoint-up(xs) {  }
 @include media-breakpoint-up(sm) {  }

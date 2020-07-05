@@ -8,7 +8,7 @@ import {AddressContextProvider} from './context/address/Address';
 import {UnitContextProvider} from './context/unit/Unit';
 import ErrorBoundary from './container/error_boundary/ErrorBoundary';
 
-import './app.scss';
+import './sass/app.scss';
 import {Row, Container, Col} from "react-bootstrap";
 
 
@@ -21,19 +21,19 @@ class App extends Component {
 
   render() {
   return (
-   <Container className="App">
+   <div className="App">
      <AddressContextProvider>
-     <Row className="header">
+     <div className="mr-auto d-flex flex-column justify-content-center">
 
-      <Col>
+
        <ErrorBoundary>
-        <section className="d-flex flex-column justify-content-center">
+        <section className="">
           <SearchInput />
         </section>
       </ErrorBoundary>
-      </Col>
 
-     </Row>
+
+     </div>
 
      <Row id="content">
          <UnitContextProvider>
@@ -46,7 +46,7 @@ class App extends Component {
      <Row id="footer">
 
      </Row>
-   </Container>
+   </div>
   );
 }
 }
