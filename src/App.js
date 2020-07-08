@@ -23,7 +23,7 @@ class App extends Component {
   return (
    <div className="App">
      <AddressContextProvider>
-     <div className="mr-auto d-flex flex-column justify-content-center">
+     <div className="mx-auto d-flex flex-column justify-content-center">
 
 
        <ErrorBoundary>

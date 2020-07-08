@@ -1,5 +1,5 @@
 $clr-primary: steelblue;
-
+$clr-accent: #4183D7;
 // Todo style this Autosuggest
 
 .container {
@@ -9,7 +9,7 @@ $clr-primary: steelblue;
    margin: 10px auto;
  }
 .input {
-  background-color: #F1EFE2;
+  background-color: $clr-accent;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
 
     display: block;

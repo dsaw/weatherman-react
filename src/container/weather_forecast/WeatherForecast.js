@@ -13,7 +13,8 @@ import FetchWeatherData from '../../utils/FetchWeatherHelper';
 import API_URL from '../../utils/API';
 
 import * as forecastData from '../../data/metaweather.fiveday.forecast.json';
-// for example
+
+import './WeatherForecast.scss';
 
 const WeatherForecast = () =>  {
 
@@ -62,7 +63,7 @@ const WeatherForecast = () =>  {
     return (isLoading ? <Fragment> <Loader message={isCityValid(addressContext.cityName) ? `Loading weather forecast for ${addressContext.cityName}...` : `Loading weather forecast...` } /></Fragment> :
     (isError ? <Error errorMessage={"Something went wrong, weather can't be fetched right now"}/> :
       (showContainer ? <div className="">
-      <div className="w-75 mr-auto">
+      <div className="forecast-container border  border-dark  p-3 mx-auto">
       <div className = "d-flex flex-row justify-content-md-space-between" >
       <div>
       <CurrentInfo forecast = {forecast} address = {addressContext.address}>
@@ -70,10 +71,10 @@ const WeatherForecast = () =>  {
         </div>
 
       </div>
-      <div className = "d-flex flex-row justify-content-between" >
+      <div className = "d-flex flex-sm-column flex-lg-row justify-content-between" >
       <CurrentInfoDetail currentWeather = {weatherArray[selectedDay]}> </CurrentInfoDetail> </div>
 
-      <div className="d-flex flex-sm-column flex-md-row">
+      <div className="d-flex flex-sm-column flex-lg-row">
       <WeatherWeek forecast = {weatherArray} clickCallback={(index) => {setSelectedDay(index)}}>
       </WeatherWeek>
       </div>

@@ -5,19 +5,34 @@
 
 
 @include media-breakpoint-up(xs) {  }
-@include media-breakpoint-up(sm) {  }
-@include media-breakpoint-up(md) {  }
-@include media-breakpoint-up(lg) {  }
+@include media-breakpoint-up(sm) {
+    .forecast-container {
+      width: 100%;
+    }
+
+
+
+  }
+@include media-breakpoint-up(md) {
+  .forecast-container {
+    width: 75%;
+  }
+
+}
+@include media-breakpoint-up(lg) {
+
+ }
+
 @include media-breakpoint-up(xl) {  }
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: 'Roboto', 'Segoe UI', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #EBF4FA;
+  background-color: #F5F5F5;
 }
 
 code {
