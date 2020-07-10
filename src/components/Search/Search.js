@@ -203,7 +203,7 @@ class SearchInput extends Component {
      const {value, suggestions, showLoader, errorMessage} = this.state;
 
      const inputProps = {
-       placeholder: 'Type a city/location' ,
+       placeholder: 'Type a location' ,
        value:  value,
        onChange: this.onChange
      };

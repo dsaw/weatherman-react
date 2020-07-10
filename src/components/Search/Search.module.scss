@@ -9,14 +9,13 @@ $clr-accent: #4183D7;
    margin: 10px auto;
  }
 .input {
-  background-color: $clr-accent;
+  //background-color: $clr-accent;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
 
     display: block;
     width: 90%;
     height: 3rem;
     margin: 0.5em auto;
-    margin-left: 0;
     padding: 0.75em 1.25em;
     border: 1px solid #aaa;
 	border-radius: 2em;

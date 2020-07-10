@@ -23,17 +23,17 @@ class App extends Component {
   return (
    <div className="App">
      <AddressContextProvider>
-     <div className="mx-auto d-flex flex-column justify-content-center">
+
 
 
        <ErrorBoundary>
-        <section className="">
+        <div className="mw-100 w-50 mx-auto d-flex flex-column align-items-center" style={{minWidth: '10rem'}}>
           <SearchInput />
-        </section>
+        </div>
       </ErrorBoundary>
 
 
-     </div>
+
 
      <Row id="content">
          <UnitContextProvider>

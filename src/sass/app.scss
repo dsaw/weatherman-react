@@ -4,12 +4,35 @@
 @import './weather-icons-wind.scss';
 
 
-@include media-breakpoint-up(xs) {  }
+@include media-breakpoint-up(xs) {
+  .forecast-container {
+    width: 100%;
+  }
+
+
+  .card-component {
+    width: 100%;
+  }
+
+  img .weather-icon {
+     width: 4rem;
+     height: 4rem;
+  }
+ }
 @include media-breakpoint-up(sm) {
     .forecast-container {
+      width: 83%;
+    }
+
+
+    .card-component {
       width: 100%;
     }
 
+    img .weather-icon {
+       width: 4rem;
+       height: 4rem;
+    }
 
 
   }
@@ -18,8 +41,38 @@
     width: 75%;
   }
 
+  .card {
+    flex: 1 1 0;
+  }
+
+  .card-component {
+    width: 85%;
+  }
+
+  img .weather-icon {
+     width: 3rem;
+     height: 3rem;
+  }
+
 }
 @include media-breakpoint-up(lg) {
+  .forecast-container {
+    width: 66%;
+  }
+
+  .card {
+    flex: 1 1 0;
+  }
+
+  .card-component {
+    width: 85%;
+  }
+
+  img .weather-icon {
+     width: 3rem;
+     height: 3rem;
+  }
+
 
  }
 
@@ -61,11 +114,6 @@ h1 {
   color: blue;
   /*font-size: calc(16px + 0.5vw);
    */
-}
-
-img .weather-icon {
-   width: 50px;
-   height: 50px;
 }
 
 // Use following to center horizontally
