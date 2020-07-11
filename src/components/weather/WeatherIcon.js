@@ -7,7 +7,7 @@ import {
 const WeatherIcon = ({iconName}) => {
   // currently return for wind direction
   const iconMap = {
-      'degrees': <WiDegrees style={{'fontSize': '3rem'}}/>
+      'degrees': <WiDegrees style={{'fontSize': '2rem'}}/>
   };
   return (iconMap[iconName]);
 

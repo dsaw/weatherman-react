@@ -31,9 +31,9 @@ git clone https://github.com/dsaw/weatherman-react.git
 
 
 # Challenges
-- All free API services don't have hourly forecasts & Dark Sky API has closed down.
-
-- For search, Algolia API has been used which fetches list of latitudes & longitude. The actual data comes from MetaWeather currently, which returns locations based on woeids so another API call has to be made to search the possible list of locations closest to the location parameters. This can be inaccurate with results fetched from neigbouring countries too.
+- All free API services don't have hourly forecasts & Dark Sky API has closed down. OpenWeatherMap has released a one call API with 7-day forecast but only 48 hour hourly forecast. There is the old 5-day 3-hour forecast but have to check if its consistent.
+- Time zones seem to be incorrect
+- For search, Algolia API has been used which fetches list of latitudes & longitude. The actual data comes from MetaWeather currently, which returns locations based on woeids so another API call has to be made to search the possible list of locations closest to the location parameters. This can be inaccurate with results fetched from neighbouring countries too.
 
 
 ## Available Scripts

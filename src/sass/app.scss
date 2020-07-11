@@ -3,8 +3,20 @@
 @import './weather-icons.scss';
 @import './weather-icons-wind.scss';
 
+.card:hover {
+  background-color: black;
+  color: white;
+  opacity: 0.8;
+}
+
+
 
 @include media-breakpoint-up(xs) {
+
+  .detail-container {
+       width: 100%;
+  }
+
   .forecast-container {
     width: 100%;
   }
@@ -20,6 +32,10 @@
   }
  }
 @include media-breakpoint-up(sm) {
+  .detail-container {
+       width: 100%;
+  }
+
     .forecast-container {
       width: 83%;
     }
@@ -37,6 +53,12 @@
 
   }
 @include media-breakpoint-up(md) {
+  .detail-container {
+       width: 50%;
+  }
+
+
+
   .forecast-container {
     width: 75%;
   }
@@ -56,6 +78,11 @@
 
 }
 @include media-breakpoint-up(lg) {
+  .detail-container {
+       width: 50%;
+  }
+
+
   .forecast-container {
     width: 66%;
   }
