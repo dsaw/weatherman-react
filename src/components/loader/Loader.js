@@ -9,7 +9,7 @@ const Loader = ({color, message}) => {
       <div className='puff-one'> </div>
       <div className='puff-two'></div>
     </div>
-    {message ? <div className="message text-info">{message}</div> : null}
+    {message ? <div className="message text-info text-center my-1">{message}</div> : null}
     </Fragment>
   );
 

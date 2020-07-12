@@ -23,8 +23,10 @@ class WeatherCard extends Component {
   }
 
   render() {
+
+    const highlightCard = (this.props.isSelected) ? "bg-dark text-white" : "";
     return(
-          <div className="card d-flex flex-row flex-sm-row flex-md-column bd-highlight align-items-center justify-content-center" onClick={this.props.clickCallback}>
+          <div className={`card d-flex flex-row flex-sm-row flex-md-column bd-highlight align-items-center justify-content-center ${highlightCard}`} onClick={this.props.clickCallback}>
          <div className="card-component mx-auto p-2 text-center">{this.props.day.substring(0,3)}</div>
          <div className="card-component mx-auto p-2">
           <img src={`${assetsSrc}/${getWeatherIcon(this.props.weatherType.abbr)}`} alt={this.props.weatherType.name} className="weather-icon"/>

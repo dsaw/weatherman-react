@@ -66,17 +66,17 @@ const WeatherForecast = () =>  {
       (showContainer ?
       <div className="forecast-container border  border-dark  p-3 mx-auto">
       <div className = "d-flex flex-row justify-content-md-space-between" >
-      <div>
+
       <CurrentInfo forecast = {forecast} address = {addressContext.address}>
        </CurrentInfo>
-        </div>
+
 
       </div>
       <div className = "d-flex flex-column flex-sm-column flex-md-row flex-lg-row justify-content-between" >
       <CurrentInfoDetail currentWeather = {weatherArray[selectedDay]}> </CurrentInfoDetail> </div>
 
       <div className="d-flex flex-column flex-sm-column flex-md-row flex-lg-row">
-      <WeatherWeek forecast = {weatherArray} clickCallback={(index) => {setSelectedDay(index)}}>
+      <WeatherWeek selectedIndex={selectedDay} forecast = {weatherArray} clickCallback={(index) => {setSelectedDay(index)}}>
       </WeatherWeek>
       </div>
       </div> : null))
