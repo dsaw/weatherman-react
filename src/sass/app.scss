@@ -120,11 +120,6 @@ code {
     monospace;
 }
 
-
-.header {
-
-}
-
 // font weather icons
 .wi {
   font-size: 1.5em;
@@ -132,6 +127,12 @@ code {
 
 .cursor-pointer
 {
+  cursor: pointer;
+}
+
+
+button,
+[role="button"] {
   cursor: pointer;
 }
 
@@ -144,6 +145,7 @@ h1 {
 }
 
 // Use following to center horizontally
+// TODO: remove this?
 #content {
   display: flex;
   flex-direction: column;

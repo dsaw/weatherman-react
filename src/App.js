@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 
-
+import Header from './components/header/Header';
+import Footer from './components/footer/Footer';
 import SearchInput from './components/search/Search';
 import WeatherCard from './components/weather_card/WeatherCard';
 import WeatherForecast from './container/weather_forecast/WeatherForecast';
@@ -22,9 +23,11 @@ class App extends Component {
   render() {
   return (
    <div className="App">
+     <Row id="header">
+        <Header />
+     </Row>
+
      <AddressContextProvider>
-
-
 
        <ErrorBoundary>
         <div className="mw-100 w-50 mx-auto d-flex flex-column align-items-center" style={{minWidth: '10rem'}}>
@@ -43,8 +46,12 @@ class App extends Component {
          </UnitContextProvider>
      </Row>
      </AddressContextProvider>
+      <Row>
+        <div className="my-4 p-2">
+        </div>
+      </Row>
      <Row id="footer">
-
+        <Footer />
      </Row>
    </div>
   );

@@ -6,7 +6,7 @@ $clr-accent: #4183D7;
    width: 100%;
    height: auto;
    position: relative;
-   margin: 10px auto;
+   margin: 1rem auto;
  }
 .input {
   //background-color: $clr-accent;
@@ -15,7 +15,7 @@ $clr-accent: #4183D7;
     display: block;
     width: 90%;
     height: 3rem;
-    margin: 0.5em auto;
+    margin: 0 auto;
     padding: 0.75em 1.25em;
     border: 1px solid #aaa;
 	border-radius: 2em;
@@ -24,7 +24,6 @@ $clr-accent: #4183D7;
 
   &:focus {
     outline: none;
-    //border: 1px solid $clr-primary;
   }
 
   }
@@ -39,6 +38,8 @@ $clr-accent: #4183D7;
     border-bottom-right-radius: 10px;
   }
 
+  position: relative;
+  left: 1.5rem;
 
 
   width: 80%;
