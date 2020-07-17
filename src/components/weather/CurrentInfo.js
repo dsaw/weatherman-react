@@ -53,7 +53,7 @@ function CurrentInfo({forecast, address}) {
   }, [forecast]);
 
   return (isValid(forecast) ?
-    <div>
+    <div className="p-2">
     { location ?
       (<p className="mb-2">{location}
         </p>)

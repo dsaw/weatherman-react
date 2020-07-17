@@ -7,7 +7,7 @@
 
 // Link underline effect
 // from https://tobiasahlin.com/blog/css-trick-animating-link-underlines/
-
+#footer {
 a {
    position: relative;
    color: #000;
@@ -38,6 +38,8 @@ a:hover {
 a:hover::before {
   visibility: visible;
   transform: scaleX(1);
+}
+
 }
 
 

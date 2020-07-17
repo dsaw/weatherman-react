@@ -26,7 +26,7 @@ function CurrentInfoDetail({currentWeather, address}) {
       <Fragment>
         <div className="detail-container d-flex flex-row p-2 justify-content-center align-items-center">
           <div className="d-flex flex-column align-items-center">
-              <img src={`${assetsSrc}/${getWeatherIcon(currentWeather.weather_state_abbr)}`} alt={currentWeather.weather_state_name} className="img-fluid w-50 h-50 p-2" />
+              <img src={`${assetsSrc}/${getWeatherIcon(currentWeather.weather_state_abbr)}`} alt={currentWeather.weather_state_name} className="img-fluid w-75 h-75 p-2" />
               <p className="my-2 text-center text-capitalize font-medium">{currentWeather.weather_state_name || ''}</p>
           </div>
           <div className="">
@@ -43,7 +43,7 @@ function CurrentInfoDetail({currentWeather, address}) {
 
           </div>
         </div>
-        <div className="detail-container d-flex flex-column justify-content-center align-items-center p-1" >
+        <div className="detail-container d-flex flex-column justify-content-center align-items-center p-2" >
           <div className="ml-sm-3 ml-md-3 ml-lg-3">
           {currentWeather.precipitation ? (<div className="my-1"><p className="mb-2">Precipitation: {currentWeather.precipitation || ''}</p></div>) : null}
           {currentWeather.humidity ? (<div className="my-1"><p className="mb-2">Humidity: {currentWeather.humidity || ''} %</p></div>) : null}

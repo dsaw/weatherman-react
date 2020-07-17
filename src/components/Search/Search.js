@@ -162,9 +162,6 @@ class SearchInput extends Component {
 
   onBlur = (event, { newValue}) => {
     console.log("change:", event);
-    /*this.setState({
-      value: newValue
-    });*/
   }
 
    onSuggestionsFetchRequested = ({ value, reason }) => {
@@ -180,9 +177,6 @@ class SearchInput extends Component {
 
   onSuggestionsClearRequested = () => {
      console.log("clear requested:");
-  /*   this.setState({
-       suggestions: []
-     });*/
    };
 
    renderSuggestionContainer= ({containerProps, children}) => {
