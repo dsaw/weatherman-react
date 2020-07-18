@@ -64,7 +64,8 @@ const WeatherForecast = () =>  {
     return (isLoading ? <Fragment> <Loader message={isCityValid(addressContext.cityName) ? `Loading weather forecast for ${addressContext.cityName}...` : `Loading weather forecast...` } /></Fragment> :
     (isError ? <Error errorMessage={"Something went wrong, weather can't be fetched right now"}/> :
       (showContainer ?
-      <div className="forecast-container border  border-dark  p-3 mx-auto">
+        <Fragment>
+      <div className="forecast-container p-3 mx-auto">
       <div className = "d-flex flex-row justify-content-md-space-between" >
 
       <CurrentInfo forecast = {forecast} address = {addressContext.address}>
@@ -79,7 +80,10 @@ const WeatherForecast = () =>  {
       <WeatherWeek selectedIndex={selectedDay} forecast = {weatherArray} clickCallback={(index) => {setSelectedDay(index)}}>
       </WeatherWeek>
       </div>
-      </div> : null))
+      </div>
+      <div id="poweredBy" className="mx-auto text-center text-dark">
+        Powered by&nbsp;<a href="https://www.metaweather.com/api/" target="_blank" rel="noreferrer noopener" class="">MetaWeather</a>
+      </div></Fragment>: null))
     );
 
 

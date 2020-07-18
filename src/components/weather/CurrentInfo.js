@@ -55,15 +55,15 @@ function CurrentInfo({forecast, address}) {
   return (isValid(forecast) ?
     <div className="p-2">
     { location ?
-      (<p className="mb-2">{location}
+      (<p className="mb-2 font-weight-bold">{location}
         </p>)
         : ''
     }
     { date && time ?
      (<Fragment>
-       <p className="mb-2">
+       <p className="mb-2 font-weight-500">
         {date}
-        <span> | </span>
+        <span className="font-weight-bold"> | </span>
         {time}
        </p>
      </Fragment>) : null

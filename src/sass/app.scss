@@ -4,13 +4,42 @@
 @import './weather-icons-wind.scss';
 // TODO: refactor and bring some sanity in this SCSS!
 
+@fontface {
+  font-family: 'Montserrat-Regular';
+  src: url("../font/Montserrat-Regular.ttf") format("truetype");
+}
+
+@fontface {
+  font-family: 'Montserrat-Medium';
+  font-weight: 500;
+  src: url("../font/Montserrat-Medium.ttf") format("truetype");
+}
+
+@fontface {
+  font-family: 'Montserrat-SemiBold';
+  font-weight: 600;
+  src: url("../font/Montserrat-SemiBold.ttf") format("truetype");
+}
+
+@fontface {
+  font-family: 'Montserrat-Bold';
+  font-weight: 700;
+  src: url("../font/Montserrat-Bold.ttf") format("truetype");
+}
+
+@fontface {
+  font-family: 'Montserrat-ExtraBold';
+  font-weight: bold;
+  src: url("../font/Montserrat-ExtraBold.ttf") format("truetype");
+}
+
 
 // Link underline effect
 // from https://tobiasahlin.com/blog/css-trick-animating-link-underlines/
-#footer {
+#footer, #poweredBy {
 a {
    position: relative;
-   color: #000;
+   color: #007bff;
    text-decoration: none;
 }
 
@@ -22,7 +51,7 @@ a::before {
   position: absolute;
   bottom: 0;
   left: 0;
-  background-color: #000;
+  background-color: #007bff;
   visibility: hidden;
   transform: scaleX(0);
   transition: all 0.3s ease-in-out 0s;
@@ -31,7 +60,7 @@ a::before {
 
 a:hover {
   text-decoration: none;
-  color: #000;
+  color: #007bff;
 }
 
 
@@ -151,7 +180,7 @@ a:hover::before {
 
 body {
   margin: 0;
-  font-family: 'Roboto', 'Segoe UI', 'Oxygen',
+  font-family: 'Montserrat-Regular','Roboto', 'Segoe UI', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;

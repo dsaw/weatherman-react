@@ -35,9 +35,6 @@ class App extends Component {
         </div>
       </ErrorBoundary>
 
-
-
-
      <Row id="content">
          <UnitContextProvider>
          <ErrorBoundary>
