@@ -82,7 +82,9 @@ a:hover::before {
   opacity: 0.8;
 }
 
-
+.opacity-75 {
+  opacity: 0.75;
+}
 
 @include media-breakpoint-up(xs) {
 
@@ -180,7 +182,10 @@ a:hover::before {
 
 body {
   margin: 0;
-  font-family: 'Montserrat-Regular','Roboto', 'Segoe UI', 'Oxygen',
+  font-family: // Safari for OS X and iOS (San Francisco)
+  -apple-system,
+  // Chrome < 56 for OS X (San Francisco)
+  BlinkMacSystemFont, 'Montserrat-Regular','Roboto', 'Segoe UI', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -212,7 +217,6 @@ button,
 
 
 h1 {
-  color: blue;
   /*font-size: calc(16px + 0.5vw);
    */
 }

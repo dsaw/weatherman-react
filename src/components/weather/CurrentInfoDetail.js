@@ -29,12 +29,12 @@ function CurrentInfoDetail({currentWeather, address}) {
               <img src={`${assetsSrc}/${getWeatherIcon(currentWeather.weather_state_abbr)}`} alt={currentWeather.weather_state_name} className="img-fluid w-75 h-75 p-2" />
               <p className="my-2 text-center text-capitalize font-medium">{currentWeather.weather_state_name || ''}</p>
           </div>
-          <div className="">
+          <div>
           <p>
           <span className="h3">{Math.round(weatherUnit === "C" ? currentWeather.the_temp : convertToFahrenheit(currentWeather.the_temp))}</span> <WeatherIcon iconName="degrees"/>
-          <span className="font-weight-light" style={{'font-size': '1.5rem'}}>
-          <span className="cursor-pointer " onClick={() => unitClick("C")}>C</span>  |
-          <span className="cursor-pointer" onClick={() => unitClick("F")}> F</span>
+          <span className="font-weight-light" style={{fontSize: '1.5rem'}}>
+            <span className={`cursor-pointer ${weatherUnit === "C" ? "font-weight-normal border-light" : "opacity-75"}`} onClick={() => unitClick("C")}>C</span>  &nbsp;|&nbsp;
+            <span className={`cursor-pointer ${weatherUnit === "F" ? "font-weight-normal border-light" : "opacity-75"}`} onClick={() => unitClick("F")}>F</span>
           </span>
           </p>
           <p>
@@ -49,7 +49,7 @@ function CurrentInfoDetail({currentWeather, address}) {
           {currentWeather.humidity ? (<div className="my-1"><p className="mb-2"><span className="font-weight-bold">Humidity:</span> {currentWeather.humidity || ''} %</p></div>) : null}
           {currentWeather.wind_speed ? (<div className="my-1"><p className="mb-2"><span className="font-weight-bold">Wind speed:</span> {(weatherUnit === "C" ? convertToMetric(currentWeather.wind_speed).toFixed(2) + ' mps'
                     : currentWeather.wind_speed.toFixed(2) + ' mph')}
-                  <WeatherDirectionIcon iconName={currentWeather.wind_direction_compass}/> </p></div>) : null }
+                  &nbsp;<WeatherDirectionIcon iconName={currentWeather.wind_direction_compass}/> </p></div>) : null }
           </div>
         </div>
       </Fragment> : null

@@ -53,7 +53,7 @@ function CurrentInfo({forecast, address}) {
   }, [forecast]);
 
   return (isValid(forecast) ?
-    <div className="p-2">
+    <div className="p-2" style={{fontSize: '1.5rem'}}>
     { location ?
       (<p className="mb-2 font-weight-bold">{location}
         </p>)
@@ -61,7 +61,7 @@ function CurrentInfo({forecast, address}) {
     }
     { date && time ?
      (<Fragment>
-       <p className="mb-2 font-weight-500">
+       <p className="mb-2">
         {date}
         <span className="font-weight-bold"> | </span>
         {time}

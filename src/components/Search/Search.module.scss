@@ -8,9 +8,10 @@ $clr-accent: #4183D7;
    position: relative;
    margin: 1rem auto;
  }
+
 .input {
-  //background-color: $clr-accent;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    //background-color: $clr-accent;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
 
     display: block;
     width: 90%;
@@ -18,13 +19,13 @@ $clr-accent: #4183D7;
     margin: 0 auto;
     padding: 0.75em 1.25em;
     border: 1px solid #aaa;
-	border-radius: 2em;
-  box-sizing: border-box;
-  outline: none;
-
-  &:focus {
+	  border-radius: 2em;
+    box-sizing: border-box;
     outline: none;
-  }
+
+    &:focus {
+      outline: none;
+    }
 
   }
 .suggestionsContainer {
@@ -34,8 +35,8 @@ $clr-accent: #4183D7;
     margin-left: 5%;
     background-color: white;
     border: 1px solid #C0C0C0;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 0.6rem;
+    border-bottom-right-radius: 0.6rem;
   }
 
   position: relative;
@@ -46,14 +47,14 @@ $clr-accent: #4183D7;
   max-height: 300px;
   overflow-y: scroll;
   visibility: hidden;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 0.6rem;
+  border-bottom-right-radius: 0.6rem;
 
-  }
+}
 
 .suggestionsContainerOpen {
-display: block;
-visibility: visible;
+  display: block;
+  visibility: visible;
 }
 
 .suggestion {
@@ -61,4 +62,6 @@ visibility: visible;
     padding: 0px;
     margin: 0;
  }
-.suggestionHighlighted {display: block;  }
+.suggestionHighlighted {
+    display: block;
+}

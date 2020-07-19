@@ -1,5 +1,4 @@
 import React, {Component, Fragment, useEffect, useContext, useState} from 'react';
-import {Row, Col, Container, CardGroup} from "react-bootstrap";
 import Error from '../../components/error/Error';
 import WeatherCard from '../../components/weather_card/WeatherCard';
 import CurrentInfo from '../../components/weather/CurrentInfo';
