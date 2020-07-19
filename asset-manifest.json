@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/weather-man/static/css/main.b905e68b.chunk.css",
+    "main.js": "/weather-man/static/js/main.2efc5014.chunk.js",
+    "main.js.map": "/weather-man/static/js/main.2efc5014.chunk.js.map",
+    "runtime-main.js": "/weather-man/static/js/runtime-main.4e7c9063.js",
+    "runtime-main.js.map": "/weather-man/static/js/runtime-main.4e7c9063.js.map",
+    "static/js/2.59d6529a.chunk.js": "/weather-man/static/js/2.59d6529a.chunk.js",
+    "static/js/2.59d6529a.chunk.js.map": "/weather-man/static/js/2.59d6529a.chunk.js.map",
+    "index.html": "/weather-man/index.html",
+    "precache-manifest.9a31b6acbcb47f554204b902290d9605.js": "/weather-man/precache-manifest.9a31b6acbcb47f554204b902290d9605.js",
+    "service-worker.js": "/weather-man/service-worker.js",
+    "static/css/main.b905e68b.chunk.css.map": "/weather-man/static/css/main.b905e68b.chunk.css.map",
+    "static/js/2.59d6529a.chunk.js.LICENSE": "/weather-man/static/js/2.59d6529a.chunk.js.LICENSE",
+    "static/media/app.scss": "/weather-man/static/media/weathericons-regular-webfont.ecaf8b48.svg",
+    "static/media/weatherman.png": "/weather-man/static/media/weatherman.d0288ce5.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.4e7c9063.js",
+    "static/js/2.59d6529a.chunk.js",
+    "static/css/main.b905e68b.chunk.css",
+    "static/js/main.2efc5014.chunk.js"
+  ]
+}
