@@ -56,8 +56,8 @@ class AddressContextProvider extends Component {
     var response = await fetchIPLocation();
     if (isValid(response)) {
       var latLng = {
-        lat: response.lat,
-        lng: response.lon
+        lat: response.latitude,
+        lng: response.longitude
       };
       this.updateAddress(latLng);
     }

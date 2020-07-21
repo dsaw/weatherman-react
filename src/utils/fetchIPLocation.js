@@ -2,7 +2,7 @@
  const fetchIPLocation = async () => {
   var response
   try {
-  response = await fetch('http://ip-api.com/json').then((response) => {
+    response = await fetch('https://ipapi.co/json').then((response) => {
     if (!response.ok) {
       throw new Error('Network response was not ok');
     }
