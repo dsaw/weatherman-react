@@ -9,7 +9,6 @@ import {AddressContext} from  '../../context/address/Address';
 import {getDayFromDate} from '../../utils/DateHelper';
 import {isCityValid, isForecastValid} from '../../utils/validityHelper';
 import FetchWeatherData from '../../utils/FetchWeatherHelper';
-import API_URL from '../../utils/API';
 
 import * as forecastData from '../../data/metaweather.fiveday.forecast.json';
 

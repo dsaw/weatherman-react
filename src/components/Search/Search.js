@@ -7,6 +7,7 @@ import Error from '../error/Error';
 import Loader from '../loader/Loader';
 import {AddressContext} from '../../context/address/Address';
 import parseCoordinates from '../../utils/CoordinateHelper';
+import API_URL from '../../utils/API';
 
 import * as cityListConfig from '../../data/city.list.json';
 
@@ -119,7 +120,7 @@ class SearchInput extends Component {
 
       // Metaweather needs a separate location search with given lat long to get
       // the address with location name & id which than will be needed
-      const response = fetch(`https://www.metaweather.com/api/location/search/?lattlong=${suggestion.latLng.lat},${suggestion.latLng.lng}`,
+      const response = fetch(`${API_URL}location/search/?lattlong=${suggestion.latLng.lat},${suggestion.latLng.lng}`,
       {
         mode: "cors"
       }
@@ -146,7 +147,7 @@ class SearchInput extends Component {
         console.error('There is a problem with your fetch: ', error);
         this.setState({
           showLoader: false,
-          errorMessage: "Something went wrong, weather address list can't be fetched right now"
+          errorMessage: "Something went wrong, weather addresses can't be fetched right now"
         });
 
       });
