@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "fa9afa4f2888234f8bc140c04b039e9c",
+    "revision": "150314de1fac928c864eb0bbe8243a82",
     "url": "/weatherman-react/index.html"
   },
   {
-    "revision": "527e2327d2da73e58b80",
+    "revision": "8c6fbf4fa2040cef6d0e",
     "url": "/weatherman-react/static/css/main.e9922592.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/weatherman-react/static/js/2.5494b860.chunk.js.LICENSE"
   },
   {
-    "revision": "527e2327d2da73e58b80",
-    "url": "/weatherman-react/static/js/main.e41b548b.chunk.js"
+    "revision": "8c6fbf4fa2040cef6d0e",
+    "url": "/weatherman-react/static/js/main.0b56ae92.chunk.js"
   },
   {
     "revision": "3f03fbab3769ded66ffb",
