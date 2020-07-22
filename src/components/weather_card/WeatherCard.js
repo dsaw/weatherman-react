@@ -27,7 +27,7 @@ class WeatherCard extends Component {
     const highlightCard = (this.props.isSelected) ? "bg-dark text-white" : "";
     return(
           <div className={`card d-flex flex-row flex-sm-row flex-md-column bd-highlight align-items-center justify-content-center ${highlightCard}`} onClick={this.props.clickCallback}>
-         <div className="card-component mx-auto p-2 text-center">{this.props.day.substring(0,3)}</div>
+         <div className="card-component mx-auto p-2 text-center font-weight-bold">{this.props.day.substring(0,3)}</div>
          <div className="card-component mx-auto p-2">
           <img src={`${assetsSrc}/${getWeatherIcon(this.props.weatherType.abbr)}`} alt={this.props.weatherType.name} className="weather-icon"/>
          </div>
@@ -37,8 +37,8 @@ class WeatherCard extends Component {
            <div className="mx-1">{roundNumbers(this.context.weatherUnit === "C" ? this.props.lowestTemp : convertToFahrenheit(this.props.lowestTemp))} <sup>o</sup></div>
          </div>
          <div className="card-component mx-auto p-2">
-          <div>{roundNumbers(this.props.humidity)}</div>
-          <div>{roundNumbers(this.props.speed)}</div>
+          <div>{roundNumbers(this.props.humidity)} %</div>
+          <div>{roundNumbers(this.props.pressure)} mbar</div>
          </div>
          </div>
        );

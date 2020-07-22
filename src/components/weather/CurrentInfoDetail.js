@@ -45,7 +45,7 @@ function CurrentInfoDetail({currentWeather, address}) {
         </div>
         <div className="detail-container d-flex flex-column justify-content-center align-items-center p-2" >
           <div className="ml-sm-3 ml-md-3 ml-lg-3">
-          {currentWeather.precipitation ? (<div className="my-1"><p className="mb-2"><span className="font-weight-bold">Precipitation:</span> {currentWeather.precipitation || ''}</p></div>) : null}
+          {currentWeather.air_pressure ? (<div className="my-1"><p className="mb-2"><span className="font-weight-bold">Air pressure:</span> {currentWeather.air_pressure || ''} mbar</p></div>) : null}
           {currentWeather.humidity ? (<div className="my-1"><p className="mb-2"><span className="font-weight-bold">Humidity:</span> {currentWeather.humidity || ''} %</p></div>) : null}
           {currentWeather.wind_speed ? (<div className="my-1"><p className="mb-2"><span className="font-weight-bold">Wind speed:</span> {(weatherUnit === "C" ? convertToMetric(currentWeather.wind_speed).toFixed(2) + ' mps'
                     : currentWeather.wind_speed.toFixed(2) + ' mph')}
