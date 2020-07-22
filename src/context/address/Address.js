@@ -5,6 +5,7 @@ import React, {
 import parseCoordinates from '../../utils/CoordinateHelper';
 import fetchIPLocation from '../../utils/fetchIPLocation';
 import {isValid} from '../../utils/validityHelper';
+import API_URL from '../../utils/API';
 
 
 const AddressContext = React.createContext(null);
@@ -25,7 +26,7 @@ class AddressContextProvider extends Component {
 
   updateAddress = (latLng) => {
     //  geocoding api to get address closest to latLong
-    const response = fetch(`https://www.metaweather.com/api/location/search/?lattlong=${latLng.lat},${latLng.lng}`, {
+    const response = fetch(`${API_URL}/location/search/?lattlong=${latLng.lat},${latLng.lng}`, {
         mode: "cors"
       }).then((response) => {
         if (!response.ok) {
