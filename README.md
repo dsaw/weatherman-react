@@ -4,6 +4,8 @@
 
 - **[Challenges](https://github.com/dsaw/weatherman-react#-challenges)**
 
+- **[TODO](https://github.com/dsaw/weatherman-react#-todo)**
+
 - **[Contribution](https://github.com/dsaw/weatherman-react#-contribution)**
 
 - **[License](https://github.com/dsaw/weatherman-react#-license)**
@@ -35,11 +37,18 @@ yarn start
 # Challenges
 - All free API services don't have hourly forecasts & Dark Sky API has closed down. OpenWeatherMap has released a one call API with 7-day forecast but only 48 hour hourly forecast. There is the old 5-day 3-hour forecast but have to check if its consistent.
 - Time zones seem to be incorrect
-- For search, [Algolia API](https://www.algolia.com/doc/rest-api/search/) has been used which fetches list of latitudes & longitude. The actual data comes from MetaWeather, which returns locations based on 'woeids' so another API call has to be made to search the possible list of locations closest to the location parameters. This can be inaccurate with results fetched from neighbouring countries too.
+- For search, [Algolia API](https://www.algolia.com/doc/rest-api/search/) has been used which fetches list of latitudes & longitude. The actual data comes from MetaWeather, which returns locations based on 'where on earth ids' so another API call has to be made to search the possible list of locations closest to the location parameters. This can be inaccurate with results fetched from neighbouring countries too.
 
-# LICENSE
+# TODO
+- Refactor!
+    - SCSS in one place & component style files
+    - API specific code & presentation can be separated
+- Use a dedicated proxy server as an endpoint
+- Include Hourly forecasts
+
+# License
 - Licensed for open source use through [GNU GPLv3](https://www.gnu.org/licenses/quick-guide-gplv3.html).
 
 # Contact
 - Built by Devesh!
-- email: [devesh47cool@gmail.com](devesh47cool@gmail.com)
+- Email: [devesh47cool@gmail.com](devesh47cool@gmail.com)
