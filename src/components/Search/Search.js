@@ -9,30 +9,24 @@ import {AddressContext} from '../../context/address/Address';
 import parseCoordinates from '../../utils/CoordinateHelper';
 import API_URL from '../../utils/API';
 
-import * as cityListConfig from '../../data/city.list.json';
+import * as cityList from '../../data/city.list.json';
 
 import theme from './Search.module.scss';
 
-// for renaming name to id of city list
-function renameKeys(obj, newKeys) {
-  const keyValues = Object.keys(obj).map(key => {
-    const newKey = newKeys[key] || key;
-    return { [newKey]: obj[key] };
-  });
-  return Object.assign({}, ...keyValues);
-}
 
-const getSuggestionValue = suggestion => suggestion.value.split(',')[0];
+const escapeSpecialChars = (string) => (string.replace(/[.*+\-?^${}()|[\]\\]/g , "\\$&"));
+
+const getSuggestionValue = suggestion => suggestion.name.split(',')[0];
 
 const shouldRenderSuggestions = () => (true);
 
 const renderSuggestion = (suggestion, {query, isHighlighted}) => {
   return (isHighlighted ?
   <div style={{backgroundColor: 'black', color: 'white', padding: '5px 0 5px 3px'}}>
-    {suggestion.value}
+    {suggestion.name}
   </div> :
   <div style={{padding: '5px 0 5px 5px'}}>
-    {suggestion.value}
+    {suggestion.name}
   </div>
 );
 };
@@ -41,7 +35,7 @@ class SearchInput extends Component {
 
   constructor (props) {
     super(props);
-    //this.cityIdList = cityListConfig.default.map(obj => renameKeys(obj, {'name':'value'}));
+    this.citySearchList = cityList.default;
     this.state = {
       value: '',
       suggestions: [],
@@ -52,7 +46,7 @@ class SearchInput extends Component {
 
   // Teach Autosuggest how to calculate suggestions for any given input value.
   async getSuggestions (value) {
-  const searchValue = value ? value.trim().toLowerCase() : '';
+  const searchValue = value ? escapeSpecialChars(value.trim().toLowerCase()) : '';
   const inputLength = searchValue.length;
   let items = [];
 
@@ -64,7 +58,10 @@ class SearchInput extends Component {
         suggestions:[],
         showLoader: true});
 
-      const response = await fetch(`https://places-dsn.algolia.net/1/places/query`,
+        const regex = new RegExp(`^${searchValue}`, 'i');
+        items = this.citySearchList.filter((city) => regex.test(city.name));
+
+      /*const response = await fetch(`https://places-dsn.algolia.net/1/places/query`,
       {  method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -89,7 +86,9 @@ class SearchInput extends Component {
                       'id': parseInt(res.objectID.split('_')[0]),
                       'latLng': res._geoloc  };
           });
-        }
+        }*/
+
+
       }
 
       this.setState({
@@ -106,7 +105,7 @@ class SearchInput extends Component {
       this.setState({
         suggestions: [],
         showLoader: false,
-        errorMessage: 'Some error came up:' + error});
+        errorMessage: 'Some error came up: ' + error});
 
     }
 
@@ -120,7 +119,7 @@ class SearchInput extends Component {
 
       // Metaweather needs a separate location search with given lat long to get
       // the address with location name & id which than will be needed
-      const response = fetch(`${API_URL}location/search/?lattlong=${suggestion.latLng.lat},${suggestion.latLng.lng}`,
+      /*const response = fetch(`${API_URL}location/search/?lattlong=${suggestion.coord.lat},${suggestion.coord.lng}`,
       {
         mode: "cors"
       }
@@ -148,9 +147,16 @@ class SearchInput extends Component {
         this.setState({
           showLoader: false,
           errorMessage: "Something went wrong, weather addresses can't be fetched right now"
+        });*/
+
+        // For OWM, just get it from the city
+        this.context.updateState({
+          address: suggestion,
+          cityName: suggestion.name,
+          latLng: suggestion.coord
         });
 
-      });
+
   };
 
 

@@ -8,12 +8,12 @@ import WeatherWeek from '../weather_week/WeatherWeek';
 import {AddressContext} from  '../../context/address/Address';
 import {getDayFromDate} from '../../utils/DateHelper';
 import {isCityValid, isForecastValid} from '../../utils/validityHelper';
-import FetchWeatherData from '../../utils/FetchWeatherHelper';
+import {fetchWeatherDailyForecast} from '../../utils/FetchWeatherHelper';
 
 import * as forecastData from '../../data/metaweather.fiveday.forecast.json';
-
 import './WeatherForecast.scss';
 
+// Daily Weather Forecast
 const WeatherForecast = () =>  {
 
   const addressContext = useContext(AddressContext);
@@ -28,14 +28,14 @@ const WeatherForecast = () =>  {
   const fetchWeatherData = async () => {
     try {
       setIsLoading(true);
-      let weatherForecast = await FetchWeatherData(
+      let weatherForecast = await fetchWeatherDailyForecast(
         addressContext
       );
       // set data in state here
       if (isForecastValid(weatherForecast)) {
         setShowContainer(true);
         setForecast(weatherForecast);
-        setWeatherArray(weatherForecast.consolidated_weather);
+        setWeatherArray(weatherForecast.daily);
         setSelectedDay(0);
         setisError(false);
       }

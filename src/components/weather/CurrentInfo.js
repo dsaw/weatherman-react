@@ -16,8 +16,8 @@ function CurrentInfo({forecast, address}) {
 
   // set address
   useEffect(() => {
-    if(address.title) {
-      setLocation(address.title);
+    if(address.name) {
+      setLocation(address.name);
     }
   }, [address]);
 
@@ -36,7 +36,7 @@ function CurrentInfo({forecast, address}) {
 
       const dateTimer = setInterval(
         () => {
-          if (forecast.time) {
+          if (forecast.timezone) {
             const dateTimeObj = moment.tz(dateTimeRef.current, forecast.timezone).add(1 , 's');
             setDateTime(dateTimeObj);
           }

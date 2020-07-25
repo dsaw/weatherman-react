@@ -6,11 +6,10 @@ import parseCoordinates from '../../utils/CoordinateHelper';
 import fetchIPLocation from '../../utils/fetchIPLocation';
 import {isValid} from '../../utils/validityHelper';
 import API_URL from '../../utils/API';
-
+const WEATHER_API_KEY = process.env.REACT_APP_OPENWEATHERMAP_API_KEY;
 
 const AddressContext = React.createContext(null);
 
-//context to set address when selected
 class AddressContextProvider extends Component {
 
   constructor(props) {
@@ -25,8 +24,8 @@ class AddressContextProvider extends Component {
   }
 
   updateAddress = (latLng) => {
-    //  geocoding api to get address closest to latLong
-    const response = fetch(`${API_URL}/location/search/?lattlong=${latLng.lat},${latLng.lng}`, {
+    //  geocoding api to get address closest to lat & long
+    const response = fetch(`${API_URL}weather?lat=${latLng.lat}&lon=${latLng.lng}&units=metric&appid=${WEATHER_API_KEY}`, {
         mode: "cors"
       }).then((response) => {
         if (!response.ok) {
@@ -35,21 +34,19 @@ class AddressContextProvider extends Component {
         return response.json();
       }).then((res) => {
         // set Address
-        if (res.length) {
-          console.log(res[0]);
+        if (res.id) {
           this.updateState({
-            address: res[0],
-            cityName: res[0].title,
-            latLng: parseCoordinates(res[0].latt_long)
+            address: Object.assign({}, {id: res.id, name: res.name, coord: res.coord}),
+            cityName: res.name,
+            latLng: res.coord
           });
 
         }
         console.log(res);
       })
       .catch((error) => {
-        console.error('There is a problem with your fetch:', error);
+        console.error('There is a problem with your fetch: ', error);
       });
-
 
   }
 
@@ -81,7 +78,6 @@ class AddressContextProvider extends Component {
         this.updateIPAddress();
       });
     }
-    // TODO: do ip lookup alternatively if geolocation not given
     else {
       this.updateIPAddress();
 
@@ -98,8 +94,6 @@ class AddressContextProvider extends Component {
 
   componentDidMount() {
     this.getCurrentCoordinates();
-
-
   }
 
 

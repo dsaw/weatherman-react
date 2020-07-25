@@ -5,7 +5,7 @@ const isCityValid = (name) => {
 
 const isForecastValid = (forecast) => {
   // api specific - metaweather returns detail as not found
-  return forecast && !(forecast.detail);
+  return forecast && (forecast.lat && forecast.lon);
 }
 
 const isValid = (value) => {
