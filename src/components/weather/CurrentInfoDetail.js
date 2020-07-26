@@ -27,7 +27,7 @@ function CurrentInfoDetail({currentWeather}) {
       <Fragment>
         <div className="detail-container d-flex flex-row p-2 justify-content-center align-items-center">
           <div className="d-flex flex-column align-items-center">
-              <img src={`${assetsSrc}/${getWeatherIcon(currentWeather.weather.icon)}`} alt={currentWeather.weather.description} className="img-fluid w-75 h-75 p-2" />
+              <img src={`${assetsSrc}/${getWeatherIcon(currentWeather.weather[0].icon)}`} alt={currentWeather.weather[0].description} className="img-fluid w-75 h-75 p-2" />
               <p className="my-2 text-center text-capitalize font-medium">{currentWeather.weather.description || ''}</p>
           </div>
           <div>
@@ -39,7 +39,7 @@ function CurrentInfoDetail({currentWeather}) {
           </span>
           </p>
           <p>
-          <span className="font-weight-normal">{moment(currentWeather.dt,"YYYY-MM-DD").format('MMM Do') || ''}</span>
+          <span className="font-weight-normal">{moment(currentWeather.dt).format('MMM Do') || ''}</span>
           </p>
 
           </div>

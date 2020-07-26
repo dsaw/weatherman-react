@@ -13,6 +13,9 @@ import {fetchWeatherDailyForecast} from '../../utils/FetchWeatherHelper';
 import * as forecastData from '../../data/metaweather.fiveday.forecast.json';
 import './WeatherForecast.scss';
 
+const WEATHER_SERVICE_URL = "https://openweathermap.org/";
+const WEATHER_SERVICE_NAME = "OpenWeatherMap";
+
 // Daily Weather Forecast
 const WeatherForecast = () =>  {
 
@@ -72,15 +75,15 @@ const WeatherForecast = () =>  {
 
       </div>
       <div className = "d-flex flex-column flex-sm-column flex-md-row flex-lg-row justify-content-between" >
-      <CurrentInfoDetail currentWeather = {weatherArray[selectedDay]}> </CurrentInfoDetail> </div>
+      <CurrentInfoDetail currentWeather={weatherArray[selectedDay]}> </CurrentInfoDetail> </div>
 
       <div className="d-flex flex-column flex-sm-column flex-md-row flex-lg-row">
-      <WeatherWeek selectedIndex={selectedDay} forecast = {weatherArray} clickCallback={(index) => {setSelectedDay(index)}}>
+      <WeatherWeek selectedIndex={selectedDay} forecast={weatherArray} clickCallback={(index) => {setSelectedDay(index)}}>
       </WeatherWeek>
       </div>
       </div>
       <div id="poweredBy" className="mx-auto text-center text-dark">
-        Powered by&nbsp;<a href="https://www.metaweather.com/api/" target="_blank" rel="noreferrer noopener" class="">MetaWeather</a>
+        Powered by&nbsp;<a href={WEATHER_SERVICE_URL} target="_blank" rel="noreferrer noopener" class="">{WEATHER_SERVICE_NAME}</a>
       </div></Fragment>: null))
     );
 
