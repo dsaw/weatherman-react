@@ -1,10 +1,11 @@
+import moment from 'moment-timezone';
 
-
-const getDayFromDate = (date) => {
-  // should support UTC
+const getDayFromDate = (timezone, index) => {
+  // OWM time(dt) is meaningless
   let days =['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-  var d = new Date(date);
-  return (days[d.getDay()]);
+  var d = moment().tz(timezone);
+  d.day(index);
+  return (days[d.day()]);
 }
 
 export {getDayFromDate};

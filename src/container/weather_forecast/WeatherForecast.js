@@ -78,7 +78,7 @@ const WeatherForecast = () =>  {
       <CurrentInfoDetail currentWeather={weatherArray[selectedDay]}> </CurrentInfoDetail> </div>
 
       <div className="d-flex flex-column flex-sm-column flex-md-row flex-lg-row">
-      <WeatherWeek selectedIndex={selectedDay} forecast={weatherArray} clickCallback={(index) => {setSelectedDay(index)}}>
+      <WeatherWeek selectedIndex={selectedDay} forecast={weatherArray} timezone={forecast.timezone} clickCallback={(index) => {setSelectedDay(index)}}>
       </WeatherWeek>
       </div>
       </div>
