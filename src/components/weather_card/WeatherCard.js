@@ -18,10 +18,6 @@ class WeatherCard extends Component {
     super(props);
   }
 
-  getWeatherIcon(weathertype) {
-    return "assets/icons/" + weathertype + ".svg";
-  }
-
   render() {
 
     const highlightCard = (this.props.isSelected) ? "bg-dark text-white" : "";

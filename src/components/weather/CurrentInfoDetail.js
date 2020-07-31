@@ -7,7 +7,7 @@ import {UnitContext} from '../../context/unit/Unit';
 import {WeatherIcon, WeatherDirectionIcon} from './WeatherIcon';
 import assetsSrc from '../../utils/assetsSrc';
 
-function CurrentInfoDetail({currentWeather}) {
+function CurrentInfoDetail({currentWeather, currentDate}) {
   const {weatherUnit, setWeatherUnit} = useContext(UnitContext);
   const avgTemp = (currentWeather.temp.min + currentWeather.temp.max)/2;
 
@@ -32,14 +32,14 @@ function CurrentInfoDetail({currentWeather}) {
           </div>
           <div>
           <p>
-          <span className="h3">{Math.round(weatherUnit === "C" ? avgTemp : convertToFahrenheit(avgTemp))}</span> <WeatherIcon iconName="degrees"/>
-          <span className="font-weight-light" style={{fontSize: '1.5rem'}}>
-            <span className={`cursor-pointer ${weatherUnit === "C" ? "font-weight-normal border-light" : "opacity-75"}`} onClick={() => unitClick("C")}>C</span>  &nbsp;|&nbsp;
-            <span className={`cursor-pointer ${weatherUnit === "F" ? "font-weight-normal border-light" : "opacity-75"}`} onClick={() => unitClick("F")}>F</span>
+          <span className="h3">{Math.round(weatherUnit === "C" ? avgTemp : convertToFahrenheit(avgTemp))}</span>
+          <span className="font-weight-light" >
+            <span className={`cursor-pointer ${weatherUnit === "C" ? "font-weight-normal border-light" : "opacity-75"}`} onClick={() => unitClick("C")}><WeatherIcon iconName="celsius"/></span>  &nbsp;|&nbsp;
+            <span className={`cursor-pointer ${weatherUnit === "F" ? "font-weight-normal border-light" : "opacity-75"}`} onClick={() => unitClick("F")}><WeatherIcon iconName="fahrenheit"/></span>
           </span>
           </p>
           <p>
-          <span className="font-weight-normal">{moment(currentWeather.dt).format('MMM Do') || ''}</span>
+          <span className="font-weight-normal">{currentDate.format('MMM Do') || ''}</span>
           </p>
 
           </div>

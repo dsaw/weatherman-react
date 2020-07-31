@@ -2,7 +2,7 @@
 @import './custom.scss';
 
 @import './weather-icons-wind.scss';
-// TODO: refactor and bring some sanity in this SCSS!
+// TODO: refactor 
 
 @fontface {
   font-family: 'Montserrat-Regular';
@@ -49,7 +49,7 @@ a::before {
   width: 100%;
   height: 2px;
   position: absolute;
-  bottom: 0;
+  bottom: -2px;
   left: 0;
   background-color: #007bff;
   visibility: hidden;

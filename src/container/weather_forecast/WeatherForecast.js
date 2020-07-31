@@ -3,14 +3,16 @@ import Error from '../../components/error/Error';
 import WeatherCard from '../../components/weather_card/WeatherCard';
 import CurrentInfo from '../../components/weather/CurrentInfo';
 import CurrentInfoDetail from '../../components/weather/CurrentInfoDetail';
+import {WeatherIcon} from '../../components/weather/WeatherIcon';
+import TimeOfDayCard from '../../components/weather_card/TimeOfDayCard';
 import Loader from '../../components/loader/Loader';
-import WeatherWeek from '../weather_week/WeatherWeek';
+import WeatherWeek from './WeatherWeek';
+import WeatherTimeOfDay from './WeatherTimeOfDay';
 import {AddressContext} from  '../../context/address/Address';
-import {getDayFromDate} from '../../utils/DateHelper';
+import {getDayFromDate, generateCustomDate} from '../../utils/DateHelper';
 import {isCityValid, isForecastValid} from '../../utils/validityHelper';
 import {fetchWeatherDailyForecast} from '../../utils/FetchWeatherHelper';
 
-import * as forecastData from '../../data/metaweather.fiveday.forecast.json';
 import './WeatherForecast.scss';
 
 const WEATHER_SERVICE_URL = "https://openweathermap.org/";
@@ -61,6 +63,8 @@ const WeatherForecast = () =>  {
     }
     , [addressContext.latLng]);
 
+    let selectedDayEntry = weatherArray[selectedDay];
+
     // add loader component
     return (isLoading ? <Fragment> <Loader message={isCityValid(addressContext.cityName) ? `Loading weather forecast for ${addressContext.cityName}...` : `Loading weather forecast...` } /></Fragment> :
     (isError ? <Error errorMessage={"Something went wrong, weather can't be fetched right now"}/> :
@@ -69,13 +73,18 @@ const WeatherForecast = () =>  {
       <div className="forecast-container p-3 mx-auto">
       <div className = "d-flex flex-row justify-content-md-space-between" >
 
-      <CurrentInfo forecast = {forecast} address = {addressContext.address}>
+      <CurrentInfo forecast={forecast} address={addressContext.address}>
        </CurrentInfo>
 
 
       </div>
       <div className = "d-flex flex-column flex-sm-column flex-md-row flex-lg-row justify-content-between" >
-      <CurrentInfoDetail currentWeather={weatherArray[selectedDay]}> </CurrentInfoDetail> </div>
+      <CurrentInfoDetail currentWeather={weatherArray[selectedDay]} currentDate={generateCustomDate(forecast.timezone, selectedDay)}> </CurrentInfoDetail>
+      </div>
+
+      <div className="d-sm-none d-md-flex flex-row m-3">
+        <WeatherTimeOfDay selectedDay={weatherArray[selectedDay]} />
+      </div>
 
       <div className="d-flex flex-column flex-sm-column flex-md-row flex-lg-row">
       <WeatherWeek selectedIndex={selectedDay} forecast={weatherArray} timezone={forecast.timezone} clickCallback={(index) => {setSelectedDay(index)}}>
@@ -83,7 +92,7 @@ const WeatherForecast = () =>  {
       </div>
       </div>
       <div id="poweredBy" className="mx-auto text-center text-dark">
-        Powered by&nbsp;<a href={WEATHER_SERVICE_URL} target="_blank" rel="noreferrer noopener" class="">{WEATHER_SERVICE_NAME}</a>
+        Powered by&nbsp;<a href={WEATHER_SERVICE_URL} target="_blank" rel="noreferrer noopener">{WEATHER_SERVICE_NAME}</a>
       </div></Fragment>: null))
     );
 
