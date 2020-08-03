@@ -2,6 +2,7 @@ import React, {Component, Fragment} from 'react';
 import Autosuggest from 'react-autosuggest';
 import IsolatedScroll from 'react-isolated-scroll';
 import debounce from 'lodash/debounce';
+import {getName} from 'country-list';
 
 import Error from '../error/Error';
 import Loader from '../loader/Loader';
@@ -35,7 +36,9 @@ class SearchInput extends Component {
 
   constructor (props) {
     super(props);
-    this.citySearchList = cityList.default;
+    this.citySearchList = cityList.default.map((city, index) =>
+          { return Object.assign({}, city, {name: city.name + ' ,' + getName(city.country)}
+        );});
     this.state = {
       value: '',
       suggestions: [],

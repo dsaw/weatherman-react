@@ -2,7 +2,6 @@
 @import './custom.scss';
 
 @import './weather-icons-wind.scss';
-// TODO: refactor 
 
 @fontface {
   font-family: 'Montserrat-Regular';
@@ -214,11 +213,9 @@ button,
   cursor: pointer;
 }
 
-
-
-h1 {
-  /*font-size: calc(16px + 0.5vw);
-   */
+#map {
+	height: 50vw;
+  width: 80%;
 }
 
 // Use following to center horizontally
