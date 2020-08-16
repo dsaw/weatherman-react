@@ -18,17 +18,19 @@ function ForecastMap() {
 
 
   useEffect( () => {
-     let osm, clouds, city, map;
+     let osm, clouds, wind, rain, city, map;
 
-          osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+     osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                   maxZoom: 18, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors</a>' });
-          clouds = L.OWM.clouds({showLegend: false, opacity: 0.5, appId: WEATHER_API_KEY});
-          city = L.OWM.current({interval: 60, lang: 'en'});
-          map = L.map('map', {layers: [osm]});
-          let overlayMaps = {"Clouds": clouds, "Cities": city};
-          let baseMaps = {"OSM Standard": osm};
-          let layerControl = L.control.layers(baseMaps, overlayMaps).addTo(map);
-          setLeafletMap(map);
+     clouds = L.OWM.clouds({showLegend: false, opacity: 0.5, appId: WEATHER_API_KEY});
+     rain = L.OWM.rainClassic({appId: WEATHER_API_KEY});
+     wind = L.OWM.wind({appId: WEATHER_API_KEY});
+     city = L.OWM.current({intervall: 60, appId: WEATHER_API_KEY});
+     map = L.map('map', {layers: [osm]});
+     let overlayMaps = {"City":  city, "Clouds": clouds, "Rain": rain, "Wind speed": wind};
+     let baseMaps = {"OSM Standard": osm};
+     let layerControl = L.control.layers(baseMaps, overlayMaps).addTo(map);
+     setLeafletMap(map);
 
   }, []);
 

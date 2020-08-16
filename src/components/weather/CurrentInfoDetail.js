@@ -26,19 +26,19 @@ function CurrentInfoDetail({currentWeather, currentDate}) {
       (isValid(currentWeather)) ?
       <Fragment>
         <div className="detail-container d-flex flex-row p-2 justify-content-center align-items-center">
-          <div className="d-flex flex-column align-items-center">
-              <img src={`${assetsSrc}/${getWeatherIcon(currentWeather.weather[0].icon)}`} alt={currentWeather.weather[0].description} className="img-fluid w-75 h-75 p-2" />
-              <p className="my-2 text-center text-capitalize font-medium">{currentWeather.weather.description || ''}</p>
+          <div className="d-flex flex-column align-items-center w-50">
+              <img src={`${assetsSrc}/${getWeatherIcon(currentWeather.weather[0].icon, '4')}`} alt={currentWeather.weather[0].description} className="img-fluid w-75 h-75 p-2" />
+              <p className="my-2 text-center text-capitalize font-medium">{currentWeather.weather[0].description || ''}</p>
           </div>
-          <div>
-          <p>
+          <div className="d-flex flex-column align-items-center">
+          <p className="my-2">
           <span className="h3">{Math.round(weatherUnit === "C" ? avgTemp : convertToFahrenheit(avgTemp))}</span>
           <span className="font-weight-light" >
-            <span className={`cursor-pointer ${weatherUnit === "C" ? "font-weight-normal border-light" : "opacity-75"}`} onClick={() => unitClick("C")}><WeatherIcon iconName="celsius"/></span>  &nbsp;|&nbsp;
-            <span className={`cursor-pointer ${weatherUnit === "F" ? "font-weight-normal border-light" : "opacity-75"}`} onClick={() => unitClick("F")}><WeatherIcon iconName="fahrenheit"/></span>
+            <span className={`cursor-pointer ${weatherUnit === "C" ? "font-weight-normal border-light" : "selected"}`} onClick={() => unitClick("C")}><WeatherIcon iconName="celsius"/></span>  &nbsp;|&nbsp;
+            <span className={`cursor-pointer ${weatherUnit === "F" ? "font-weight-normal border-light" : "selected"}`} onClick={() => unitClick("F")}><WeatherIcon iconName="fahrenheit"/></span>
           </span>
           </p>
-          <p>
+          <p className="my-2">
           <span className="font-weight-normal">{currentDate.format('MMM Do') || ''}</span>
           </p>
 

@@ -81,8 +81,8 @@ a:hover::before {
   opacity: 0.8;
 }
 
-.opacity-75 {
-  opacity: 0.75;
+.selected {
+  @include opacity(0.50);
 }
 
 @include media-breakpoint-up(xs) {
@@ -134,7 +134,7 @@ a:hover::before {
 
 
   .forecast-container {
-    width: 75%;
+    width: 80%;
   }
 
   .card {
@@ -158,7 +158,7 @@ a:hover::before {
 
 
   .forecast-container {
-    width: 66%;
+    width: 80%;
   }
 
   .card {

@@ -10,6 +10,9 @@ import {
   WiSunset,
   WiWindDeg
 } from 'react-icons/wi';
+import {
+  FaSearchLocation
+} from 'react-icons/fa';
 
 const WeatherIcon = ({iconName, fontSize}) => {
   // currently return for wind direction
@@ -33,4 +36,8 @@ const WeatherDirectionIcon = ({iconName}) => {
 
 }
 
-export {WeatherIcon, WeatherDirectionIcon};
+const SearchIcon = ({fontSize}) => (
+  <FaSearchLocation style={{'fontSize': fontSize}}/>
+)
+
+export {WeatherIcon, WeatherDirectionIcon, SearchIcon};

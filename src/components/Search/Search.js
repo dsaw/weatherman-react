@@ -7,6 +7,7 @@ import {getName} from 'country-list';
 import Error from '../error/Error';
 import Loader from '../loader/Loader';
 import {AddressContext} from '../../context/address/Address';
+import {SearchIcon} from '../weather/WeatherIcon';
 import parseCoordinates from '../../utils/CoordinateHelper';
 import API_URL from '../../utils/API';
 
@@ -31,6 +32,12 @@ const renderSuggestion = (suggestion, {query, isHighlighted}) => {
   </div>
 );
 };
+
+const renderInputComponent = ({inputProps}) => (
+  <div className="inputContainer">
+    <SearchIcon fontSize="1rem"/>
+    <input {...inputProps} />
+  </div>);
 
 class SearchInput extends Component {
 
@@ -207,7 +214,7 @@ class SearchInput extends Component {
      const {value, suggestions, showLoader, errorMessage} = this.state;
 
      const inputProps = {
-       placeholder: 'Type a location' ,
+       placeholder: 'Type a location for weather forecast' ,
        value:  value,
        onChange: this.onChange
      };
@@ -222,6 +229,7 @@ class SearchInput extends Component {
          onSuggestionSelected={this.onSuggestionSelected}
          getSuggestionValue={getSuggestionValue}
          highlightFirstSuggestion={true}
+         /*renderInputComponent={renderInputComponent}*/
          renderSuggestion={renderSuggestion}
          renderSuggestionContainer={this.renderSuggestionContainer}
          inputProps={inputProps}
