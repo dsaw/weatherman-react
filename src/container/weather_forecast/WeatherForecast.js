@@ -28,11 +28,13 @@ const WeatherForecast = () =>  {
   const [isError, setisError] = useState(false);
   const [showContainer, setShowContainer] = useState(false);
   const [selectedDay, setSelectedDay] = useState(0);
+  const [loadingMessage, setLoadingMessage] = useState('');
 
 
   const fetchWeatherData = async () => {
     try {
       setIsLoading(true);
+      setLoadingMessage(isCityValid(addressContext.cityName) ? `Loading weather forecast for ${addressContext.cityName}...` : `Loading weather forecast...` );
       let weatherForecast = await fetchWeatherDailyForecast(
         addressContext
       );
@@ -50,8 +52,19 @@ const WeatherForecast = () =>  {
       console.log(error);
     } finally {
       setIsLoading(false);
+      setLoadingMessage('');
     }
   }
+
+  useEffect(
+    () => {
+      // AddressContext also fetches geolocation/ip address so the status is updated here.
+      setIsLoading(addressContext.isLoading);
+      setLoadingMessage(addressContext.message);
+
+    }
+    , [addressContext.isLoading, addressContext.message]);
+
 
   useEffect(
     () => {
@@ -66,7 +79,7 @@ const WeatherForecast = () =>  {
     let selectedDayEntry = weatherArray[selectedDay];
 
     // add loader component
-    return (isLoading ? <Fragment> <Loader message={isCityValid(addressContext.cityName) ? `Loading weather forecast for ${addressContext.cityName}...` : `Loading weather forecast...` } /></Fragment> :
+    return (isLoading ? <Fragment> <Loader message={loadingMessage} /></Fragment> :
     (isError ? <Error errorMessage={"Something went wrong, weather can't be fetched right now"}/> :
       (showContainer ?
         <Fragment>

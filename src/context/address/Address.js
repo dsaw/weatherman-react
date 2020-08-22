@@ -18,6 +18,8 @@ class AddressContextProvider extends Component {
       address: {},
       latLng: {},
       cityName: '',
+      isLoading: false,
+      message: '',
       updateState: this.updateState
     };
 
@@ -25,6 +27,10 @@ class AddressContextProvider extends Component {
 
   updateAddress = (latLng) => {
     //  geocoding api to get address closest to lat & long
+    this.setState({
+      isLoading: true,
+      message: 'Obtaining the location from coordinates...'
+    });
     const response = fetch(`${API_URL}weather?lat=${latLng.lat}&lon=${latLng.lng}&units=metric&appid=${WEATHER_API_KEY}`, {
         mode: "cors"
       }).then((response) => {
@@ -35,10 +41,12 @@ class AddressContextProvider extends Component {
       }).then((res) => {
         // set Address
         if (res.id) {
-          this.updateState({
+          this.setState({
             address: Object.assign({}, {id: res.id, name: res.name, coord: res.coord}),
             cityName: res.name,
-            latLng: res.coord
+            latLng: res.coord,
+            isLoading: false,
+            message: ''
           });
 
         }
@@ -51,6 +59,10 @@ class AddressContextProvider extends Component {
   }
 
   updateIPAddress = async () => {
+    this.setState({
+      isLoading: true,
+      message: 'Fetching IP address...'
+    });
     var response = await fetchIPLocation();
     if (isValid(response)) {
       var latLng = {
@@ -73,7 +85,6 @@ class AddressContextProvider extends Component {
         console.log(latLng);
 
       }, (error) => {
-        //handle error here
         console.error(error);
         this.updateIPAddress();
       });
