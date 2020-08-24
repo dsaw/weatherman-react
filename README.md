@@ -34,17 +34,23 @@ yarn start
 - Open [http://localhost:3000](http://localhost:3000).
 - The template is of Create React App - you can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 - Powered by [MetaWeather](https://www.metaweather.com/api) currently.
+
+# Features
+- 7 day forecast plus 4 times a day feels like temperature.
+- Map Snippet - show location with cloud, wind, temperature layers (leaftlet-openweathermap)
+
 # Challenges
-- All free API services don't have hourly forecasts & Dark Sky API has closed down. OpenWeatherMap has released a one call API with 7-day forecast but only 48 hour hourly forecast. There is the old 5-day 3-hour forecast but have to check if its consistent.
-- Time zones seem to be incorrect
-- For search, [Algolia API](https://www.algolia.com/doc/rest-api/search/) has been used which fetches list of latitudes & longitude. The actual data comes from MetaWeather, which returns locations based on 'where on earth ids' so another API call has to be made to search the possible list of locations closest to the location parameters. This can be inaccurate with results fetched from neighbouring countries too.
+- All free API services don't have hourly forecasts. OpenWeatherMap has released a one call API with 7-day forecast but only 48 hour hourly forecast.
+- Tried out MetaWeather at first which is good. There were issues though - one was time zones were incorrect.
+- For search, [Algolia API](https://www.algolia.com/doc/rest-api/search/) had been used which fetches list of latitudes & longitude. The actual data comes from MetaWeather, which returns locations based on 'where on earth ids' so another API call has to be made to search the possible list of locations closest to the location parameters. This was unreliable with results sometimes coming from neighbouring countries.
+- Switched to OpenWeatherMap One Call API to display 7 day forecast with its own search list.
 
 # TODO
-- Refactor!
+- Refactor
     - SCSS in one place & component style files
     - API specific code & presentation can be separated
 - Use a dedicated proxy server as an endpoint
-- Include Hourly forecasts
+- Include hourly forecasts
 
 # License
 - Licensed for open source use through [GNU GPLv3](https://www.gnu.org/licenses/quick-guide-gplv3.html).
