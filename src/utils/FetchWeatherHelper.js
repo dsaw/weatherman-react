@@ -1,4 +1,4 @@
-import API_URL from './API'
+import {API_URL} from './API'
 import parseCoordinates from './CoordinateHelper';
 
 const WEATHER_API_KEY = process.env.REACT_APP_OPENWEATHERMAP_API_KEY;

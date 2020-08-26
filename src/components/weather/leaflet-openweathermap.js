@@ -4,21 +4,23 @@
  * Project page: https://github.com/buche/leaflet-openweathermap/
  */
 import L from 'leaflet';
+import {API_URL, PREFIX} from '../../utils/API';
 
 L.OWM = L.TileLayer.extend({
 	options: {
 		appId: 'GET_YOUR_OWN_APPID', /* pass your own AppId as parameter when creating the layer. Get your own AppId at https://www.openweathermap.org/appid */
-		baseUrl: "https://{s}.tile.openweathermap.org/map/{layername}/{z}/{x}/{y}.png",
+		baseUrl: "{PREFIX}https://{s}.tile.openweathermap.org/map/{layername}/{z}/{x}/{y}.png",
 		maxZoom: 18,
 		showLegend: true,
 		legendImagePath: null,
 		legendPosition: 'bottomleft',
+    crossOrigin: 'anonymous',
 		attribution: 'Weather from <a href="https://openweathermap.org/" alt="World Map and worldwide Weather Forecast online">OpenWeatherMap</a>'
 	},
 
 	initialize: function (options) {
 		L.Util.setOptions(this, options);
-		var tileurl = this.options.baseUrl.replace('{layername}', this._owmLayerName);
+		var tileurl = this.options.baseUrl.replace('{PREFIX}', PREFIX).replace('{layername}', this._owmLayerName);
 		tileurl = tileurl + '?appid=' + this.options.appId;
 
 		this._map = null;
@@ -271,7 +273,7 @@ L.OWM.Current = L.Layer.extend({
 		this._markers = new Array();
 		this._markedMarker = null;
 		this._map = null;
-		this._urlTemplate = 'https://api.openweathermap.org/data/2.5/box/{type}?{appId}cnt=300&format=json&units=metric&bbox={minlon},{minlat},{maxlon},{maxlat},10';
+		this._urlTemplate = '{API_URL}box/{type}?{appId}cnt=300&format=json&units=metric&bbox={minlon},{minlat},{maxlon},{maxlat},10';
 		this._directions = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW', 'N'];
 		this._msbft = [0.3, 1.6, 3.4, 5.5, 8.0, 10.8, 13.9, 17.2, 20.8, 24.5, 28.5, 32.7, 37.0, 41.5, 46.2, 51.0, 56.1, 61.3]; // Beaufort scala
 		this._tempUnits = { K: 'K', C: '°C', F: 'F'};
@@ -368,14 +370,22 @@ L.OWM.Current = L.Layer.extend({
 			// fetch new data from OWM
 			this.fire('owmloadingstart', {type: _this.options.type});
 			var url = this._urlTemplate
-						.replace('{appId}', this.options.appId ? 'APPID=' + this.options.appId + '&' : '')
+            .replace('{API_URL}', API_URL)
+						.replace('{appId}', this.options.appId ? 'appid=' + this.options.appId + '&' : '')
 						.replace('{type}', this.options.type)
 						.replace('{minlon}', bounds.getWest())
 						.replace('{minlat}', bounds.getSouth())
 						.replace('{maxlon}', bounds.getEast())
 						.replace('{maxlat}', bounds.getNorth())
 						;
-			this._requests[this.options.type] = L.OWM.Utils.jsonp(url, function(data) {
+
+      // use Fetch API with abort signal instead of JSONP
+
+			this._requests[this.options.type] = new AbortController();
+      var signal = this._requests[this.options.type].signal;
+      fetch(url,  {mode: 'cors', signal}).then(response => {
+        return response.json();
+      }).then(data => {
 				delete _this._requests[_this.options.type];
 
 				if (!_this._map) {
@@ -388,7 +398,13 @@ L.OWM.Current = L.Layer.extend({
 				}
 				_this._processRequestedData(_this, typeof data.list == 'undefined' ? new Array() : data.list);
 				_this.fire('owmloadingend', {type: _this.options.type});
-			});
+			}).catch(err => {
+        if (err.name === 'AbortError') {
+          console.log('fetch aborted');
+        } else {
+          console.error('Something was an error!', err);
+        }
+      });
 		}
 		if (this.options.interval && this.options.interval > 0) {
 			this._timeoutId = window.setTimeout(function() {_this.update()}, 60000*this.options.interval);

@@ -3,9 +3,8 @@ import React, {
   Component
 } from 'react';
 import parseCoordinates from '../../utils/CoordinateHelper';
-import fetchIPLocation from '../../utils/fetchIPLocation';
 import {isValid} from '../../utils/validityHelper';
-import API_URL from '../../utils/API';
+import {API_URL} from '../../utils/API';
 const WEATHER_API_KEY = process.env.REACT_APP_OPENWEATHERMAP_API_KEY;
 
 const AddressContext = React.createContext(null);
@@ -19,6 +18,7 @@ class AddressContextProvider extends Component {
       latLng: {},
       cityName: '',
       isLoading: false,
+      isError: false,
       message: '',
       updateState: this.updateState
     };
@@ -46,6 +46,7 @@ class AddressContextProvider extends Component {
             cityName: res.name,
             latLng: res.coord,
             isLoading: false,
+            isError: false,
             message: ''
           });
 
@@ -53,6 +54,10 @@ class AddressContextProvider extends Component {
         console.log(res);
       })
       .catch((error) => {
+        this.setState({
+          isLoading: false,
+          isError: true
+        });
         console.error('There is a problem with your fetch: ', error);
       });
 
@@ -63,7 +68,22 @@ class AddressContextProvider extends Component {
       isLoading: true,
       message: 'Fetching IP address...'
     });
-    var response = await fetchIPLocation();
+    try {
+    var response = await  await fetch('https://ipapi.co/json').then((response) => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    });
+    }
+    catch (error) {
+      console.error('There is a problem with your fetch: ', error);
+      this.setState({
+        isLoading: false,
+        isError: true,
+        message: ''
+      });
+    }
     if (isValid(response)) {
       var latLng = {
         lat: response.latitude,

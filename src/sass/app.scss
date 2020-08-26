@@ -5,31 +5,31 @@
 
 @fontface {
   font-family: 'Montserrat-Regular';
-  src: url("../font/Montserrat-Regular.ttf") format("truetype");
+  src: url("./font/Montserrat-Regular.ttf") format("truetype");
 }
 
 @fontface {
   font-family: 'Montserrat-Medium';
   font-weight: 500;
-  src: url("../font/Montserrat-Medium.ttf") format("truetype");
+  src: url("./font/Montserrat-Medium.ttf") format("truetype");
 }
 
 @fontface {
   font-family: 'Montserrat-SemiBold';
   font-weight: 600;
-  src: url("../font/Montserrat-SemiBold.ttf") format("truetype");
+  src: url("./font/Montserrat-SemiBold.ttf") format("truetype");
 }
 
 @fontface {
   font-family: 'Montserrat-Bold';
   font-weight: 700;
-  src: url("../font/Montserrat-Bold.ttf") format("truetype");
+  src: url("./font/Montserrat-Bold.ttf") format("truetype");
 }
 
 @fontface {
   font-family: 'Montserrat-ExtraBold';
   font-weight: bold;
-  src: url("../font/Montserrat-ExtraBold.ttf") format("truetype");
+  src: url("./font/Montserrat-ExtraBold.ttf") format("truetype");
 }
 
 
@@ -111,7 +111,7 @@ a:hover::before {
   }
 
     .forecast-container {
-      width: 83%;
+      width: 90%;
     }
 
 
@@ -134,7 +134,7 @@ a:hover::before {
 
 
   .forecast-container {
-    width: 80%;
+    width: 90%;
   }
 
   .card {
@@ -181,8 +181,7 @@ a:hover::before {
 
 body {
   margin: 0;
-  font-family: // Safari for OS X and iOS (San Francisco)
-  -apple-system,
+  font-family:
   // Chrome < 56 for OS X (San Francisco)
   BlinkMacSystemFont, 'Montserrat-Regular','Roboto', 'Segoe UI', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -200,6 +199,18 @@ code {
 // font weather icons
 .wi {
   font-size: 1.5em;
+}
+
+.larger-font {
+  font-size: 1.5em;
+}
+
+.headers {
+  font-size: 1.2em;
+}
+
+img {
+  text-align: center;
 }
 
 .cursor-pointer

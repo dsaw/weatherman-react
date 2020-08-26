@@ -28,7 +28,7 @@ function CurrentInfoDetail({currentWeather, currentDate}) {
         <div className="detail-container d-flex flex-row p-2 justify-content-center align-items-center">
           <div className="d-flex flex-column align-items-center w-50">
               <img src={`${assetsSrc}/${getWeatherIcon(currentWeather.weather[0].icon, '4')}`} alt={currentWeather.weather[0].description} className="img-fluid w-75 h-75 p-2" />
-              <p className="my-2 text-center text-capitalize font-medium">{currentWeather.weather[0].description || ''}</p>
+              <p className="my-2 text-center text-capitalize larger-font">{currentWeather.weather[0].description || ''}</p>
           </div>
           <div className="d-flex flex-column align-items-center">
           <p className="my-2">

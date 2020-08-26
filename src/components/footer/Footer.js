@@ -14,7 +14,7 @@ const Footer = () => {
         &nbsp;by&nbsp; <a href="/"> Devesh</a>
       </div>
       <div className="footer-component text-center d-flex w-100 w-md-25 my-2 my-md-0 justify-content-center">
-        <a href="https://github.com/dsaw/weatherman-react/blob/master/LICENSE">Privacy Policy </a>
+        <a href="https://github.com/dsaw/weatherman-react/blob/master/PRIVACY-POLICY.html">Privacy Policy </a>
       </div>
     </div>);
 }

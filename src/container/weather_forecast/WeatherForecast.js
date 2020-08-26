@@ -25,7 +25,7 @@ const WeatherForecast = () =>  {
   const [forecast, setForecast] = useState({});
   const [weatherArray, setWeatherArray] = useState([{}]);
   const [isLoading, setIsLoading] = useState(false);
-  const [isError, setisError] = useState(false);
+  const [isError, setIsError] = useState(false);
   const [showContainer, setShowContainer] = useState(false);
   const [selectedDay, setSelectedDay] = useState(0);
   const [loadingMessage, setLoadingMessage] = useState('');
@@ -44,11 +44,11 @@ const WeatherForecast = () =>  {
         setForecast(weatherForecast);
         setWeatherArray(weatherForecast.daily);
         setSelectedDay(0);
-        setisError(false);
+        setIsError(false);
       }
 
     } catch (error) {
-      setisError(true);
+      setIsError(true);
       console.log(error);
     } finally {
       setIsLoading(false);
@@ -60,10 +60,11 @@ const WeatherForecast = () =>  {
     () => {
       // AddressContext also fetches geolocation/ip address so the status is updated here.
       setIsLoading(addressContext.isLoading);
+      setIsError(addressContext.isError);
       setLoadingMessage(addressContext.message);
 
     }
-    , [addressContext.isLoading, addressContext.message]);
+    , [addressContext.isLoading, addressContext.isError, addressContext.message]);
 
 
   useEffect(

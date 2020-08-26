@@ -23,12 +23,12 @@ class WeatherCard extends Component {
     const highlightCard = (this.props.isSelected) ? "bg-dark text-white" : "";
     return(
           <div className={`card d-flex flex-row flex-sm-row flex-md-column bd-highlight align-items-center justify-content-center ${highlightCard}`} onClick={this.props.clickCallback}>
-         <div className="card-component mx-auto p-2 text-center font-weight-bold">{this.props.day.substring(0,3)}</div>
+         <div className="card-component mx-auto p-2 text-center font-weight-bold headers">{this.props.day.substring(0,3)}</div>
          <div className="card-component mx-auto p-2">
           <img src={`${assetsSrc}/${getWeatherIcon(this.props.weatherType.abbr, '1')}`} alt={this.props.weatherType.name} className="weather-icon"/>
          </div>
 
-         <div className="card-component mx-auto d-flex flex-row p-1">
+         <div className="card-component mx-auto d-flex flex-row">
            <div className="mx-1">{roundNumbers(this.context.weatherUnit === "C" ? this.props.highestTemp : convertToFahrenheit(this.props.highestTemp))} <sup>o</sup></div>
            <div className="mx-1">{roundNumbers(this.context.weatherUnit === "C" ? this.props.lowestTemp : convertToFahrenheit(this.props.lowestTemp))} <sup>o</sup></div>
          </div>

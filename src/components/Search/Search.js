@@ -9,7 +9,7 @@ import Loader from '../loader/Loader';
 import {AddressContext} from '../../context/address/Address';
 import {SearchIcon} from '../weather/WeatherIcon';
 import parseCoordinates from '../../utils/CoordinateHelper';
-import API_URL from '../../utils/API';
+import {API_URL} from '../../utils/API';
 
 import * as cityList from '../../data/city.list.json';
 
