@@ -3,14 +3,12 @@ import React, {
   Component
 } from 'react';
 import parseCoordinates from '../../utils/CoordinateHelper';
-import fetchIPLocation from '../../utils/fetchIPLocation';
 import {isValid} from '../../utils/validityHelper';
-import API_URL from '../../utils/API';
-
+import {API_URL} from '../../utils/API';
+const WEATHER_API_KEY = process.env.REACT_APP_OPENWEATHERMAP_API_KEY;
 
 const AddressContext = React.createContext(null);
 
-//context to set address when selected
 class AddressContextProvider extends Component {
 
   constructor(props) {
@@ -19,14 +17,21 @@ class AddressContextProvider extends Component {
       address: {},
       latLng: {},
       cityName: '',
+      isLoading: false,
+      isError: false,
+      message: '',
       updateState: this.updateState
     };
 
   }
 
   updateAddress = (latLng) => {
-    //  geocoding api to get address closest to latLong
-    const response = fetch(`${API_URL}/location/search/?lattlong=${latLng.lat},${latLng.lng}`, {
+    //  geocoding api to get address closest to lat & long
+    this.setState({
+      isLoading: true,
+      message: 'Obtaining the location from coordinates...'
+    });
+    const response = fetch(`${API_URL}weather?lat=${latLng.lat}&lon=${latLng.lng}&units=metric&appid=${WEATHER_API_KEY}`, {
         mode: "cors"
       }).then((response) => {
         if (!response.ok) {
@@ -35,26 +40,50 @@ class AddressContextProvider extends Component {
         return response.json();
       }).then((res) => {
         // set Address
-        if (res.length) {
-          console.log(res[0]);
-          this.updateState({
-            address: res[0],
-            cityName: res[0].title,
-            latLng: parseCoordinates(res[0].latt_long)
+        if (res.id) {
+          this.setState({
+            address: Object.assign({}, {id: res.id, name: res.name, coord: res.coord}),
+            cityName: res.name,
+            latLng: res.coord,
+            isLoading: false,
+            isError: false,
+            message: ''
           });
 
         }
         console.log(res);
       })
       .catch((error) => {
-        console.error('There is a problem with your fetch:', error);
+        this.setState({
+          isLoading: false,
+          isError: true
+        });
+        console.error('There is a problem with your fetch: ', error);
       });
-
 
   }
 
   updateIPAddress = async () => {
-    var response = await fetchIPLocation();
+    this.setState({
+      isLoading: true,
+      message: 'Fetching IP address...'
+    });
+    try {
+    var response = await  await fetch('https://ipapi.co/json').then((response) => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    });
+    }
+    catch (error) {
+      console.error('There is a problem with your fetch: ', error);
+      this.setState({
+        isLoading: false,
+        isError: true,
+        message: ''
+      });
+    }
     if (isValid(response)) {
       var latLng = {
         lat: response.latitude,
@@ -76,12 +105,10 @@ class AddressContextProvider extends Component {
         console.log(latLng);
 
       }, (error) => {
-        //handle error here
         console.error(error);
         this.updateIPAddress();
       });
     }
-    // TODO: do ip lookup alternatively if geolocation not given
     else {
       this.updateIPAddress();
 
@@ -98,8 +125,6 @@ class AddressContextProvider extends Component {
 
   componentDidMount() {
     this.getCurrentCoordinates();
-
-
   }
 
 

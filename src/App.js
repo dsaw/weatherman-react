@@ -4,6 +4,7 @@ import Header from './components/header/Header';
 import Footer from './components/footer/Footer';
 import SearchInput from './components/search/Search';
 import WeatherCard from './components/weather_card/WeatherCard';
+import ForecastMap from './components/weather/ForecastMap';
 import WeatherForecast from './container/weather_forecast/WeatherForecast';
 import {AddressContextProvider} from './context/address/Address';
 import {UnitContextProvider} from './context/unit/Unit';
@@ -38,9 +39,15 @@ class App extends Component {
      <Row id="content">
          <UnitContextProvider>
          <ErrorBoundary>
-         <WeatherForecast></WeatherForecast>
+         <WeatherForecast/>
          </ErrorBoundary>
          </UnitContextProvider>
+     </Row>
+
+     <Row id="content" className="my-4">
+     <ErrorBoundary>
+      <ForecastMap/>
+     </ErrorBoundary>
      </Row>
      </AddressContextProvider>
       <Row>

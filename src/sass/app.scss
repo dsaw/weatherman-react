@@ -2,35 +2,34 @@
 @import './custom.scss';
 
 @import './weather-icons-wind.scss';
-// TODO: refactor and bring some sanity in this SCSS!
 
 @fontface {
   font-family: 'Montserrat-Regular';
-  src: url("../font/Montserrat-Regular.ttf") format("truetype");
+  src: url("./font/Montserrat-Regular.ttf") format("truetype");
 }
 
 @fontface {
   font-family: 'Montserrat-Medium';
   font-weight: 500;
-  src: url("../font/Montserrat-Medium.ttf") format("truetype");
+  src: url("./font/Montserrat-Medium.ttf") format("truetype");
 }
 
 @fontface {
   font-family: 'Montserrat-SemiBold';
   font-weight: 600;
-  src: url("../font/Montserrat-SemiBold.ttf") format("truetype");
+  src: url("./font/Montserrat-SemiBold.ttf") format("truetype");
 }
 
 @fontface {
   font-family: 'Montserrat-Bold';
   font-weight: 700;
-  src: url("../font/Montserrat-Bold.ttf") format("truetype");
+  src: url("./font/Montserrat-Bold.ttf") format("truetype");
 }
 
 @fontface {
   font-family: 'Montserrat-ExtraBold';
   font-weight: bold;
-  src: url("../font/Montserrat-ExtraBold.ttf") format("truetype");
+  src: url("./font/Montserrat-ExtraBold.ttf") format("truetype");
 }
 
 
@@ -49,7 +48,7 @@ a::before {
   width: 100%;
   height: 2px;
   position: absolute;
-  bottom: 0;
+  bottom: -2px;
   left: 0;
   background-color: #007bff;
   visibility: hidden;
@@ -82,8 +81,8 @@ a:hover::before {
   opacity: 0.8;
 }
 
-.opacity-75 {
-  opacity: 0.75;
+.selected {
+  @include opacity(0.50);
 }
 
 @include media-breakpoint-up(xs) {
@@ -112,7 +111,7 @@ a:hover::before {
   }
 
     .forecast-container {
-      width: 83%;
+      width: 90%;
     }
 
 
@@ -135,7 +134,7 @@ a:hover::before {
 
 
   .forecast-container {
-    width: 75%;
+    width: 90%;
   }
 
   .card {
@@ -159,7 +158,7 @@ a:hover::before {
 
 
   .forecast-container {
-    width: 66%;
+    width: 80%;
   }
 
   .card {
@@ -182,8 +181,7 @@ a:hover::before {
 
 body {
   margin: 0;
-  font-family: // Safari for OS X and iOS (San Francisco)
-  -apple-system,
+  font-family:
   // Chrome < 56 for OS X (San Francisco)
   BlinkMacSystemFont, 'Montserrat-Regular','Roboto', 'Segoe UI', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -203,6 +201,18 @@ code {
   font-size: 1.5em;
 }
 
+.larger-font {
+  font-size: 1.5em;
+}
+
+.headers {
+  font-size: 1.2em;
+}
+
+img {
+  text-align: center;
+}
+
 .cursor-pointer
 {
   cursor: pointer;
@@ -214,11 +224,9 @@ button,
   cursor: pointer;
 }
 
-
-
-h1 {
-  /*font-size: calc(16px + 0.5vw);
-   */
+#map {
+	height: 50vw;
+  width: 80%;
 }
 
 // Use following to center horizontally

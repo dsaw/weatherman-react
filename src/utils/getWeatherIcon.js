@@ -1,7 +1,7 @@
 // map url to icons
-const getWeatherIcon = (iconAbbr) => {
-  const dir = "static/img/weather/";
-  return dir + iconAbbr + ".svg";
+const getWeatherIcon = (iconAbbr, size) => {
+  let sizeX = (size !== '1') ? `@${size}x` : ``;
+  return `${iconAbbr}${sizeX}.png`;
 }
 
 export default getWeatherIcon;

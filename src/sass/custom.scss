@@ -18,4 +18,10 @@ $sizes: map-merge(
   $sizes
 );
 
+@mixin opacity($opacity) {
+	-webkit-opacity: 	$opacity;
+	-moz-opacity: 		$opacity;
+	opacity: 		$opacity;
+}
+
 @import "bootstrap";
