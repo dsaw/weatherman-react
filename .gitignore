@@ -35,4 +35,4 @@ lerna-debug.log
 .tern-project
 /.changelog
 .npm/
-yarn.lock
+package-lock.json

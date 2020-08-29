@@ -9,7 +9,7 @@ const WeatherWeek = (props) => {
         props.forecast.map((day, index) => {
            const weatherType = {abbr: day.weather[0].icon, name: day.weather[0].description};
            return <WeatherCard key={index} isSelected={props.selectedIndex === index} day={getDayFromDate(props.timezone, index)} highestTemp={day.temp.max} lowestTemp={day.temp.min}
-                    weatherType={weatherType} humidity={day.humidity} speed={day.wind_speed} pressure={day.pressure} clickCallback={()=>{props.clickCallback(index)}}>
+                    weatherType={weatherType} humidity={day.humidity} speed={day.wind_speed} pressure={day.pressure} clickCallback={()=>(props.clickCallback(index))}>
           </WeatherCard>;
         })
           : null);

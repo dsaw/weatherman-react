@@ -1,60 +1,64 @@
-# Table of Contents
+# WeatherMan React
+[![Build Status](https://travis-ci.org/dsaw/weatherman-react.svg?branch=master)](https://travis-ci.org/github/dsaw/weatherman-react)
 
-- **[Getting Started](https://github.com/dsaw/weatherman-reactt#-getting-started)**
+A minimalistic weather forecast app made in React.
 
-- **[Challenges](https://github.com/dsaw/weatherman-react#-challenges)**
+Access it [here](https://dsaw.github.io/weatherman-react/). You can search by typing any location to get daily forecast & location map
 
-- **[TODO](https://github.com/dsaw/weatherman-react#-todo)**
-
-- **[Contribution](https://github.com/dsaw/weatherman-react#-contribution)**
-
-- **[License](https://github.com/dsaw/weatherman-react#-license)**
-
-- **[Contact](https://github.com/dsaw/weatherman-react#-contact)**
-
-- **[Acknowledgements](https://github.com/dsaw/weatherman-react#-acknowledgements)**
-
+# Features
+- 7 day forecast plus 4 times a day feels like temperature.
+- Map snippet - show location with cloud, wind, temperature layers.
+- Uses [OpenWeatherMap](https://openweathermap.org/) to fetch the forecast/layers & [OpenStreetMap](https://www.openstreetmap.org/about) for the map tiles.
 
 # Getting Started
 
 ## Basic Setup
 
-- Clone the repository & use the `master` branch
+Fork the repository & use the `master` branch
+
+Install packages
 ```
-git clone https://github.com/dsaw/weatherman-react.git
+yarn install
 ```
-- Install the packages using the command
-```
-npm install
-```
-- Run following to start development
+Start development
 ```
 yarn start
 ```
-- Open [http://localhost:3000](http://localhost:3000).
-- The template is of Create React App - you can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-- Powered by [MetaWeather](https://www.metaweather.com/api) currently.
+Open [http://localhost:3000](http://localhost:3000).
 
-# Features
-- 7 day forecast plus 4 times a day feels like temperature.
-- Map Snippet - show location with cloud, wind, temperature layers (leaftlet-openweathermap)
+## Proxy
+Accessing 3rd party API requires a CORS proxy. Have used [cors anywhere](https://github.com/dsaw/cors-anywhere) running on [Heroku](https://cors-proxy-serv.herokuapp.com/)
+
+To setup your own, clone above repo & run:
+```
+git checkout weather-proxy
+heroku create
+```
+
+## API key
+You'll need to export on the proxy env after obtaining the key from OWM.
+```
+OWM_API_KEY=*YOUR_KEY*
+```
 
 # Challenges
 - All free API services don't have hourly forecasts. OpenWeatherMap has released a one call API with 7-day forecast but only 48 hour hourly forecast.
-- Tried out MetaWeather at first which is good. There were issues though - one was time zones were incorrect.
-- For search, [Algolia API](https://www.algolia.com/doc/rest-api/search/) had been used which fetches list of latitudes & longitude. The actual data comes from MetaWeather, which returns locations based on 'where on earth ids' so another API call has to be made to search the possible list of locations closest to the location parameters. This was unreliable with results sometimes coming from neighbouring countries.
+- Tried out MetaWeather in v0.1 which is good. There were issues though - one was time zones were incorrect.
+- For search, [Algolia API](https://www.algolia.com/doc/rest-api/search/) had been used which fetches list of latitudes & longitude. The actual data came from MetaWeather, which returns locations based on 'where on earth ids' so another API call has to be made to search the possible list of locations closest to the location parameters. This was unreliable with results sometimes coming from neighbouring countries.
 - Switched to OpenWeatherMap One Call API to display 7 day forecast with its own search list.
 
-# TODO
-- Refactor
-    - SCSS in one place & component style files
-    - API specific code & presentation can be separated
-- Use a dedicated proxy server as an endpoint
-- Include hourly forecasts
-
-# License
-- Licensed for open source use through [GNU GPLv3](https://www.gnu.org/licenses/quick-guide-gplv3.html).
+# Attribution
+- [react-autosuggest](http://react-autosuggest.js.org/) - nice search bar
+- [OpenWeatherMap]() - weather condition images
+- [weather-icons](https://erikflowers.github.io/weather-icons/) - weather utility icons like wind direction, Celsius, Fahrenheit.
+- [leaflet-openweathermap](https://github.com/buche/leaflet-openweathermap) - map binding to integrate with OWM layers + really good [Leaflet](https://leafletjs.com/).
+- [cors-anywhere](https://github.com/Rob--W/cors-anywhere) - proxy setup
+- [Header png](https://pnghut.com/png/kEWKsWGE3x/cartoon-cloud-meteorological-phenomenon-transparent-png) from pnghut.
 
 # Contact
-- Built by Devesh!
-- Email: [devesh47cool@gmail.com](devesh47cool@gmail.com)
+Built by Devesh!
+[![Support my work](https://cdn.buymeacoffee.com/buttons/default-blue.png)](https://www.buymeacoffee.com/dsawthewhat)
+For feedback, questions or just anything email on: [devesh47cool@gmail.com](devesh47cool@gmail.com)
+
+# License
+- [GNU GPLv3](https://www.gnu.org/licenses/quick-guide-gplv3.html) Copyright (c) Devesh Sawant 2020.

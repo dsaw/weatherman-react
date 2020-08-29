@@ -133,7 +133,7 @@ class AddressContextProvider extends Component {
       <AddressContext.Provider value={this.state}>
          {this.props.children}
       </AddressContext.Provider>
-    )
+    );
   }
 }
 
