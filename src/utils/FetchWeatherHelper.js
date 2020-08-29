@@ -4,14 +4,13 @@ import parseCoordinates from './CoordinateHelper';
 const WEATHER_API_KEY = process.env.REACT_APP_OPENWEATHERMAP_API_KEY;
 const fetchWeatherDailyForecast = async (address) => {
 
-  let weatherForecast = [], response;
+  let response;
   // OWM needs an API key => TODO: refactor it later by setting it on proxy server?
   try {
     if (address.address.id) {
-      let queryObj = Object.assign({}, address.address.coord, {appid: WEATHER_API_KEY, exclude: "hourly,minutely", units: "metric"});
-      let queryParams = Object.keys(queryObj).map(key => `${key}=${queryObj[key]}`).join('&');
+      const queryObj = Object.assign({}, address.address.coord, {appid: WEATHER_API_KEY, exclude: "hourly,minutely", units: "metric"});
+      const queryParams = Object.keys(queryObj).map(key => `${key}=${queryObj[key]}`).join('&');
       const url = `${API_URL}onecall?${queryParams}`;
-      const options = {};
       response = await fetch(url).then((response) => {
         if (!response.ok) {
           throw new Error('Network response was not ok');

@@ -1,5 +1,4 @@
-import React, {Component, Fragment, useEffect, useState, useRef, useContext} from 'react';
-import moment from 'moment-timezone';
+import React, {Fragment, useContext} from 'react';
 import {isValid} from '../../utils/validityHelper';
 import {convertToFahrenheit} from '../../utils/temperatureHelper';
 import getWeatherIcon from '../../utils/getWeatherIcon';

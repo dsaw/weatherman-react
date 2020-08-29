@@ -1,6 +1,6 @@
 // map url to icons
 const getWeatherIcon = (iconAbbr, size) => {
-  let sizeX = (size !== '1') ? `@${size}x` : ``;
+  const sizeX = (size !== '1') ? `@${size}x` : ``;
   return `${iconAbbr}${sizeX}.png`;
 };
 

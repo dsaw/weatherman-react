@@ -1,15 +1,12 @@
-import React, {Component, Fragment, useEffect, useContext, useState} from 'react';
+import React, {Fragment, useEffect, useContext, useState} from 'react';
 import Error from '../../components/error/Error';
-import WeatherCard from '../../components/weather_card/WeatherCard';
 import CurrentInfo from '../../components/weather/CurrentInfo';
 import CurrentInfoDetail from '../../components/weather/CurrentInfoDetail';
-import {WeatherIcon} from '../../components/weather/WeatherIcon';
-import TimeOfDayCard from '../../components/weather_card/TimeOfDayCard';
 import Loader from '../../components/loader/Loader';
 import WeatherWeek from './WeatherWeek';
 import WeatherTimeOfDay from './WeatherTimeOfDay';
 import {AddressContext} from  '../../context/address/Address';
-import {getDayFromDate, generateCustomDate} from '../../utils/DateHelper';
+import {generateCustomDate} from '../../utils/DateHelper';
 import {isCityValid, isForecastValid} from '../../utils/validityHelper';
 import {fetchWeatherDailyForecast} from '../../utils/FetchWeatherHelper';
 
@@ -35,7 +32,7 @@ const WeatherForecast = () =>  {
     try {
       setIsLoading(true);
       setLoadingMessage(isCityValid(addressContext.cityName) ? `Loading weather forecast for ${addressContext.cityName}...` : `Loading weather forecast...` );
-      let weatherForecast = await fetchWeatherDailyForecast(
+      const weatherForecast = await fetchWeatherDailyForecast(
         addressContext
       );
       // set data in state here
@@ -77,7 +74,7 @@ const WeatherForecast = () =>  {
     }
     , [addressContext.latLng]);
 
-    let selectedDayEntry = weatherArray[selectedDay];
+    const selectedDayEntry = weatherArray[selectedDay];
 
     // add loader component
     return (isLoading ? <Fragment> <Loader message={loadingMessage} /></Fragment> :
@@ -93,11 +90,11 @@ const WeatherForecast = () =>  {
 
       </div>
       <div className = "d-flex flex-column flex-sm-column flex-md-row flex-lg-row justify-content-between" >
-      <CurrentInfoDetail currentWeather={weatherArray[selectedDay]} currentDate={generateCustomDate(forecast.timezone, selectedDay)}> </CurrentInfoDetail>
+      <CurrentInfoDetail currentWeather={selectedDayEntry} currentDate={generateCustomDate(forecast.timezone, selectedDay)}> </CurrentInfoDetail>
       </div>
 
       <div className="d-sm-none d-md-flex flex-row m-3">
-        <WeatherTimeOfDay selectedDay={weatherArray[selectedDay]} />
+        <WeatherTimeOfDay selectedDay={selectedDayEntry} />
       </div>
 
       <div className="d-flex flex-column flex-sm-column flex-md-row flex-lg-row">

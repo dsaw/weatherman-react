@@ -3,7 +3,6 @@ import React, {Component} from 'react';
 import Header from './components/header/Header';
 import Footer from './components/footer/Footer';
 import SearchInput from './components/search/Search';
-import WeatherCard from './components/weather_card/WeatherCard';
 import ForecastMap from './components/weather/ForecastMap';
 import WeatherForecast from './container/weather_forecast/WeatherForecast';
 import {AddressContextProvider} from './context/address/Address';
@@ -11,15 +10,11 @@ import {UnitContextProvider} from './context/unit/Unit';
 import ErrorBoundary from './container/error_boundary/ErrorBoundary';
 
 import './sass/app.scss';
-import {Row, Container, Col} from "react-bootstrap";
+import {Row} from "react-bootstrap";
 
 
 
 class App extends Component {
-
-  constructor(props) {
-    super(props);
-  }
 
   render() {
   return (

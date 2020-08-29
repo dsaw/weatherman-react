@@ -1,6 +1,4 @@
 import React, {Component} from 'react';
-import getWeatherIcon from '../../utils/getWeatherIcon';
-import assetsSrc from '../../utils/assetsSrc';
 import {convertToFahrenheit} from '../../utils/temperatureHelper';
 import {UnitContext} from '../../context/unit/Unit';
 import {WeatherIcon} from '../weather/WeatherIcon';
@@ -19,10 +17,6 @@ const todMap = {
 
 class TimeOfDayCard extends Component {
   static contextType = UnitContext;
-
-  constructor(props) {
-    super(props);
-  }
 
   render() {
 

@@ -10,7 +10,7 @@
     "rules": {
       "semi": "error",
       "no-console": "warn",
-      "no-var": "error",
+      "no-var": "warn",
       "prefer-const" : "warn",
       "template-curly-spacing": "warn"
     }

@@ -1,4 +1,4 @@
-import React, {Component, Fragment} from 'react';
+import React from 'react';
 import {FaHeart, FaReact} from "react-icons/fa";
 
 const Footer = () => {

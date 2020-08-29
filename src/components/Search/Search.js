@@ -20,8 +20,6 @@ const escapeSpecialChars = (string) => (string.replace(/[.*+\-?^${}()|[\]\\]/g ,
 
 const getSuggestionValue = suggestion => suggestion.name.split(',')[0];
 
-const shouldRenderSuggestions = () => (true);
-
 const renderSuggestion = (suggestion, {query, isHighlighted}) => {
   return (isHighlighted ?
   <div style={{backgroundColor: 'black', color: 'white', padding: '5px 0 5px 3px'}}>
@@ -129,6 +127,7 @@ class SearchInput extends Component {
 
       // Metaweather needs a separate location search with given lat long to get
       // the address with location name & id which than will be needed
+      // Commented this out - might require later
       /*const response = fetch(`${API_URL}location/search/?lattlong=${suggestion.coord.lat},${suggestion.coord.lng}`,
       {
         mode: "cors"
@@ -165,7 +164,6 @@ class SearchInput extends Component {
           cityName: suggestion.name,
           latLng: suggestion.coord
         });
-
 
   };
 

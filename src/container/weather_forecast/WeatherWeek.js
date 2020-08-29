@@ -1,11 +1,8 @@
-import React, {Component, Fragment} from 'react';
+import React from 'react';
 import WeatherCard from '../../components/weather_card/WeatherCard';
 import {isValid} from '../../utils/validityHelper';
 
 import {getDayFromDate} from '../../utils/DateHelper';
-
-
-
 
 const WeatherWeek = (props) => {
     return (isValid(props.forecast) ?

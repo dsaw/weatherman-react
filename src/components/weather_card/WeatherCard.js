@@ -14,10 +14,6 @@ const roundNumbers = (num) => {
 class WeatherCard extends Component {
   static contextType = UnitContext;
 
-  constructor(props) {
-    super(props);
-  }
-
   render() {
 
     const highlightCard = (this.props.isSelected) ? "bg-dark text-white" : "";

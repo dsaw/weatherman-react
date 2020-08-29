@@ -1,4 +1,4 @@
-import React, {Component, Fragment, useEffect, useState, useRef} from 'react';
+import React, {useState} from 'react';
 // celsius and fahrenheit
 const UnitContext = React.createContext({ weatherUnit: 'C'});
 

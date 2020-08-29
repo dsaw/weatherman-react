@@ -1,9 +1,6 @@
-import React, {Component, Fragment} from 'react';
+import React from 'react';
 import TimeOfDayCard from '../../components/weather_card/TimeOfDayCard';
 import {isValid} from '../../utils/validityHelper';
-
-import {getDayFromDate} from '../../utils/DateHelper';
-
 
 const WeatherTimeOfDay = (props) => {
 

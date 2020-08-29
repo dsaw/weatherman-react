@@ -2,7 +2,6 @@
 import React, {
   Component
 } from 'react';
-import parseCoordinates from '../../utils/CoordinateHelper';
 import {isValid} from '../../utils/validityHelper';
 import {API_URL} from '../../utils/API';
 const WEATHER_API_KEY = process.env.REACT_APP_OPENWEATHERMAP_API_KEY;
@@ -64,12 +63,13 @@ class AddressContextProvider extends Component {
   }
 
   updateIPAddress = async () => {
+    let response = {};
     this.setState({
       isLoading: true,
       message: 'Fetching IP address...'
     });
     try {
-    var response = await  await fetch('https://ipapi.co/json').then((response) => {
+    response = await fetch('https://ipapi.co/json').then((response) => {
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
@@ -85,7 +85,7 @@ class AddressContextProvider extends Component {
       });
     }
     if (isValid(response)) {
-      var latLng = {
+      let latLng = {
         lat: response.latitude,
         lng: response.longitude
       };
@@ -97,7 +97,7 @@ class AddressContextProvider extends Component {
     // use HTML5 geolocation
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
-        var latLng = {
+        let latLng = {
           lat: position.coords.latitude,
           lng: position.coords.longitude
         };
@@ -133,7 +133,7 @@ class AddressContextProvider extends Component {
       <AddressContext.Provider value={this.state}>
          {this.props.children}
       </AddressContext.Provider>
-    );
+    )
   }
 }
 

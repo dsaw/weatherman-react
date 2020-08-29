@@ -1,4 +1,4 @@
-import React, {Component, Fragment, useEffect, useState, useRef} from 'react';
+import React, {Fragment, useEffect, useState, useRef} from 'react';
 import moment from 'moment-timezone';
 import {isValid} from '../../utils/validityHelper';
 

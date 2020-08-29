@@ -8,3 +8,5 @@ node_js:
   - 13
   - 13
   - 14
+script:
+  - yarn run lint
