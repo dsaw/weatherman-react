@@ -20,8 +20,8 @@ class WeatherCard extends Component {
     return(
           <div className={`card d-flex flex-row flex-sm-row flex-md-column bd-highlight align-items-center justify-content-center ${highlightCard}`} onClick={this.props.clickCallback}>
          <div className="card-component mx-auto p-2 text-center font-weight-bold headers">{this.props.day.substring(0,3)}</div>
-         <div className="card-component mx-auto p-2">
-          <img src={`${assetsSrc}/${getWeatherIcon(this.props.weatherType.abbr, '1')}`} alt={this.props.weatherType.name} className="weather-icon"/>
+         <div className="card-component mx-1">
+          <img src={`${assetsSrc}/${getWeatherIcon(this.props.weatherType.abbr, '2')}`} alt={this.props.weatherType.name} className="weather-icon w-100 h-100"/>
          </div>
 
          <div className="card-component mx-auto d-flex flex-row">

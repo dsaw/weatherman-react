@@ -100,10 +100,6 @@ a:hover::before {
     width: 100%;
   }
 
-  img .weather-icon {
-     width: 4rem;
-     height: 4rem;
-  }
  }
 @include media-breakpoint-up(sm) {
   .detail-container {
@@ -117,11 +113,6 @@ a:hover::before {
 
     .card-component {
       width: 100%;
-    }
-
-    img .weather-icon {
-       width: 4rem;
-       height: 4rem;
     }
 
 
@@ -145,11 +136,6 @@ a:hover::before {
     width: 85%;
   }
 
-  img .weather-icon {
-     width: 3rem;
-     height: 3rem;
-  }
-
 }
 @include media-breakpoint-up(lg) {
   .detail-container {
@@ -168,12 +154,6 @@ a:hover::before {
   .card-component {
     width: 85%;
   }
-
-  img .weather-icon {
-     width: 3rem;
-     height: 3rem;
-  }
-
 
  }
 
