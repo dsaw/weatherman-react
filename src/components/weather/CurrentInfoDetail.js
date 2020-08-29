@@ -13,12 +13,12 @@ function CurrentInfoDetail({currentWeather, currentDate}) {
 
   const unitClick = (unit) => {
        setWeatherUnit(unit);
-  }
+  };
 
   const convertToMetric = (mph) => {
       //  meters per second
       return 0.45 * mph;
-  }
+  };
 
 
 // currentWeather will be just the weather forecast item for one day

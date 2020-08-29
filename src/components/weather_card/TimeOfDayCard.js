@@ -7,7 +7,7 @@ import {WeatherIcon} from '../weather/WeatherIcon';
 
 const roundNumbers = (num) => {
   return Math.round(num);
-}
+};
 
 const todMap = {
   'morn': 'morning',

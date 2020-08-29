@@ -1,4 +1,4 @@
-const isProduction = process.env.NODE_ENV === 'production'
+const isProduction = process.env.NODE_ENV === 'production';
 // using cors-anywhere for the time being
 // localhost for testing the proxy locally
 const PREFIX = isProduction ? `https://cors-proxy-serv.herokuapp.com/` : `http://localhost:8080/`;

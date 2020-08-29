@@ -11,7 +11,7 @@ const WeatherTimeOfDay = (props) => {
         Object.entries(props.selectedDay.feels_like).map((time, index) => {
 
            return <TimeOfDayCard key={time[0]} timeOfDay={time[0]} temp={time[1]}>
-          </TimeOfDayCard>
+          </TimeOfDayCard>;
         })
           : null);
   };

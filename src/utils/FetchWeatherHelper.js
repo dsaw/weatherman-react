@@ -1,4 +1,4 @@
-import {API_URL} from './API'
+import {API_URL} from './API';
 import parseCoordinates from './CoordinateHelper';
 
 const WEATHER_API_KEY = process.env.REACT_APP_OPENWEATHERMAP_API_KEY;
@@ -26,7 +26,7 @@ const fetchWeatherDailyForecast = async (address) => {
 
   return response;
 
-}
+};
 
 const fetchLocationData = (latLng, addressContext) => {
   // NOTE: MetaWeather specific url
@@ -54,6 +54,6 @@ const fetchLocationData = (latLng, addressContext) => {
       console.log(res);
   });
 
-}
+};
 
 export {fetchWeatherDailyForecast,fetchLocationData} ;

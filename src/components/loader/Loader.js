@@ -13,6 +13,6 @@ const Loader = ({color, message}) => {
     </Fragment>
   );
 
-}
+};
 
 export default Loader;

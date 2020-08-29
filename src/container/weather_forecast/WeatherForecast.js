@@ -54,7 +54,7 @@ const WeatherForecast = () =>  {
       setIsLoading(false);
       setLoadingMessage('');
     }
-  }
+  };
 
   useEffect(
     () => {
@@ -101,7 +101,7 @@ const WeatherForecast = () =>  {
       </div>
 
       <div className="d-flex flex-column flex-sm-column flex-md-row flex-lg-row">
-      <WeatherWeek selectedIndex={selectedDay} forecast={weatherArray} timezone={forecast.timezone} clickCallback={(index) => {setSelectedDay(index)}}>
+      <WeatherWeek selectedIndex={selectedDay} forecast={weatherArray} timezone={forecast.timezone} clickCallback={(index) => {setSelectedDay(index);}}>
       </WeatherWeek>
       </div>
       </div>
@@ -111,6 +111,6 @@ const WeatherForecast = () =>  {
     );
 
 
-}
+};
 
 export default WeatherForecast;

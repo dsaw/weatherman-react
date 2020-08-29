@@ -12,7 +12,7 @@ function CurrentInfo({forecast, address}) {
     setDate(dateObj ? dateObj.format('dddd, MMMM Do YYYY') : '');
     setTime(dateObj ? dateObj.format('hh:mm:ss a') : '');
     dateTimeRef.current = dateObj;
-  }
+  };
 
   // set address
   useEffect(() => {
@@ -46,7 +46,7 @@ function CurrentInfo({forecast, address}) {
 
       // increment timer by 1 sec
       return () => {
-        clearInterval(dateTimer)
+        clearInterval(dateTimer);
       };
 
 

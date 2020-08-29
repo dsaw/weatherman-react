@@ -17,6 +17,6 @@ const Footer = () => {
         <a href="https://github.com/dsaw/weatherman-react/blob/master/PRIVACY-POLICY.html">Privacy Policy </a>
       </div>
     </div>);
-}
+};
 
 export default Footer;

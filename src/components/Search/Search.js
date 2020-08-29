@@ -202,7 +202,7 @@ class SearchInput extends Component {
        if (isolatedScroll !== null) {
          ref(isolatedScroll.component);
        }
-     }
+     };
 
      //for fixing the issue of scrolling beyond the suggestions container scrolls the page itself
      return (<IsolatedScroll ref={callRef} {...containerProps}>

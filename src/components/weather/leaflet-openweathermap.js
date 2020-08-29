@@ -407,7 +407,7 @@ L.OWM.Current = L.Layer.extend({
       });
 		}
 		if (this.options.interval && this.options.interval > 0) {
-			this._timeoutId = window.setTimeout(function() {_this.update()}, 60000*this.options.interval);
+			this._timeoutId = window.setTimeout(function() {_this.update();}, 60000*this.options.interval);
 		}
 	},
 
@@ -681,10 +681,10 @@ L.OWM.Current = L.Layer.extend({
 		var unit = 'm/s';
 		switch (this.options.speedUnit) {
 			case 'kmh':
-				unit = 'km/h'
+				unit = 'km/h';
 				break;
 			case 'mph':
-				unit = 'mph'
+				unit = 'mph';
 				break;
 		}
 		return unit;
@@ -716,7 +716,7 @@ L.OWM.Current = L.Layer.extend({
 		if (typeof L.OWM.Utils.i18n != 'undefined'
 				&& typeof L.OWM.Utils.i18n[lang] != 'undefined'
 				&& typeof L.OWM.Utils.i18n[lang][key] != 'undefined') {
-			return  L.OWM.Utils.i18n[lang][key]
+			return  L.OWM.Utils.i18n[lang][key];
 		}
 		return fallback;
 	}

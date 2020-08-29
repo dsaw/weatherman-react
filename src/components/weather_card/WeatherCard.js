@@ -6,7 +6,7 @@ import {UnitContext} from '../../context/unit/Unit';
 
 const roundNumbers = (num) => {
   return Math.round(num);
-}
+};
 
 
 
