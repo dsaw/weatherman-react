@@ -27,16 +27,16 @@ yarn start
 Open [http://localhost:3000](http://localhost:3000).
 
 ## Proxy
-Accessing 3rd party API requires a CORS proxy. Have used [cors anywhere](https://github.com/dsaw/cors-anywhere) running on [Heroku](https://cors-proxy-serv.herokuapp.com/)
+Accessing 3rd party API requires a CORS proxy. Have used cors-anywhere running on [Heroku](https://cors-proxy-serv.herokuapp.com/)
 
-To setup your own, clone above repo & run:
+To setup your own, clone [this](https://github.com/dsaw/cors-anywhere) repo & run:
 ```
 git checkout weather-proxy
 heroku create
 ```
 
 ## API key
-You'll need to export on the proxy env after obtaining the key from OWM.
+You'll need to export on the proxy environ after obtaining the key from OWM.
 ```
 OWM_API_KEY=*YOUR_KEY*
 ```
@@ -45,7 +45,7 @@ OWM_API_KEY=*YOUR_KEY*
 - All free API services don't have hourly forecasts. OpenWeatherMap has released a one call API with 7-day forecast but only 48 hour hourly forecast.
 - Tried out MetaWeather in v0.1 which is good. There were issues though - one was time zones were incorrect.
 - For search, [Algolia API](https://www.algolia.com/doc/rest-api/search/) had been used which fetches list of latitudes & longitude. The actual data came from MetaWeather, which returns locations based on 'where on earth ids' so another API call has to be made to search the possible list of locations closest to the location parameters. This was unreliable with results sometimes coming from neighbouring countries.
-- Switched to OpenWeatherMap One Call API to display 7 day forecast with its own search list.
+- Switched to OWM One Call API with its own search list.
 
 # Attribution
 - [react-autosuggest](http://react-autosuggest.js.org/) - nice search bar
@@ -54,10 +54,13 @@ OWM_API_KEY=*YOUR_KEY*
 - [leaflet-openweathermap](https://github.com/buche/leaflet-openweathermap) - map binding to integrate with OWM layers + really good [Leaflet](https://leafletjs.com/).
 - [cors-anywhere](https://github.com/Rob--W/cors-anywhere) - proxy setup
 - [Header png](https://pnghut.com/png/kEWKsWGE3x/cartoon-cloud-meteorological-phenomenon-transparent-png) from pnghut.
+- Shout out to [iamsainikhil](https://github.com/iamsainikhil/weather-react) & his beautiful [weather-react app](https://github.com/iamsainikhil/weather-react) for guidance.
 
 # Contact
 Built by Devesh!
+
 [![Support my work](https://cdn.buymeacoffee.com/buttons/default-blue.png)](https://www.buymeacoffee.com/dsawthewhat)
+
 For feedback, questions or just anything email on: [devesh47cool@gmail.com](devesh47cool@gmail.com)
 
 # License
