@@ -1,27 +1,27 @@
 {
   "files": {
-    "main.css": "/weatherman-react/static/css/main.c2cefec4.chunk.css",
-    "main.js": "/weatherman-react/static/js/main.b745a037.chunk.js",
-    "main.js.map": "/weatherman-react/static/js/main.b745a037.chunk.js.map",
+    "main.css": "/weatherman-react/static/css/main.7b124ba2.chunk.css",
+    "main.js": "/weatherman-react/static/js/main.84e67243.chunk.js",
+    "main.js.map": "/weatherman-react/static/js/main.84e67243.chunk.js.map",
     "runtime-main.js": "/weatherman-react/static/js/runtime-main.12570311.js",
     "runtime-main.js.map": "/weatherman-react/static/js/runtime-main.12570311.js.map",
     "static/css/2.098bc035.chunk.css": "/weatherman-react/static/css/2.098bc035.chunk.css",
-    "static/js/2.f3284099.chunk.js": "/weatherman-react/static/js/2.f3284099.chunk.js",
-    "static/js/2.f3284099.chunk.js.map": "/weatherman-react/static/js/2.f3284099.chunk.js.map",
+    "static/js/2.e4d81e17.chunk.js": "/weatherman-react/static/js/2.e4d81e17.chunk.js",
+    "static/js/2.e4d81e17.chunk.js.map": "/weatherman-react/static/js/2.e4d81e17.chunk.js.map",
     "index.html": "/weatherman-react/index.html",
-    "precache-manifest.c372fd92d298acf0f75ec68bbb33cadd.js": "/weatherman-react/precache-manifest.c372fd92d298acf0f75ec68bbb33cadd.js",
+    "precache-manifest.7fec3cdcba4876d7cec8d72d9834e90d.js": "/weatherman-react/precache-manifest.7fec3cdcba4876d7cec8d72d9834e90d.js",
     "service-worker.js": "/weatherman-react/service-worker.js",
     "static/css/2.098bc035.chunk.css.map": "/weatherman-react/static/css/2.098bc035.chunk.css.map",
-    "static/css/main.c2cefec4.chunk.css.map": "/weatherman-react/static/css/main.c2cefec4.chunk.css.map",
-    "static/js/2.f3284099.chunk.js.LICENSE": "/weatherman-react/static/js/2.f3284099.chunk.js.LICENSE",
+    "static/css/main.7b124ba2.chunk.css.map": "/weatherman-react/static/css/main.7b124ba2.chunk.css.map",
+    "static/js/2.e4d81e17.chunk.js.LICENSE": "/weatherman-react/static/js/2.e4d81e17.chunk.js.LICENSE",
     "static/media/app.scss": "/weatherman-react/static/media/weathericons-regular-webfont.ed0943f2.svg",
     "static/media/weatherman.png": "/weatherman-react/static/media/weatherman.d0288ce5.png"
   },
   "entrypoints": [
     "static/js/runtime-main.12570311.js",
     "static/css/2.098bc035.chunk.css",
-    "static/js/2.f3284099.chunk.js",
-    "static/css/main.c2cefec4.chunk.css",
-    "static/js/main.b745a037.chunk.js"
+    "static/js/2.e4d81e17.chunk.js",
+    "static/css/main.7b124ba2.chunk.css",
+    "static/js/main.84e67243.chunk.js"
   ]
 }
