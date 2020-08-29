@@ -25,6 +25,10 @@ Start development
 yarn start
 ```
 Open [http://localhost:3000](http://localhost:3000).
+After changes are done, run:
+```
+yarn lint
+```
 
 ## Proxy
 Accessing 3rd party API requires a CORS proxy. Have used cors-anywhere running on [Heroku](https://cors-proxy-serv.herokuapp.com/)
