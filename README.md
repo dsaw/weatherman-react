@@ -1,5 +1,6 @@
 # WeatherMan React
 [![Build Status](https://travis-ci.org/dsaw/weatherman-react.svg?branch=master)](https://travis-ci.org/github/dsaw/weatherman-react)
+[![Open Source Helpers](https://www.codetriage.com/dsaw/weatherman-react/badges/users.svg)](https://www.codetriage.com/dsaw/weatherman-react)
 
 A minimalistic weather forecast app made in React.
 
