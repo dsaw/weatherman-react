@@ -1,4 +1,4 @@
-import moment from 'moment-timezone';
+import moment from "moment-timezone";
 
 const generateCustomDate = (timezone, index) => {
   const d = moment().tz(timezone);
@@ -8,9 +8,17 @@ const generateCustomDate = (timezone, index) => {
 
 const getDayFromDate = (timezone, index) => {
   // OWM time(dt) is meaningless
-  const days =['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  const days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
   const date = generateCustomDate(timezone, index);
-  return (days[date.day()]);
+  return days[date.day()];
 };
 
-export {getDayFromDate, generateCustomDate};
+export { getDayFromDate, generateCustomDate };

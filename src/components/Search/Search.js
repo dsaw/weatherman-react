@@ -1,75 +1,84 @@
-import React, {Component, Fragment} from 'react';
-import Autosuggest from 'react-autosuggest';
-import IsolatedScroll from 'react-isolated-scroll';
-import debounce from 'lodash/debounce';
-import {getName} from 'country-list';
+import React, { Component, Fragment } from "react";
+import Autosuggest from "react-autosuggest";
+import IsolatedScroll from "react-isolated-scroll";
+import debounce from "lodash/debounce";
+import { getName } from "country-list";
 
-import Error from '../error/Error';
-import Loader from '../loader/Loader';
-import {AddressContext} from '../../context/address/Address';
-import {SearchIcon} from '../weather/WeatherIcon';
-import parseCoordinates from '../../utils/CoordinateHelper';
-import {API_URL} from '../../utils/API';
+import Error from "../error/Error";
+import Loader from "../loader/Loader";
+import { AddressContext } from "../../context/address/Address";
+import { SearchIcon } from "../weather/WeatherIcon";
+import parseCoordinates from "../../utils/CoordinateHelper";
+import { API_URL } from "../../utils/API";
 
-import * as cityList from '../../data/city.list.json';
+import * as cityList from "../../data/city.list.json";
 
-import theme from './Search.module.scss';
+import theme from "./Search.module.scss";
 
+const escapeSpecialChars = (string) =>
+  string.replace(/[.*+\-?^${}()|[\]\\]/g, "\\$&");
 
-const escapeSpecialChars = (string) => (string.replace(/[.*+\-?^${}()|[\]\\]/g , "\\$&"));
+const getSuggestionValue = (suggestion) => suggestion.name.split(",")[0];
 
-const getSuggestionValue = suggestion => suggestion.name.split(',')[0];
-
-const renderSuggestion = (suggestion, {query, isHighlighted}) => {
-  return (isHighlighted ?
-  <div style={{backgroundColor: 'black', color: 'white', padding: '5px 0 5px 3px'}}>
-    {suggestion.name}
-  </div> :
-  <div style={{padding: '5px 0 5px 5px'}}>
-    {suggestion.name}
-  </div>
-);
+const renderSuggestion = (suggestion, { query, isHighlighted }) => {
+  return isHighlighted ? (
+    <div
+      style={{
+        backgroundColor: "black",
+        color: "white",
+        padding: "5px 0 5px 3px",
+      }}
+    >
+      {suggestion.name}
+    </div>
+  ) : (
+    <div style={{ padding: "5px 0 5px 5px" }}>{suggestion.name}</div>
+  );
 };
 
-const renderInputComponent = ({inputProps}) => (
+const renderInputComponent = ({ inputProps }) => (
   <div className="inputContainer">
-    <SearchIcon fontSize="1rem"/>
+    <SearchIcon fontSize="1rem" />
     <input {...inputProps} />
-  </div>);
+  </div>
+);
 
 class SearchInput extends Component {
-
-  constructor (props) {
+  constructor(props) {
     super(props);
-    this.citySearchList = cityList.default.map((city, index) =>
-          { return Object.assign({}, city, {name: city.name + ' ,' + getName(city.country)}
-        );});
+    this.citySearchList = cityList.default.map((city, index) => {
+      return Object.assign({}, city, {
+        name: city.name + " ," + getName(city.country),
+      });
+    });
     this.state = {
-      value: '',
+      value: "",
       suggestions: [],
       showLoader: false,
-      errorMessage: ''
+      errorMessage: "",
     };
   }
 
   // Teach Autosuggest how to calculate suggestions for any given input value.
-  async getSuggestions (value) {
-  const searchValue = value ? escapeSpecialChars(value.trim().toLowerCase()) : '';
-  const inputLength = searchValue.length;
-  let items = [];
+  async getSuggestions(value) {
+    const searchValue = value
+      ? escapeSpecialChars(value.trim().toLowerCase())
+      : "";
+    const inputLength = searchValue.length;
+    let items = [];
 
-  try {
-   if (inputLength === 0)
-      items = [];
-    else {
-      this.setState({
-        suggestions:[],
-        showLoader: true});
+    try {
+      if (inputLength === 0) items = [];
+      else {
+        this.setState({
+          suggestions: [],
+          showLoader: true,
+        });
 
-        const regex = new RegExp(`^${searchValue}`, 'i');
+        const regex = new RegExp(`^${searchValue}`, "i");
         items = this.citySearchList.filter((city) => regex.test(city.name));
 
-      /*const response = await fetch(`https://places-dsn.algolia.net/1/places/query`,
+        /*const response = await fetch(`https://places-dsn.algolia.net/1/places/query`,
       {  method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -95,40 +104,43 @@ class SearchInput extends Component {
                       'latLng': res._geoloc  };
           });
         }*/
-
-
       }
 
       this.setState({
         suggestions: items,
         showLoader: false,
-        errorMessage: ((items.length > 0 && searchValue.length > 0) ? '' :
-        (searchValue.length > 0 ? 'There seems to be no results for the query entered, please try again' : ''))
+        errorMessage:
+          items.length > 0 && searchValue.length > 0
+            ? ""
+            : searchValue.length > 0
+            ? "There seems to be no results for the query entered, please try again"
+            : "",
       });
 
-     // this.SearchItemInArrayObjects(items, searchValue.trim(), 'value');
+      // this.SearchItemInArrayObjects(items, searchValue.trim(), 'value');
       console.log(searchValue);
-    }
-    catch(error) {
+    } catch (error) {
       this.setState({
         suggestions: [],
         showLoader: false,
-        errorMessage: 'Some error came up: ' + error});
-
+        errorMessage: "Some error came up: " + error,
+      });
     }
 
-      return items;
-
-}
+    return items;
+  }
 
   debounceQuery = debounce(this.getSuggestions, 1200);
-  onSuggestionSelected  = (event, { suggestion, suggestionValue, suggestionIndex, sectionIndex, method }) => {
-      console.log(suggestion);
+  onSuggestionSelected = (
+    event,
+    { suggestion, suggestionValue, suggestionIndex, sectionIndex, method }
+  ) => {
+    console.log(suggestion);
 
-      // Metaweather needs a separate location search with given lat long to get
-      // the address with location name & id which than will be needed
-      // Commented this out - might require later
-      /*const response = fetch(`${API_URL}location/search/?lattlong=${suggestion.coord.lat},${suggestion.coord.lng}`,
+    // Metaweather needs a separate location search with given lat long to get
+    // the address with location name & id which than will be needed
+    // Commented this out - might require later
+    /*const response = fetch(`${API_URL}location/search/?lattlong=${suggestion.coord.lat},${suggestion.coord.lng}`,
       {
         mode: "cors"
       }
@@ -158,87 +170,91 @@ class SearchInput extends Component {
           errorMessage: "Something went wrong, weather addresses can't be fetched right now"
         });*/
 
-        // For OWM, just get it from the city
-        this.context.updateState({
-          address: suggestion,
-          cityName: suggestion.name,
-          latLng: suggestion.coord
-        });
-
-  };
-
-
-  onChange = (event, { newValue}) => {
-    console.log("change:", event);
-    this.setState({
-      value: newValue
+    // For OWM, just get it from the city
+    this.context.updateState({
+      address: suggestion,
+      cityName: suggestion.name,
+      latLng: suggestion.coord,
     });
   };
 
-  onBlur = (event, { newValue}) => {
+  onChange = (event, { newValue }) => {
     console.log("change:", event);
-  }
+    this.setState({
+      value: newValue,
+    });
+  };
 
-   onSuggestionsFetchRequested = ({ value, reason }) => {
-     console.log("fetch requested:", reason);
-     if (reason === 'input-focused')
-        return;
-      this.debounceQuery(value);
-   };
+  onBlur = (event, { newValue }) => {
+    console.log("change:", event);
+  };
 
-   componentDidUpdate = (props, state) => {
-     console.log("component updated", this.items);
-   };
+  onSuggestionsFetchRequested = ({ value, reason }) => {
+    console.log("fetch requested:", reason);
+    if (reason === "input-focused") return;
+    this.debounceQuery(value);
+  };
+
+  componentDidUpdate = (props, state) => {
+    console.log("component updated", this.items);
+  };
 
   onSuggestionsClearRequested = () => {
-     console.log("clear requested:");
-   };
+    console.log("clear requested:");
+  };
 
-   renderSuggestionContainer= ({containerProps, children}) => {
-     const {ref, ...restContainerProps} = containerProps;
-     const callRef = isolatedScroll => {
-       if (isolatedScroll !== null) {
-         ref(isolatedScroll.component);
-       }
-     };
+  renderSuggestionContainer = ({ containerProps, children }) => {
+    const { ref, ...restContainerProps } = containerProps;
+    const callRef = (isolatedScroll) => {
+      if (isolatedScroll !== null) {
+        ref(isolatedScroll.component);
+      }
+    };
 
-     //for fixing the issue of scrolling beyond the suggestions container scrolls the page itself
-     return (<IsolatedScroll ref={callRef} {...containerProps}>
-              {children}
-            </IsolatedScroll>);
-   };
+    //for fixing the issue of scrolling beyond the suggestions container scrolls the page itself
+    return (
+      <IsolatedScroll ref={callRef} {...containerProps}>
+        {children}
+      </IsolatedScroll>
+    );
+  };
 
-   render() {
-     const {value, suggestions, showLoader, errorMessage} = this.state;
+  render() {
+    const { value, suggestions, showLoader, errorMessage } = this.state;
 
-     const inputProps = {
-       placeholder: 'Type a location for weather forecast' ,
-       value:  value,
-       onChange: this.onChange
-     };
+    const inputProps = {
+      placeholder: "Type a location for weather forecast",
+      value: value,
+      onChange: this.onChange,
+    };
 
-     const isLoading = this.state.showLoader;
+    const isLoading = this.state.showLoader;
 
-   return (<Fragment>
+    return (
+      <Fragment>
         <Autosuggest
-         suggestions={suggestions}
-         onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-         onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-         onSuggestionSelected={this.onSuggestionSelected}
-         getSuggestionValue={getSuggestionValue}
-         highlightFirstSuggestion={true}
-         /*renderInputComponent={renderInputComponent}*/
-         renderSuggestion={renderSuggestion}
-         renderSuggestionContainer={this.renderSuggestionContainer}
-         inputProps={inputProps}
-         theme={theme}
-       />
-         {isLoading ? <Fragment><Loader message={`Loading suggestions for ${value}...`}/></Fragment> :
-         (errorMessage ? <Error errorMessage={errorMessage}></Error> : null)}
-         </Fragment>
-   );
-
- };
+          suggestions={suggestions}
+          onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+          onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+          onSuggestionSelected={this.onSuggestionSelected}
+          getSuggestionValue={getSuggestionValue}
+          highlightFirstSuggestion={true}
+          /*renderInputComponent={renderInputComponent}*/
+          renderSuggestion={renderSuggestion}
+          renderSuggestionContainer={this.renderSuggestionContainer}
+          inputProps={inputProps}
+          theme={theme}
+        />
+        {isLoading ? (
+          <Fragment>
+            <Loader message={`Loading suggestions for ${value}...`} />
+          </Fragment>
+        ) : errorMessage ? (
+          <Error errorMessage={errorMessage}></Error>
+        ) : null}
+      </Fragment>
+    );
+  }
 }
 
 SearchInput.contextType = AddressContext;

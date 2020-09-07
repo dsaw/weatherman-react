@@ -1,21 +1,15 @@
-import React, {useState} from 'react';
+import React, { useState } from "react";
 // celsius and fahrenheit
-const UnitContext = React.createContext({ weatherUnit: 'C'});
+const UnitContext = React.createContext({ weatherUnit: "C" });
 
-function UnitContextProvider({children}) {
+function UnitContextProvider({ children }) {
+  const [weatherUnit, setWeatherUnit] = useState("C");
 
-  const [weatherUnit, setWeatherUnit] = useState('C');
-
-
-
-   return (<UnitContext.Provider value={{weatherUnit, setWeatherUnit}}>
-        {children}
-     </UnitContext.Provider>);
+  return (
+    <UnitContext.Provider value={{ weatherUnit, setWeatherUnit }}>
+      {children}
+    </UnitContext.Provider>
+  );
 }
 
-
-
-export {
-  UnitContextProvider,
-  UnitContext
-};
+export { UnitContextProvider, UnitContext };
