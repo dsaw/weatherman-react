@@ -4,7 +4,7 @@ import parseCoordinates from "./CoordinateHelper";
 const WEATHER_API_KEY = process.env.REACT_APP_OPENWEATHERMAP_API_KEY;
 const fetchWeatherDailyForecast = async (address) => {
   let response;
-  // OWM needs an API key 
+  // OWM needs an API key
   try {
     if (address.address.id) {
       const queryObj = Object.assign({}, address.address.coord, {

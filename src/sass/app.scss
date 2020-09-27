@@ -1,6 +1,5 @@
 @import "./custom.scss";
 
-
 @fontface {
   font-family: "Montserrat-Regular";
   src: url("./font/Montserrat-Regular.ttf") format("truetype");
@@ -79,7 +78,6 @@
 }
 
 @include media-breakpoint-up(xs) {
-
   #timeOfDay {
     display: none;
   }
@@ -147,7 +145,6 @@
 @include media-breakpoint-up(xl) {
 }
 
-
 body {
   margin: 0;
   font-family:
@@ -195,7 +192,6 @@ button,
   height: 50vw;
   width: 80%;
 }
-
 
 #timeOfDay svg {
   // hack to center svg need to overide default inline attr
