@@ -100,7 +100,7 @@ const WeatherForecast = () => {
           </CurrentInfoDetail>
         </div>
 
-        <div className="d-sm-none d-md-flex flex-row m-3">
+        <div id="timeOfDay" className="d-sm-none d-md-flex flex-row m-3">
           <WeatherTimeOfDay selectedDay={selectedDayEntry} />
         </div>
 

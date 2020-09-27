@@ -19,9 +19,9 @@ const WeatherIcon = ({ iconName, fontSize }) => {
     celsius: <WiCelsius style={{ fontSize: "3.5rem" }} />,
     fahrenheit: <WiFahrenheit style={{ fontSize: "3.5rem" }} />,
     morning: <WiHorizonAlt style={{ fontSize: fontSize }} />,
-    day: <WiDaySunny style={{ fontSize: fontSize }} />,
-    evening: <WiSunset style={{ fontSize: fontSize }} />,
-    night: <WiMoonWaningCrescent2 style={{ fontSize: fontSize }} />,
+    day: <WiDaySunny style={{ fontSize: fontSize}} />,
+    evening: <WiSunset style={{ fontSize: fontSize}} />,
+    night: <WiMoonWaningCrescent2 style={{ fontSize: fontSize}} />,
   };
   return iconMap[iconName];
 };

@@ -1,6 +1,5 @@
 @import "./custom.scss";
 
-//@import './weather-icons-wind.scss';
 
 @fontface {
   font-family: "Montserrat-Regular";
@@ -80,6 +79,11 @@
 }
 
 @include media-breakpoint-up(xs) {
+
+  #timeOfDay {
+    display: none;
+  }
+
   .detail-container {
     width: 100%;
   }
@@ -143,6 +147,7 @@
 @include media-breakpoint-up(xl) {
 }
 
+
 body {
   margin: 0;
   font-family:
@@ -191,7 +196,13 @@ button,
   width: 80%;
 }
 
-// Use following to center horizontally
+
+#timeOfDay svg {
+  // hack to center svg need to overide default inline attr
+  height: 1.5em !important;
+  width: 1.5em !important;
+}
+
 // TODO: remove this?
 #content {
   display: flex;
