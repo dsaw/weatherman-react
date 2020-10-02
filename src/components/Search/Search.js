@@ -223,6 +223,7 @@ class SearchInput extends Component {
         onFocus={this.handleFocus}
         ref={this.input}
         placeholder="Type a location for weather forecast"
+        value={this.state.value}
       />
     </div>
   );
