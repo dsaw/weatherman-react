@@ -10,10 +10,10 @@ $clr-accent: #4183d7;
 }
 
 .input {
-  //background-color: $clr-accent;
+  position: relative;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-
-  display: block;
+  display: flex;
+  align-items: center;
   width: 90%;
   height: 3rem;
   margin: 0 auto;
@@ -60,4 +60,16 @@ $clr-accent: #4183d7;
 }
 .suggestionHighlighted {
   display: block;
+}
+.search {
+  background-color: transparent;
+  border: 0px;
+  width: 90%;
+  margin: 0 auto;
+  padding: 0.75em 0em;
+  box-sizing: border-box;
+  outline: none;
+  &:focus {
+    outline: none;
+  }
 }

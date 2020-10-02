@@ -20,7 +20,7 @@
     "react-dom": "^16.12.0",
     "react-icons": "^3.10.0",
     "react-isolated-scroll": "^0.1.1",
-    "react-scripts": "3.3.0"
+    "react-scripts": "^3.4.1"
   },
   "homepage": "https://dsaw.github.io/weatherman-react",
   "scripts": {

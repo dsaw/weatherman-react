@@ -36,13 +36,6 @@ const renderSuggestion = (suggestion, { query, isHighlighted }) => {
   );
 };
 
-const renderInputComponent = ({ inputProps }) => (
-  <div className="inputContainer">
-    <SearchIcon fontSize="1rem" />
-    <input {...inputProps} />
-  </div>
-);
-
 class SearchInput extends Component {
   constructor(props) {
     super(props);
@@ -57,6 +50,7 @@ class SearchInput extends Component {
       showLoader: false,
       errorMessage: "",
     };
+    this.input = React.createRef();
   }
 
   // Teach Autosuggest how to calculate suggestions for any given input value.
@@ -218,7 +212,20 @@ class SearchInput extends Component {
       </IsolatedScroll>
     );
   };
-
+  handleFocus = () => {
+    this.input.current.focus();
+  };
+  renderInputComponent = (inputProps) => (
+    <div {...inputProps} onClick={this.handleFocus}>
+      <SearchIcon />
+      <input
+        className={theme.search}
+        onFocus={this.handleFocus}
+        ref={this.input}
+        placeholder="Type a location for weather forecast"
+      />
+    </div>
+  );
   render() {
     const { value, suggestions, showLoader, errorMessage } = this.state;
 
@@ -239,7 +246,7 @@ class SearchInput extends Component {
           onSuggestionSelected={this.onSuggestionSelected}
           getSuggestionValue={getSuggestionValue}
           highlightFirstSuggestion={true}
-          /*renderInputComponent={renderInputComponent}*/
+          renderInputComponent={this.renderInputComponent}
           renderSuggestion={renderSuggestion}
           renderSuggestionContainer={this.renderSuggestionContainer}
           inputProps={inputProps}

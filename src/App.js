@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
-import SearchInput from "./components/search/Search";
+import SearchInput from "./components/Search/Search";
 import ForecastMap from "./components/weather/ForecastMap";
 import WeatherForecast from "./container/weather_forecast/WeatherForecast";
 import { AddressContextProvider } from "./context/address/Address";
