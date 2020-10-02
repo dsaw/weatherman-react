@@ -212,6 +212,9 @@ class SearchInput extends Component {
       </IsolatedScroll>
     );
   };
+  handleChange = (event) => {
+    this.setState({ value: event.target.value });
+  };
   handleFocus = () => {
     this.input.current.focus();
   };
@@ -224,6 +227,7 @@ class SearchInput extends Component {
         ref={this.input}
         placeholder="Type a location for weather forecast"
         value={this.state.value}
+        onChange={this.handleChange}
       />
     </div>
   );
