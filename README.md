@@ -29,6 +29,7 @@ Open [http://localhost:3000](http://localhost:3000).
 After changes are done, run:
 ```
 yarn lint
+yarn prettify
 ```
 
 ## Proxy
