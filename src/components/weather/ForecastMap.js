@@ -31,14 +31,14 @@ function ForecastMap() {
     wind = L.OWM.wind({ appId: WEATHER_API_KEY });
     city = L.OWM.current({ intervall: 60, appId: WEATHER_API_KEY });
     map = L.map("map", { layers: [osm] });
-    let overlayMaps = {
+    const overlayMaps = {
       City: city,
       Clouds: clouds,
       Rain: rain,
       "Wind speed": wind,
     };
-    let baseMaps = { "OSM Standard": osm };
-    let layerControl = L.control.layers(baseMaps, overlayMaps).addTo(map);
+    const baseMaps = { "OSM Standard": osm };
+    const layerControl = L.control.layers(baseMaps, overlayMaps).addTo(map);
     setLeafletMap(map);
   }, []);
 

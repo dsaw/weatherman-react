@@ -5,7 +5,7 @@
       "ecmaVersion": 6,
       "ecmaFeatures": {
             "jsx": true
-      } 
+      }
     },
     "rules": {
       "semi": "error",
@@ -13,5 +13,13 @@
       "no-var": "warn",
       "prefer-const" : "warn",
       "template-curly-spacing": "warn"
-    }
+    },
+    "overrides": [
+      {
+        "files": ["*WeatherForecast.js"],
+        "rules": {
+          "react-hooks/exhaustive-deps": "off"
+        }
+      }
+    ]
 }
