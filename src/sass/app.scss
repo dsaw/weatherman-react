@@ -63,13 +63,20 @@
   }
 }
 
+#poweredBy {
+  a, a:hover {
+    color: #4b00ff;
+  }
+  a::before {
+    background-color: #4b00ff;
+  }
+}
+
 .card {
   background-color: #fdfdfd;
 }
 
 .card:hover {
-  background-color: black;
-  color: white;
   opacity: 0.8;
 }
 

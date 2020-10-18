@@ -51,7 +51,6 @@ OWM_API_KEY=*YOUR_KEY*
 - All free API services don't have hourly forecasts. OpenWeatherMap has released a one call API with 7-day forecast but only 48 hour hourly forecast.
 - Tried out MetaWeather in v0.1 which is good. There were issues though - one was time zones were incorrect.
 - For search, [Algolia API](https://www.algolia.com/doc/rest-api/search/) had been used which fetches list of latitudes & longitude. The actual data came from MetaWeather, which returns locations based on 'where on earth ids' so another API call has to be made to search the possible list of locations closest to the location parameters. This was unreliable with results sometimes coming from neighbouring countries.
-- Switched to OWM One Call API with its own search list.
 
 # Attribution
 - [react-autosuggest](http://react-autosuggest.js.org/) - nice search bar
@@ -60,6 +59,7 @@ OWM_API_KEY=*YOUR_KEY*
 - [leaflet-openweathermap](https://github.com/buche/leaflet-openweathermap) - map binding to integrate with OWM layers + really good [Leaflet](https://leafletjs.com/).
 - [cors-anywhere](https://github.com/Rob--W/cors-anywhere) - proxy setup
 - [Header png](https://pnghut.com/png/kEWKsWGE3x/cartoon-cloud-meteorological-phenomenon-transparent-png) from pnghut.
+- [Background photo](https://www.freepik.com/photos/background) created by Freepik. 
 - Shout out to [iamsainikhil](https://github.com/iamsainikhil/weather-react) & his beautiful [weather-react app](https://github.com/iamsainikhil/weather-react) for guidance.
 
 # Contact
