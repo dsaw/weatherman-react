@@ -64,7 +64,8 @@
 }
 
 #poweredBy {
-  a, a:hover {
+  a,
+  a:hover {
     color: #4b00ff;
   }
   a::before {
@@ -163,10 +164,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
   //background-color: #f5f5f5;
 
-    background-image: url('../sunsetmountains.jpg');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
+  background-image: url("../sunsetmountains.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 
 code {
