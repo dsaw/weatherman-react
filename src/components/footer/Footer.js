@@ -5,8 +5,8 @@ const Footer = () => {
   return (
     <div
       id="footer"
-      className="p-4 d-flex flex-column flex-sm-column flex-md-row flex-lg-row justify-content-center align-items-center text-dark w-100"
-      style={{ backgroundColor: "#fafafa" }}
+      className="p-4 d-flex flex-column flex-sm-column flex-md-row flex-lg-row justify-content-center align-items-center text-light w-100"
+      style={{ backgroundColor: "rgb(33, 37, 41)" }}
     >
       <div className="footer-component text-center d-flex  w-100 w-md-25 my-2 my-md-0 justify-content-center">
         <a href="https://github.com/dsaw/weatherman-react">Github</a>
