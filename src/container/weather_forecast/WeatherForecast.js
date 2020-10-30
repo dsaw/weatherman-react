@@ -45,6 +45,7 @@ const WeatherForecast = () => {
       }
     } catch (error) {
       setIsError(true);
+      // eslint-disable-next-line no-console
       console.log(error);
     } finally {
       setIsLoading(false);
