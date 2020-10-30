@@ -8,8 +8,6 @@ import Error from "../error/Error";
 import Loader from "../loader/Loader";
 import { AddressContext } from "../../context/address/Address";
 import { SearchIcon } from "../weather/WeatherIcon";
-import parseCoordinates from "../../utils/CoordinateHelper";
-import { API_URL } from "../../utils/API";
 
 import * as cityList from "../../data/city.list.json";
 
@@ -20,7 +18,7 @@ const escapeSpecialChars = (string) =>
 
 const getSuggestionValue = (suggestion) => suggestion.name.split(",")[0];
 
-const renderSuggestion = (suggestion, { query, isHighlighted }) => {
+const renderSuggestion = (suggestion, { isHighlighted }) => {
   return isHighlighted ? (
     <div
       style={{
@@ -39,7 +37,7 @@ const renderSuggestion = (suggestion, { query, isHighlighted }) => {
 class SearchInput extends Component {
   constructor(props) {
     super(props);
-    this.citySearchList = cityList.default.map((city, index) => {
+    this.citySearchList = cityList.default.map((city) => {
       return Object.assign({}, city, {
         name: city.name + " ," + getName(city.country),
       });
@@ -112,6 +110,7 @@ class SearchInput extends Component {
       });
 
       // this.SearchItemInArrayObjects(items, searchValue.trim(), 'value');
+      // eslint-disable-next-line no-console
       console.log(searchValue);
     } catch (error) {
       this.setState({
@@ -125,10 +124,8 @@ class SearchInput extends Component {
   }
 
   debounceQuery = debounce(this.getSuggestions, 1200);
-  onSuggestionSelected = (
-    event,
-    { suggestion, suggestionValue, suggestionIndex, sectionIndex, method }
-  ) => {
+  onSuggestionSelected = (event, { suggestion }) => {
+    // eslint-disable-next-line no-console
     console.log(suggestion);
 
     // Metaweather needs a separate location search with given lat long to get
@@ -173,32 +170,37 @@ class SearchInput extends Component {
   };
 
   onChange = (event, { newValue }) => {
+    // eslint-disable-next-line no-console
     console.log("change:", event);
     this.setState({
       value: newValue,
     });
   };
 
-  onBlur = (event, { newValue }) => {
+  onBlur = (event) => {
+    // eslint-disable-next-line no-console
     console.log("change:", event);
   };
 
   onSuggestionsFetchRequested = ({ value, reason }) => {
+    // eslint-disable-next-line no-console
     console.log("fetch requested:", reason);
     if (reason === "input-focused") return;
     this.debounceQuery(value);
   };
 
   componentDidUpdate = (props, state) => {
+    // eslint-disable-next-line no-console
     console.log("component updated", this.items);
   };
 
   onSuggestionsClearRequested = () => {
+    // eslint-disable-next-line no-console
     console.log("clear requested:");
   };
 
   renderSuggestionContainer = ({ containerProps, children }) => {
-    const { ref, ...restContainerProps } = containerProps;
+    const { ref } = containerProps;
     const callRef = (isolatedScroll) => {
       if (isolatedScroll !== null) {
         ref(isolatedScroll.component);
@@ -232,7 +234,7 @@ class SearchInput extends Component {
     </div>
   );
   render() {
-    const { value, suggestions, showLoader, errorMessage } = this.state;
+    const { value, suggestions, errorMessage } = this.state;
 
     const inputProps = {
       placeholder: "Type a location for weather forecast",
