@@ -24,6 +24,7 @@ const fetchWeatherDailyForecast = async (address) => {
       });
     }
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.log(error);
     throw new Error(error);
   }
@@ -48,6 +49,7 @@ const fetchLocationData = (latLng, addressContext) => {
     .then((res) => {
       // set Address
       if (res.length) {
+        // eslint-disable-next-line no-console
         console.log(this.context);
         res[0].title = addressContext.name;
         addressContext.updateState({
@@ -56,6 +58,7 @@ const fetchLocationData = (latLng, addressContext) => {
           latLng: parseCoordinates(res[0].latt_long),
         });
       }
+      // eslint-disable-next-line no-console
       console.log(res);
     });
 };

@@ -26,7 +26,7 @@ class AddressContextProvider extends Component {
       isLoading: true,
       message: "Obtaining the location from coordinates...",
     });
-    const response = fetch(
+    fetch(
       `${API_URL}weather?lat=${latLng.lat}&lon=${latLng.lng}&units=metric&appid=${WEATHER_API_KEY}`,
       {
         mode: "cors",
@@ -53,6 +53,7 @@ class AddressContextProvider extends Component {
             message: "",
           });
         }
+        // eslint-disable-next-line no-console
         console.log(res);
       })
       .catch((error) => {
@@ -60,6 +61,7 @@ class AddressContextProvider extends Component {
           isLoading: false,
           isError: true,
         });
+        // eslint-disable-next-line no-console
         console.error("There is a problem with your fetch: ", error);
       });
   };
@@ -78,6 +80,7 @@ class AddressContextProvider extends Component {
         return response.json();
       });
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error("There is a problem with your fetch: ", error);
       this.setState({
         isLoading: false,
@@ -86,7 +89,7 @@ class AddressContextProvider extends Component {
       });
     }
     if (isValid(response)) {
-      let latLng = {
+      const latLng = {
         lat: response.latitude,
         lng: response.longitude,
       };
@@ -99,14 +102,16 @@ class AddressContextProvider extends Component {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
-          let latLng = {
+          const latLng = {
             lat: position.coords.latitude,
             lng: position.coords.longitude,
           };
           this.updateAddress(latLng);
+          // eslint-disable-next-line no-console
           console.log(latLng);
         },
         (error) => {
+          // eslint-disable-next-line no-console
           console.error(error);
           this.updateIPAddress();
         }

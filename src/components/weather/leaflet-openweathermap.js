@@ -23,7 +23,7 @@ L.OWM = L.TileLayer.extend({
 
   initialize: function (options) {
     L.Util.setOptions(this, options);
-    var tileurl = this.options.baseUrl
+    let tileurl = this.options.baseUrl
       .replace("{PREFIX}", PREFIX)
       .replace("{layername}", this._owmLayerName);
     tileurl = tileurl + "?appid=" + this.options.appId;
@@ -82,7 +82,7 @@ L.OWM = L.TileLayer.extend({
     _owmLayerName: "precipitation_cls",
   });
   L.OWM.precipitationClassic = function (options) {
-    var layer = new L.OWM.PrecipitationClassic(options);
+    const layer = new L.OWM.PrecipitationClassic(options);
     if (layer.options.legendImagePath == null) {
       layer.options.legendImagePath = "https://openweathermap.org/img/a/PR.png";
     }
@@ -100,7 +100,7 @@ L.OWM = L.TileLayer.extend({
     _owmLayerName: "rain_cls",
   });
   L.OWM.rainClassic = function (options) {
-    var layer = new L.OWM.RainClassic(options);
+    const layer = new L.OWM.RainClassic(options);
     if (layer.options.legendImagePath == null) {
       layer.options.legendImagePath = "https://openweathermap.org/img/a/RN.png";
     }
@@ -111,7 +111,7 @@ L.OWM = L.TileLayer.extend({
     _owmLayerName: "snow",
   });
   L.OWM.snow = function (options) {
-    var layer = new L.OWM.Snow(options);
+    const layer = new L.OWM.Snow(options);
     if (layer.options.legendImagePath == null) {
       layer.options.legendImagePath = "https://openweathermap.org/img/a/SN.png";
     }
@@ -129,7 +129,7 @@ L.OWM = L.TileLayer.extend({
     _owmLayerName: "clouds_cls",
   });
   L.OWM.cloudsClassic = function (options) {
-    var layer = new L.OWM.CloudsClassic(options);
+    const layer = new L.OWM.CloudsClassic(options);
     if (layer.options.legendImagePath == null) {
       layer.options.legendImagePath = "https://openweathermap.org/img/a/NT.png";
     }
@@ -140,7 +140,7 @@ L.OWM = L.TileLayer.extend({
     _owmLayerName: "pressure",
   });
   L.OWM.pressure = function (options) {
-    var layer = new L.OWM.Pressure(options);
+    const layer = new L.OWM.Pressure(options);
     if (layer.options.legendImagePath == null) {
       layer.options.legendImagePath = "https://openweathermap.org/img/a/PN.png";
     }
@@ -158,7 +158,7 @@ L.OWM = L.TileLayer.extend({
     _owmLayerName: "temp",
   });
   L.OWM.temperature = function (options) {
-    var layer = new L.OWM.Temperature(options);
+    const layer = new L.OWM.Temperature(options);
     if (layer.options.legendImagePath == null) {
       layer.options.legendImagePath = "https://openweathermap.org/img/a/TT.png";
     }
@@ -169,7 +169,7 @@ L.OWM = L.TileLayer.extend({
     _owmLayerName: "wind",
   });
   L.OWM.wind = function (options) {
-    var layer = new L.OWM.Wind(options);
+    const layer = new L.OWM.Wind(options);
     if (layer.options.legendImagePath == null) {
       layer.options.legendImagePath = "https://openweathermap.org/img/a/UV.png";
     }
@@ -187,7 +187,7 @@ L.OWM.LegendControl = L.Control.extend({
     this._container = L.DomUtil.create("div", "owm-legend-container");
     this._container.style.display = "none";
     this._legendCounter = 0;
-    this._legendContainer = new Array();
+    this._legendContainer = [];
   },
 
   onAdd: function (map) {
@@ -195,7 +195,7 @@ L.OWM.LegendControl = L.Control.extend({
   },
 
   addLegend: function (legendImagePath) {
-    var legendId = this._legendCounter++;
+    const legendId = this._legendCounter++;
     this._legendContainer[legendId] = legendImagePath;
     this._redrawLegend();
     this._container.style.display = "block";
@@ -207,8 +207,9 @@ L.OWM.LegendControl = L.Control.extend({
       delete this._legendContainer[legendId];
     }
     // reset counter if no legend is in collection
-    var containerEmpty = true;
-    for (var idx in this._legendContainer) {
+    let containerEmpty = true;
+    // eslint-disable-next-line no-unused-vars
+    for (const idx in this._legendContainer) {
       containerEmpty = false;
       break;
     }
@@ -221,14 +222,14 @@ L.OWM.LegendControl = L.Control.extend({
 
   _redrawLegend: function () {
     this._container.innerHTML = ""; // clear container
-    var isLeft = this.options.position.indexOf("left") !== -1;
-    var cssFloat = isLeft ? "left" : "right";
-    for (var idx in this._legendContainer) {
+    const isLeft = this.options.position.indexOf("left") !== -1;
+    const cssFloat = isLeft ? "left" : "right";
+    for (const idx in this._legendContainer) {
       if (isNaN(idx)) {
         continue;
       }
-      var imgPath = this._legendContainer[idx];
-      var item = L.DomUtil.create("div", "owm-legend-item", this._container);
+      const imgPath = this._legendContainer[idx];
+      const item = L.DomUtil.create("div", "owm-legend-item", this._container);
       item.style.cssFloat = cssFloat;
       if (isLeft) {
         item.style.marginRight = "10px";
@@ -287,8 +288,7 @@ L.OWM.Current = L.Layer.extend({
     this._layer = L.layerGroup();
     this._timeoutId = null;
     this._requests = {};
-    this._markers = new Array();
-    this._markedMarker = null;
+    this._markers = [];
     this._map = null;
     this._urlTemplate =
       "{API_URL}box/{type}?{appId}cnt=300&format=json&units=metric&bbox={minlon},{minlat},{maxlon},{maxlat},10";
@@ -334,13 +334,13 @@ L.OWM.Current = L.Layer.extend({
     this._tempUnits = { K: "K", C: "°C", F: "F" };
     this._progressCtrl = null;
     if (this.options.progressControl) {
-      var bgIcon;
+      let bgIcon;
       if (this.options.imageLoadingBgUrl) {
         bgIcon = this.options.imageLoadingBgUrl;
       } else {
         bgIcon = this.options.imageUrlCity.replace("{icon}", "10d");
-        if (this.options.type != "city") {
-          var bgIcon = this.options.imageUrlStation;
+        if (this.options.type !== "city") {
+          bgIcon = this.options.imageUrlStation;
         }
       }
       this._progressCtrl = L.OWM.progressControl({
@@ -381,14 +381,6 @@ L.OWM.Current = L.Layer.extend({
     this._map = null;
     this._cache.clear();
   },
-
-  getAttribution: function () {
-    return (
-      'Weather from <a href="https://openweathermap.org/" ' +
-      'alt="World Map and worldwide Weather Forecast online">OpenWeatherMap</a>'
-    );
-  },
-
   update: function () {
     // clear existing timeout
     if (this._timeoutId) {
@@ -396,11 +388,11 @@ L.OWM.Current = L.Layer.extend({
       this._timeoutId = null;
     }
 
-    var _this = this;
+    const _this = this;
 
     // clear requests for all types
-    for (var typ in this._requests) {
-      var request = this._requests[typ];
+    for (const typ in this._requests) {
+      const request = this._requests[typ];
       this.fire("owmloadingend", { type: typ });
       request.abort();
     }
@@ -415,8 +407,8 @@ L.OWM.Current = L.Layer.extend({
     }
 
     // try to get cached data first
-    var bounds = this._map.getBounds();
-    var data = null;
+    const bounds = this._map.getBounds();
+    let data = null;
     if (this.options.caching) {
       data = this._cache.get(
         bounds.getWest(),
@@ -431,7 +423,7 @@ L.OWM.Current = L.Layer.extend({
     } else {
       // fetch new data from OWM
       this.fire("owmloadingstart", { type: _this.options.type });
-      var url = this._urlTemplate
+      const url = this._urlTemplate
         .replace("{API_URL}", API_URL)
         .replace(
           "{appId}",
@@ -445,7 +437,7 @@ L.OWM.Current = L.Layer.extend({
       // use Fetch API with abort signal instead of JSONP
 
       this._requests[this.options.type] = new AbortController();
-      var signal = this._requests[this.options.type].signal;
+      const signal = this._requests[this.options.type].signal;
       fetch(url, { mode: "cors", signal })
         .then((response) => {
           return response.json();
@@ -463,14 +455,16 @@ L.OWM.Current = L.Layer.extend({
           }
           _this._processRequestedData(
             _this,
-            typeof data.list == "undefined" ? new Array() : data.list
+            typeof data.list == "undefined" ? [] : data.list
           );
           _this.fire("owmloadingend", { type: _this.options.type });
         })
         .catch((err) => {
           if (err.name === "AbortError") {
+            // eslint-disable-next-line no-console
             console.log("fetch aborted");
           } else {
+            // eslint-disable-next-line no-console
             console.error("Something was an error!", err);
           }
         });
@@ -483,19 +477,20 @@ L.OWM.Current = L.Layer.extend({
   },
 
   _processRequestedData: function (_this, data) {
+    let key;
     // read all cities
-    var stations = {};
-    for (var i in data) {
-      var stat = data[i];
+    const stations = {};
+    for (const i in data) {
+      const stat = data[i];
       if (!_this._map) {
         // maybe layer is gone while we are looping here
         return;
       }
       // only use cities having a minimum distance of some pixels on the map
-      var pt = _this._map.latLngToLayerPoint(
+      const pt = _this._map.latLngToLayerPoint(
         new L.LatLng(stat.coord.Lat, stat.coord.Lon)
       );
-      var key =
+      key =
         "" +
         Math.round(pt.x / _this.options.clusterSize) +
         "_" +
@@ -509,7 +504,7 @@ L.OWM.Current = L.Layer.extend({
     }
 
     // hide LayerGroup from map and remove old markers
-    var markerWithPopup = null;
+    let markerWithPopup = null;
     if (_this.options.keepPopup) {
       markerWithPopup = _this._getMarkerWithPopup(_this._markers);
     }
@@ -519,9 +514,9 @@ L.OWM.Current = L.Layer.extend({
     _this._layer.clearLayers();
 
     // add the cities as markers to the LayerGroup
-    _this._markers = new Array();
-    for (var key in stations) {
-      var marker;
+    _this._markers = [];
+    for (key in stations) {
+      let marker;
       if (
         _this.options.markerFunction != null &&
         typeof _this.options.markerFunction == "function"
@@ -548,7 +543,7 @@ L.OWM.Current = L.Layer.extend({
       if (
         markerWithPopup != null &&
         typeof markerWithPopup.options.owmId != "undefined" &&
-        markerWithPopup.options.owmId == marker.options.owmId
+        markerWithPopup.options.owmId === marker.options.owmId
       ) {
         markerWithPopup = marker;
       }
@@ -563,9 +558,9 @@ L.OWM.Current = L.Layer.extend({
   },
 
   _getMarkerWithPopup: function (markers) {
-    var marker = null;
-    for (var idx in markers) {
-      var m = markers[idx];
+    let marker = null;
+    for (const idx in markers) {
+      const m = markers[idx];
       if (m._popup && m._map && m._map.hasLayer(m._popup)) {
         marker = m;
         break;
@@ -575,11 +570,11 @@ L.OWM.Current = L.Layer.extend({
   },
 
   _createPopup: function (station) {
-    var showLink =
+    const showLink =
       typeof station.id != "undefined" && this.options.showOwmStationLink;
-    var txt = '<div class="owm-popup-name">';
+    let txt = '<div class="owm-popup-name">';
     if (showLink) {
-      var typ = "station";
+      let typ = "station";
       if (typeof station.weather != "undefined") {
         typ = "city";
       }
@@ -614,7 +609,7 @@ L.OWM.Current = L.Layer.extend({
           "</div>";
       }
     }
-    var imgData = this._getImageData(station);
+    const imgData = this._getImageData(station);
     txt +=
       '<div class="owm-popup-main"><img src="' +
       imgData.url +
@@ -687,14 +682,14 @@ L.OWM.Current = L.Layer.extend({
       if (typeof station.wind.speed != "undefined") {
         txt += '<div class="owm-popup-detail">';
         if (
-          this.options.showWindSpeed == "beaufort" ||
-          this.options.showWindSpeed == "both"
+          this.options.showWindSpeed === "beaufort" ||
+          this.options.showWindSpeed === "both"
         ) {
           txt +=
             this.i18n("windforce", "Wind Force") +
             ": " +
             this._windMsToBft(station.wind.speed);
-          if (this.options.showWindSpeed == "both") {
+          if (this.options.showWindSpeed === "both") {
             txt +=
               "&nbsp;(" +
               this._convertSpeed(station.wind.speed) +
@@ -715,14 +710,14 @@ L.OWM.Current = L.Layer.extend({
       if (typeof station.wind.gust != "undefined") {
         txt += '<div class="owm-popup-detail">';
         if (
-          this.options.showWindSpeed == "beaufort" ||
-          this.options.showWindSpeed == "both"
+          this.options.showWindSpeed === "beaufort" ||
+          this.options.showWindSpeed === "both"
         ) {
           txt +=
             this.i18n("gust", "Gust") +
             ": " +
             this._windMsToBft(station.wind.gust);
-          if (this.options.showWindSpeed == "both") {
+          if (this.options.showWindSpeed === "both") {
             txt +=
               "&nbsp;(" +
               this._convertSpeed(station.wind.gust) +
@@ -744,11 +739,11 @@ L.OWM.Current = L.Layer.extend({
         txt += '<div class="owm-popup-detail">';
         txt += this.i18n("direction", "Windrichtung") + ": ";
         if (
-          this.options.showWindDirection == "desc" ||
-          this.options.showWindDirection == "both"
+          this.options.showWindDirection === "desc" ||
+          this.options.showWindDirection === "both"
         ) {
           txt += this._directions[(station.wind.deg / 22.5).toFixed(0)];
-          if (this.options.showWindDirection == "both") {
+          if (this.options.showWindDirection === "both") {
             txt += "&nbsp;(" + station.wind.deg + "°)";
           }
         } else {
@@ -767,13 +762,13 @@ L.OWM.Current = L.Layer.extend({
   },
 
   _getImageData: function (station) {
-    var imageUrl;
-    var imageWidth = this.options.imageWidth;
-    var imageHeight = this.options.imageHeight;
-    var imageUrlTemplate = this.options.imageUrlCity;
+    let imageUrl;
+    let imageWidth = this.options.imageWidth;
+    let imageHeight = this.options.imageHeight;
+    const imageUrlTemplate = this.options.imageUrlCity;
     if (station.weather && station.weather[0] && station.weather[0].icon) {
       imageUrl = imageUrlTemplate.replace("{icon}", station.weather[0].icon);
-    } else if (station.type && station.type == 1) {
+    } else if (station.type && station.type === 1) {
       imageUrl = this.options.imageUrlPlane;
       imageWidth = this.options.imageWidthPlane;
       imageHeight = this.options.imageWidthPLane;
@@ -786,8 +781,8 @@ L.OWM.Current = L.Layer.extend({
   },
 
   _createMarker: function (station) {
-    var imageData = this._getImageData(station);
-    var icon = L.divIcon({
+    const imageData = this._getImageData(station);
+    const icon = L.divIcon({
       className: "",
       iconAnchor: new L.Point(25, imageData.height / 2),
       popupAnchor: new L.Point(0, -10),
@@ -798,14 +793,13 @@ L.OWM.Current = L.Layer.extend({
         imageData.height
       ),
     });
-    var marker = L.marker([station.coord.Lat, station.coord.Lon], {
+    return L.marker([station.coord.Lat, station.coord.Lon], {
       icon: icon,
     });
-    return marker;
   },
 
   _icondivtext: function (station, imageurl, width, height) {
-    var txt = "";
+    let txt = "";
     txt +=
       '<div class="owm-icondiv">' +
       '<img src="' +
@@ -831,7 +825,8 @@ L.OWM.Current = L.Layer.extend({
   },
 
   _temperatureConvert: function (tempC) {
-    var temp = tempC;
+    let temp = tempC;
+    // eslint-disable-next-line default-case
     switch (this.options.temperatureUnit) {
       case "K":
         temp = tempC + 273.15;
@@ -846,7 +841,7 @@ L.OWM.Current = L.Layer.extend({
   },
 
   _displayTemperatureUnit: function () {
-    var unit = this._tempUnits["K"];
+    let unit = this._tempUnits["K"];
     if (typeof this._tempUnits[this.options.temperatureUnit] != "undefined") {
       unit = this._tempUnits[this.options.temperatureUnit];
     }
@@ -854,8 +849,8 @@ L.OWM.Current = L.Layer.extend({
   },
 
   _windMsToBft: function (ms) {
-    var bft = 18;
-    for (var key in this._msbft) {
+    let bft = 18;
+    for (const key in this._msbft) {
       if (ms < this._msbft[key]) {
         bft = key;
         break;
@@ -865,7 +860,8 @@ L.OWM.Current = L.Layer.extend({
   },
 
   _displaySpeedUnit: function () {
-    var unit = "m/s";
+    let unit = "m/s";
+    // eslint-disable-next-line default-case
     switch (this.options.speedUnit) {
       case "kmh":
         unit = "km/h";
@@ -878,7 +874,8 @@ L.OWM.Current = L.Layer.extend({
   },
 
   _convertSpeed: function (speed) {
-    var sp = speed;
+    let sp = speed;
+    // eslint-disable-next-line default-case
     switch (this.options.speedUnit) {
       case "kmh":
         sp = 3.6 * sp;
@@ -899,7 +896,7 @@ L.OWM.Current = L.Layer.extend({
   },
 
   i18n: function (key, fallback) {
-    var lang = this.options.lang;
+    const lang = this.options.lang;
     if (
       typeof L.OWM.Utils.i18n != "undefined" &&
       typeof L.OWM.Utils.i18n[lang] != "undefined" &&
@@ -944,13 +941,13 @@ L.OWM.ProgressControl = L.Control.extend({
   },
 
   _activate: function (e) {
-    if (e.target.options.type == this.options.type) {
+    if (e.target.options.type === this.options.type) {
       this._container.style.display = "block";
     }
   },
 
   _deactivate: function (e) {
-    if (e.target.options.type == this.options.type) {
+    if (e.target.options.type === this.options.type) {
       this._container.style.display = "none";
     }
   },
@@ -1003,10 +1000,11 @@ L.OWM.CurrentCache = L.Class.extend({
     }
 
     // clip cached data to bounds
-    var clippedStations = new Array();
-    var cnt = 0;
-    for (var k in this._cachedData.list) {
-      var station = this._cachedData.list[k];
+    const clippedStations = [];
+    // eslint-disable-next-line no-unused-vars
+    let cnt = 0;
+    for (const k in this._cachedData.list) {
+      const station = this._cachedData.list[k];
       if (
         station.coord.Lon >= minLon &&
         station.coord.Lon <= maxLon &&
@@ -1038,11 +1036,11 @@ L.OWM.Utils = {
   callbackCounter: 0,
 
   jsonp: function (url, callbackFn) {
-    var _this = this;
-    var elem = document.createElement("script");
-    var counter = this.callbackCounter++;
-    var callback = "L.OWM.Utils.callbacks[" + counter + "]";
-    var abort = function () {
+    const _this = this;
+    const elem = document.createElement("script");
+    const counter = this.callbackCounter++;
+    const callback = "L.OWM.Utils.callbacks[" + counter + "]";
+    const abort = function () {
       if (elem.parentNode) {
         return elem.parentNode.removeChild(elem);
       }
