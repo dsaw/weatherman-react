@@ -9,7 +9,7 @@ import { AddressContextProvider } from "./context/address/Address";
 import { UnitContextProvider } from "./context/unit/Unit";
 import ErrorBoundary from "./container/error_boundary/ErrorBoundary";
 
-import "./sass/app.scss";
+import "./styles/app.scss";
 import { Row } from "react-bootstrap";
 
 class App extends Component {
