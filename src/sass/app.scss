@@ -66,11 +66,15 @@
 #poweredBy {
   a,
   a:hover {
-    color: #4b00ff;
+    color: #0e4072;
   }
   a::before {
-    background-color: #4b00ff;
+    background-color: #0e4072;
   }
+}
+
+.loader-message {
+  color: #0e4072;
 }
 
 .card {
