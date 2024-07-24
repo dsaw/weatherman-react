@@ -24,7 +24,7 @@ class AddressContextProvider extends Component {
     //  geocoding api to get address closest to lat & long
     this.setState({
       isLoading: true,
-      message: "Obtaining the location from coordinates...",
+      message: " Obtaining the location from coordinates...",
     });
     fetch(
       `${API_URL}weather?lat=${latLng.lat}&lon=${latLng.lng}&units=metric&appid=${WEATHER_API_KEY}`,
