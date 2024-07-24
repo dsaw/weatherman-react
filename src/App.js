@@ -19,7 +19,6 @@ class App extends Component {
         <Row id="header">
           <Header />
         </Row>
-
         <AddressContextProvider>
           <ErrorBoundary>
             <div
