@@ -30,6 +30,7 @@ class AddressContextProvider extends Component {
       `${API_URL}weather?lat=${latLng.lat}&lon=${latLng.lng}&units=metric&appid=${WEATHER_API_KEY}`,
       {
         mode: "cors",
+        origin :"https://dsaw.github.io/"
       }
     )
       .then((response) => {
