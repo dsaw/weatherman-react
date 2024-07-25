@@ -16,7 +16,10 @@ const fetchWeatherDailyForecast = async (address) => {
         .map((key) => `${key}=${queryObj[key]}`)
         .join("&");
       const url = `${API_URL}onecall?${queryParams}`;
-      response = await fetch(url).then((response) => {
+      response = await fetch(url, 
+    { mode: "cors",
+      origin :"https://dsaw.github.io/"
+    }).then((response) => {
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
@@ -38,6 +41,7 @@ const fetchLocationData = (latLng, addressContext) => {
     `${API_URL}location/search/?lattlong=${latLng.lat},${latLng.lng}`,
     {
       mode: "cors",
+        origin :"https://dsaw.github.io/"
     }
   )
     .then((response) => {
