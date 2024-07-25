@@ -18,7 +18,7 @@ jobs:
     - name: Build
       run: |
         npm install
-        npm run-script build
+        npm run predeploy
       env:
         REACT_APP_OPENWEATHERMAP_API_KEY: ${{ secrets.REACT_APP_OPENWEATHERMAP_API_KEY }}
 
