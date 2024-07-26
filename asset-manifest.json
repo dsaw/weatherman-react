@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/weatherman-react/static/css/main.6e131a3e.css",
-    "main.js": "/weatherman-react/static/js/main.86b0ef29.js",
+    "main.js": "/weatherman-react/static/js/main.bfbab51f.js",
     "static/media/Montserrat-Regular.ttf": "/weatherman-react/static/media/Montserrat-Regular.3cd786652b8a2e9d41f2.ttf",
     "static/media/Montserrat-ExtraBold.ttf": "/weatherman-react/static/media/Montserrat-ExtraBold.1944c8d1a118759a4435.ttf",
     "static/media/Montserrat-Bold.ttf": "/weatherman-react/static/media/Montserrat-Bold.079ca05d3ded9bc107ab.ttf",
@@ -11,10 +11,10 @@
     "static/media/weatherman.png": "/weatherman-react/static/media/weatherman.b8206208087495d43bfb.png",
     "index.html": "/weatherman-react/index.html",
     "main.6e131a3e.css.map": "/weatherman-react/static/css/main.6e131a3e.css.map",
-    "main.86b0ef29.js.map": "/weatherman-react/static/js/main.86b0ef29.js.map"
+    "main.bfbab51f.js.map": "/weatherman-react/static/js/main.bfbab51f.js.map"
   },
   "entrypoints": [
     "static/css/main.6e131a3e.css",
-    "static/js/main.86b0ef29.js"
+    "static/js/main.bfbab51f.js"
   ]
 }
