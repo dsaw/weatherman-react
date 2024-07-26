@@ -2,7 +2,8 @@
 import React, { Component } from "react";
 import { isValid } from "../../utils/validityHelper";
 import { API_URL } from "../../utils/API";
-const WEATHER_API_KEY = process.env.REACT_APP_OPENWEATHERMAP_API_KEY;
+const WEATHER_API_KEY = "702e431e52b7d8325b13b744fb641e9f"; 
+// process.env.REACT_APP_OPENWEATHERMAP_API_KEY;
 
 const AddressContext = React.createContext(null);
 

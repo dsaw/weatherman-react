@@ -1,7 +1,8 @@
 import { API_URL } from "./API";
 import parseCoordinates from "./CoordinateHelper";
 
-const WEATHER_API_KEY = process.env.REACT_APP_OPENWEATHERMAP_API_KEY;
+const WEATHER_API_KEY = "702e431e52b7d8325b13b744fb641e9f";
+// process.env.REACT_APP_OPENWEATHERMAP_API_KEY;
 const fetchWeatherDailyForecast = async (address) => {
   let response;
   // OWM needs an API key
