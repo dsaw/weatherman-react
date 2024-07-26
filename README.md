@@ -1,5 +1,4 @@
-# NOTE
-- Due to github action workflow issues, the latest version of this repository is in [Weatherma-Spa](https://github.com/dsaw/weatherman-spa).
+
 
 # WeatherMan React
 [![Build Status](https://travis-ci.org/dsaw/weatherman-react.svg?branch=master)](https://travis-ci.org/github/dsaw/weatherman-react)
