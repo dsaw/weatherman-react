@@ -1,0 +1,26 @@
+// TODO: need to configure import paths
+@import "../../node_modules/bootstrap/scss/functions";
+@import "../../node_modules/bootstrap/scss/variables";
+@import "../../node_modules/bootstrap/scss/mixins";
+
+// w-num properties
+$sizes: map-merge(
+  (
+    25: 25%,
+    33: 33%,
+    50: 50%,
+    75: 75%,
+    66: 66%,
+    100: 100%,
+    auto: auto,
+  ),
+  $sizes
+);
+
+@mixin opacity($opacity) {
+  -webkit-opacity: $opacity;
+  -moz-opacity: $opacity;
+  opacity: $opacity;
+}
+
+@import "bootstrap";

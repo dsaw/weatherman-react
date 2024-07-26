@@ -1,0 +1,52 @@
+{
+  "name": "weatherman-react",
+  "version": "0.6.0",
+  "private": true,
+  "dependencies": {
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "bootstrap": "^4.4.1",
+    "country-list": "^2.2.0",
+    "gh-pages": "^3.1.0",
+    "leaflet": "^1.6.0",
+    "lodash": "^4.17.21",
+    "moment": "^2.29.4",
+    "moment-timezone": "^0.5.31",
+    "react": "^16.12.0",
+    "react-autosuggest": "^9.4.3",
+    "react-bootstrap": "^1.0.0-beta.16",
+    "react-dom": "^16.12.0",
+    "react-icons": "^3.10.0",
+    "react-isolated-scroll": "^0.1.1",
+    "react-scripts": "^5.0.1",
+    "sass": "^1.77.8"
+  },
+  "homepage": "https://dsaw.github.io/weatherman-react",
+  "scripts": {
+    "clean": "gh-pages-clean",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -b master -d build",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "lint": "eslint --ext js src",
+    "prettify": "yarn prettier --check src"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "prettier": "2.1.1"
+  }
+}
