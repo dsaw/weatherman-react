@@ -16,7 +16,7 @@ const fetchWeatherDailyForecast = async (address) => {
       const queryParams = Object.keys(queryObj)
         .map((key) => `${key}=${queryObj[key]}`)
         .join("&");
-      const url = `${API_URL}onecall?${queryParams}`;
+      const url = `${API_URL}forecast?${queryParams}`;
       response = await fetch(url, 
     { mode: "cors",
       origin :"https://dsaw.github.io/"
