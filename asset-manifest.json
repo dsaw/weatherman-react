@@ -1,27 +1,20 @@
 {
   "files": {
-    "main.css": "/weatherman-react/static/css/main.fddb7586.chunk.css",
-    "main.js": "/weatherman-react/static/js/main.29f59c1c.chunk.js",
-    "main.js.map": "/weatherman-react/static/js/main.29f59c1c.chunk.js.map",
-    "runtime-main.js": "/weatherman-react/static/js/runtime-main.12570311.js",
-    "runtime-main.js.map": "/weatherman-react/static/js/runtime-main.12570311.js.map",
-    "static/css/2.098bc035.chunk.css": "/weatherman-react/static/css/2.098bc035.chunk.css",
-    "static/js/2.c1925937.chunk.js": "/weatherman-react/static/js/2.c1925937.chunk.js",
-    "static/js/2.c1925937.chunk.js.map": "/weatherman-react/static/js/2.c1925937.chunk.js.map",
+    "main.css": "/weatherman-react/static/css/main.6e131a3e.css",
+    "main.js": "/weatherman-react/static/js/main.7c44cd68.js",
+    "static/media/Montserrat-Regular.ttf": "/weatherman-react/static/media/Montserrat-Regular.3cd786652b8a2e9d41f2.ttf",
+    "static/media/Montserrat-ExtraBold.ttf": "/weatherman-react/static/media/Montserrat-ExtraBold.1944c8d1a118759a4435.ttf",
+    "static/media/Montserrat-Bold.ttf": "/weatherman-react/static/media/Montserrat-Bold.079ca05d3ded9bc107ab.ttf",
+    "static/media/Montserrat-SemiBold.ttf": "/weatherman-react/static/media/Montserrat-SemiBold.fa8441f345d83a0bc4ec.ttf",
+    "static/media/Montserrat-Medium.ttf": "/weatherman-react/static/media/Montserrat-Medium.e2d60bc49517598c0ce8.ttf",
+    "static/media/sunsetmountains.jpg": "/weatherman-react/static/media/sunsetmountains.443ddd33135d147588e7.jpg",
+    "static/media/weatherman.png": "/weatherman-react/static/media/weatherman.b8206208087495d43bfb.png",
     "index.html": "/weatherman-react/index.html",
-    "precache-manifest.b7dbd796f22cbf52c6158588f699040d.js": "/weatherman-react/precache-manifest.b7dbd796f22cbf52c6158588f699040d.js",
-    "service-worker.js": "/weatherman-react/service-worker.js",
-    "static/css/2.098bc035.chunk.css.map": "/weatherman-react/static/css/2.098bc035.chunk.css.map",
-    "static/css/main.fddb7586.chunk.css.map": "/weatherman-react/static/css/main.fddb7586.chunk.css.map",
-    "static/js/2.c1925937.chunk.js.LICENSE": "/weatherman-react/static/js/2.c1925937.chunk.js.LICENSE",
-    "static/media/app.scss": "/weatherman-react/static/media/sunsetmountains.1ddd53db.jpg",
-    "static/media/weatherman.png": "/weatherman-react/static/media/weatherman.d0288ce5.png"
+    "main.6e131a3e.css.map": "/weatherman-react/static/css/main.6e131a3e.css.map",
+    "main.7c44cd68.js.map": "/weatherman-react/static/js/main.7c44cd68.js.map"
   },
   "entrypoints": [
-    "static/js/runtime-main.12570311.js",
-    "static/css/2.098bc035.chunk.css",
-    "static/js/2.c1925937.chunk.js",
-    "static/css/main.fddb7586.chunk.css",
-    "static/js/main.29f59c1c.chunk.js"
+    "static/css/main.6e131a3e.css",
+    "static/js/main.7c44cd68.js"
   ]
 }
